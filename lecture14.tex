@@ -1,0 +1,316 @@
+\documentclass{amsart}
+\usepackage{master}
+\usepackage{overlay}
+\begin{document}
+\title{Lecture 14\\Math 229}
+\date{Thursday March 7, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+\appendix
+
+\section{Hrushovski construction}
+
+The goal is to construct an $\om$-categorical $2$-sparse graph of infinite degree. The
+main starting point is to generalize the notion of \Fraisse structures/limits.
+Recall for this we had a class
+of finitely generated structures and considered all embeddings between them and
+amalgamated. The generic strategy is to restrict out attention to only certain embeddings.
+
+Consider a class $K$ of (finite/finitely generated) structures along with a set $S$ of
+embeddings between elements of $K$ such that $S$
+\begin{enumerate}
+\item contains all isomorphisms, 
+\item is closed under composition, and
+\item whenever $A, C\in K$, and $f: A\inj C$ is in $S$, if $K\ni B\subeq C$ contains the image
+of $f$, then $g:A\inj B$ such that $g\left( a \right) = f\left( a \right)$ is in $S$.
+\end{enumerate}
+We call elements of $S$ strong embeddings. 
+We write $A\leq B$ to mean that $A$ is a strong substructure, i.e. $A\subeq B$ and the
+inclusion map is in $S$. Note that if $f : A\inj B$ is an embedding, then $f\in S$ iff $f\left( A
+\right)\leq B$.
+
+\begin{defn}
+$\left( K , \leq \right)$ satisfies the JEP if for all $A,B\in K$ there exists $C\in K$
+such that 
+\begin{equation}
+A\inj C \invinj B 
+\end{equation}
+where the maps are in $S$. 
+We say $\left( K , \leq \right)$ has AP if the usual definition holds where we insist the
+maps are strong.
+\end{defn}
+
+Now assume $K$ has JEP and AP. Then we can consider the analogue of the \Fraisse limit,
+which is sometimes called the Hrushovski-\Fraisse limit. 
+
+\begin{defn}
+A chain $A_0\leq A_1 \leq \cdots$ of elements of $K$ is \emph{rich} if 
+\begin{enumerate}
+\item For all $A\in K$ there is some $i$ such that $A\leq A_i$,
+\item for all strong $f:A_i \fromto B$ there is $j$ and strong $g:B\fromto A_j$ such that
+it commutes, i.e. $g\left( f\left( a \right) \right) = a$ for $a\in A_i$.
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+Suppose $\left( K , \leq \right)$ is countable and has JEP and AP. Then, up to isomorphism, there is
+a unique countable structure $M$ which can be written as the union of a rich sequence.
+Moreover $M$ is ``homogeneous'' in the following sense. If $A\leq M$ and $B\leq M$ are
+isomorphic, then the isomorphism extends to an automorphism
+of $M$.
+\end{thm}
+
+Note that $A\leq M$ means that there is some $i$ such that $A\leq A_i$, and this doesn't
+depend on the choice of the rich sequence.
+Let's see that it does not depend on the sequence. So let $M= \un A_i = \un B_i$ and
+$A\leq A_i$. Say $A_i \subeq B_j \subeq A_k$. We know $A_i \leq A_k$, so $A_i \leq B_j$ as
+well, and therefore $A\leq A_i \leq B_j$. But strong embeddings are closed under
+composition, so $A\leq B_j$. 
+
+\begin{exm}
+Consider the class of graphs with degree $\leq 1$. 
+So all we can have is matching, and isolated points. 
+Then we can say that $A\leq B$ if there is no edge between $A$ and the complement.
+Then the limit of this class consists of infinitely many matchings, and infinitely many
+isolated points.
+\label{exm:silly}
+\end{exm}
+
+\begin{rmk}
+Assume $K$ has finitely many substructures of each size $n$ (and no infinite structure)
+and there is $F: \NN \fromto \NN$ such that if $B\in K$, $A\subeq B$, and $\abs{A}\leq n$,
+then there is $A\subeq C\leq B$ with $\abs{C}\leq F\left( n \right)$.
+Then $M$ is $\om$-categorical.
+\end{rmk}
+
+If we take the smallest $C$, we should think of $C$ as the closure of $A$.
+So somehow $M$ is homogeneous on strongly embedded sets. 
+To know the orbit of a finite set in $M$, it is enough to know the automorphism type of
+something which contains it and is a strong embedding in $M$.
+
+\subsection{Hrushovski pre-dimension}
+
+Fix some $k\geq 2$. This will be the sparsity parameter.
+Let $C_0$ be the class of $k$-sparse graphs:
+\begin{equation}
+\abs{E\left( A \right)}\leq k\abs{V\left( A \right)}
+\end{equation}
+for any finite subset $A$. Recall $E\left( A \right)$ consists of the edges with both
+endpoints in $A$.
+
+Note first that this class does not have amalgamation. 
+
+\begin{exm}[Counterexample]
+Take $k = 2$ and consider the black graph. Then consider two graphs built by adding one
+vertex and three edges, written in blue and red respectively:
+\begin{equation}
+\begin{cd}
+&&& \textcolor{red}{\something}\arrow[dash,red]{dl}\arrow[dash, bend left, red]{ddl}
+\arrow[dash,bend right,red]{dll}
+\\
+& \something \arrow[dash]{r}\arrow[dash]{d}\arrow[dash]{dr}
+& \something\arrow[dash]{d}\arrow[dash]{dl}
+& \\
+\something\arrow[dash]{ur}\arrow[dash]{r}
+& \something\arrow[dash]{r}
+& \something
+&\\
+&&& \textcolor{blue}{\something}\arrow[dash,blue]{ul}\arrow[dash,blue,bend left]{ull}
+\arrow[dash,blue,bend right]{uul}
+\end{cd}
+\end{equation}
+We can't amalgamate the blue and the red graphs.
+The point is that if we add $k$ edges when we add a single vertex
+this is somehow the saturated case and adding any more breaks amalgamation.
+We now make this formal.
+\end{exm}
+
+Define the predimension $\dd$ on $C_0$ to be
+\begin{equation}
+\dd\left( A \right) = k\abs{V\left( A \right)} - \abs{E\left( A \right)} \ .
+\end{equation}
+Note that our class is precisely the class such that $\dd\left( A \right) \geq 0$. 
+
+Now we specify strong embeddings.
+
+\begin{defn}
+For $A, B \in C_0$ and $A\subeq B$ we say that $A\leq B$ if for all $A\subeq C\subeq B$, 
+\begin{equation}
+\dd\left( C \right) \geq \dd\left( A \right) \ .
+\end{equation}
+\end{defn}
+
+\begin{exm}
+For $k = 2$, there is no vertex in $B\minus A$
+which has three neighbors in $A$.
+\end{exm}
+
+\begin{lem}
+$\left( C_0 , \leq \right)$ is a (generalized) \Fraisse class with JEP and AP.
+\end{lem}
+
+Note that amalgamation is obtained by free amalgamation
+\begin{equation}
+\begin{cd}
+& B \arrow[hook]{dr} & \\
+A\arrow[hook]{ur}\arrow[hook]{dr}&&
+D = B\dun_A C \\
+& C\arrow[hook]{ur}
+\end{cd} \ .
+\end{equation}
+The argument that this works is straightforward.
+
+Note that the \Fraisse limit of this is not quite what we want because it is not
+$\om$-categorical. There is no finite closure.
+
+\begin{exm}
+For $k = 1$ we can have paths, but the limit will be tree-like which is not
+$\om$-categorical. A similar story holds for $k = 2$.
+Note that a strong substructure of this is a path, and closures are unbounded.
+\end{exm}
+
+\subsection{$d$-closed}
+
+We define the dimension to be the minimal predimension of something which contains $A$.
+
+\begin{defn}
+Let $A\subeq B$ in $C_0$. Then we write $A\leq_d B$, and say $A$ is $d$-closed in $B$ if
+$\dd\left( A \right)\lneq \dd\left( C \right)$ for any $A\lneq C \subeq B$.
+\end{defn}
+
+\begin{lem}
+$\left( C_0 , \leq_d \right)$ is a (generalized) \Fraisse class with JEP and AP.
+\end{lem}
+
+\begin{exm}
+For $k = 1$ the \Fraisse limit is an arbitrary disjoint union of finite trees. So we have
+all sorts of finite connected components because if we add any vertex the dimension
+doesn't increase.
+\end{exm}
+
+Since our connected components are finite we can put a bound on them.
+
+\begin{defn}
+Let $F:\RR^{\geq 0} \fromto\RR^{\geq 0}$ and define
+\begin{equation}
+C_F = \left\{ A\in C_0 \st \forall B\subeq A, \dd\left( B \right) \geq  F\left( \abs{B} \right) 
+\right\}
+\end{equation}
+\end{defn}
+
+Now we will be interested in the case when $F$ looks like a logarithm.
+So for a subset $B$ this is saying our predimension can't be too small. 
+In the case of trees, any finite tree has predimension $1$, so as soon as this function is
+greater than $1$ there is no finite tree of this size, and we get a bound on the size.
+
+\begin{thm}
+Let $F$ be smooth, increasing, $F\left( x \right) \fromto \infty$, and $F\left( 0
+\right)=0$. Then if
+\begin{enumerate}
+\item $F'$ is non-increasing, and
+\item $F'\left( x \right)\leq 1/x$ for $x>0$
+\end{enumerate}
+then $\left( C_F , \leq _d \right)$ is a free amalgamation class and the limit is
+$\om$-categorical.
+\end{thm}
+
+\begin{proof}[Proof sketch]
+So the points allowed are above the curve.
+So say we have a strong embedding of $A$ into $B_1$ and $B_2$. 
+We know the size and codimension of $B_1$ and $B_2$ are at least as large as $A$, so
+we can plot the predimension as a function of the size as in \cref{fig:prediagonal}.
+Then the free amalgamation $C$ forms the final
+vertex of the parallelogram in the plot as in \cref{fig:prediagonal}.
+\begin{figure}
+\begin{overlay}
+\pict{prediagonal.pdf}{0.8}
+\toptext{$\something$}{-2,1}
+\toptext{$\something$}{-1,1.5}
+\toptext{$\something$}{-1.5,2}
+\toptext{$\something$}{-0.5,2.5}
+\toptext{$A$}{-2.3,1}
+\toptext{$B_1$}{-0.6,1.5}
+\toptext{$B_2$}{-1.9,2}
+\toptext{$C$}{-0.1,2.5}
+\toptext{$\abs{A}$}{4.7,-1.3}
+\toptext{$\dd\left( A \right)$}{-4.8,2.2}
+\end{overlay}
+\caption{$A$ has a strong embedding into $B_1$ and $B_2$. The amalgamation forms the final
+corner of a parallelogram.}
+\label{fig:prediagonal}
+\end{figure}
+So now we just need a condition on $F$ such that the interior of such parallelograms is
+disjoint from the portion under the curve.
+As it turns out this gives us exactly the conditions in the theorem.
+
+$\om$-categoricity follows from the fact that $F\fromto \infty$ because the predimension
+of the closure can only go down, but $F$ eventually goes to infinity, so the closure has bounded size.
+\end{proof}
+
+\begin{exm}
+Let $k = 2$ and take:
+\begin{align}
+F\left( 1 \right)  = 2 
+&&
+F\left( 2 \right) = 3
+\\
+F\left( 3 \right) = 4
+&&
+F\left( 4 \right) = 5
+\\
+F\left( 5 \right) = 5
+&&
+F\left( k \right)  = \log\left( k \right) + \left( 5- \log \left( 5 \right) \right)
+\end{align}
+for $k\geq 5$.
+If we have two points with edges, the predimension is $4$, 
+and if we have an edge the predimension is $3$ which is fine, but anything more and it is
+not allowed. For three vertices, we allow:
+\begin{equation}
+\begin{cd}
+& \something\arrow[dash]{dl}\\
+\something\arrow[dash]{dr}&\\
+& \something
+\end{cd}
+\end{equation}
+but we don't allow a triangle. 
+For $4$-vertices this won't allow a $4$-cycle.
+Notice however that $5$-cycles are allowed.
+Every vertex has infinite degree because of the following. 
+If we have any graph and add a vertex with one
+edge, this increases the predimension so this is always an allowed move.
+So the theorem is already proved. 
+
+Note the following other properties. 
+This graph has a unique $1$-type, as the type of a point, $\left\{ a \right\}$, is always
+closed. It also has a unique type of an edge as 
+\begin{cd}
+\something\arrow[dash]{r}&\something
+\end{cd}
+is closed.
+It is clear that the limit is connected as well. Assume we have two points $a$ and $b$
+which are not connected. Then the predimension is
+\begin{equation}
+\dd\left( \left\{ a,b \right\} \right) = 4\ .
+\end{equation}
+There are two cases. If $\left\{ a,b \right\}$ is strongly embedded, then 
+we have
+\begin{equation}
+\begin{tikzcd}
+a\arrow[dash]{d}&
+b\arrow[dash]{d}\\
+c\arrow[dash]{r}&
+d
+\end{tikzcd}
+\end{equation}
+and if not, then there is $c$ such that we have
+\begin{equation}
+\begin{tikzcd}
+a\arrow[dash]{r}&
+c\arrow[dash]{r}&b
+\end{tikzcd} \ .
+\end{equation}
+\end{exm}
+
+\end{document}

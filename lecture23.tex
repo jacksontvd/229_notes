@@ -1,0 +1,227 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 23\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{April 18, 2019}
+\maketitle
+
+\section{Few substructure}
+
+\begin{defn}
+Let $\cM$ be an $\om$-categorical structure. We say it has \emph{few-substructures} if for
+no polynomial $p\left(x\right)$ do we have
+\begin{equation}
+f_n\left(\cM\right) \geq \frac{2^n}{p\left(n\right)} \ .
+\end{equation}
+\end{defn}
+
+The theorem we will prove over the next two classes is the following.
+
+\begin{thm}
+If primitive $\cM$ has few substructures, then either
+\begin{enumerate}[label = (\iii)]
+\item $\cM$ is stable, not $\om$-stable, or
+\item $\cM$ is one of the $5$ reducts of DLA.
+\end{enumerate}
+\end{thm}
+
+\begin{rmk}
+In $\left(i\right)$ we cannot hope for $\cM$ to be finitely homogeneous.
+Conjecturally, it never happens.
+\end{rmk}
+
+\begin{lem}
+If $\cM$ has few substructures, then any expansion of $\cM$ by adding finitely many constants
+also has few substructures.
+\label{lem:still_fs}
+\end{lem}
+
+\begin{exr}
+Prove \cref{lem:still_fs}.
+\end{exr}
+
+We have seen the following.
+
+\begin{fact}
+If $\cM$ has few substructure then it is NIP.
+\end{fact}
+
+\begin{fact}
+If $\cM$ is primitive with few substructures, and $\om$-stable, then $\cM\simeq \left(M ,
+=\right)$.
+\end{fact}
+
+\begin{fact}[Shelah]
+If $\cM$ is NIP unstable, then there is a formula
+$\phi\left(x,y\right)$ where $\abs{x} = \abs{y} = 1$ which defines a partial order
+with infinite chains.
+\end{fact}
+
+\begin{fact}
+If $\cM$ is $\om$-categorical NIP, unstable, then there is a definable equivalence
+relation $E$ on $\cM$ and a definable infinite linear order on $\cM / E$
+\end{fact}
+
+\begin{proof}[Proof for few substructure case]
+The idea is to take this partial order and show that if it isn't close to linear then we
+have lots of substructures.
+
+Let $\leq$ be a definable (over some $A$) partial order on $M$. 
+First we can assume $A= \emp$. Let $D\subeq M$ be a transitive set
+(i.e. complete type over $\emp$) where $\leq$ has infinite chains.
+Now we have two cases. 
+\begin{enumerate}[label = \textit{Case \numbers:}]
+\item Any definable $X\subeq D$ with an finite chain has an infinite anti-chain.
+\label{item:case1}
+\item $D$ has no infinite anti-chain.
+\label{item:case2}
+\end{enumerate}
+
+\ref{item:case1}
+Assume $C_0\subeq D$ is an infinite anti-chain and let $a_0\in X_0$. 
+By transitivity $a_0$ belongs to some infinite chain so 
+\begin{equation}
+D_0 = \left\{x\geq a_0, x\in D\right\}
+\end{equation}
+has an infinite anti-chain, say $X_1$. Now pick $a_1\in C_1$ and iterate. 
+Let $n < \om$, and consider an ordered partition
+\begin{equation}
+n = m_1 + \ldots + m_k 
+\end{equation}
+with $m_i > 0$.
+Now we will associate to this a structure of size $n$. 
+Consider $A_{\oline{m}}\subeq M$ obtained by taking $m_i$ elements from $C_i$ (including
+$a_i$) and nothing else. 
+Then we claim that if $\oline{m}\neq \oline{m'}$ then 
+\begin{equation}
+A_{\oline{m}}\not\simeqq A_{\oline{m'}} \ .
+\end{equation}
+The reason is as follows. We know $A_{\oline{m}}$ has exactly $m_0$ minimal elements. Then
+removing them we have exactly $m_1$ and so on.
+Now there are $2^{n-1}$ ordered partitions, hence 
+\begin{equation}
+f_n\left(M\right) \geq 2^{n-1} \ .
+\end{equation}
+
+\ref{item:case2} 
+We will construct a linear order by induction on the size of a max antichain. 
+Assume $D$ has no antichain of size $n+1$. Now we again have two cases:
+\begin{enumerate}[label = \textit{Case \ABC:}]
+\item There is $a\in D$ such that the set $V\left(a\right)$ of elements comparable to $a$
+is infinite.
+\label{item:caseA}
+\item Otherwise.
+\label{item:caseB}
+\end{enumerate}
+
+\ref{item:caseA} We are done by induction as $V\left(a\right)$ has no antichain of size
+$n$.
+
+\ref{item:caseB} 
+Say $\abs{V\left(a\right)}\leq k$. Then we induct on $k$. 
+For $a,b\in D$ define $a\to b$ if $b\in V\left(a\right)$ is a maximal element of
+$V\left(a\right)$. 
+Then define $a\order b$ if either $a\leq b$ or $a\fromto b$. 
+\begin{clm}
+If $a\order b$ and $b\order c$ then $a\order c$.
+\end{clm}
+Assume not, i.e. $a\not\order c$. Then either $c < a$ or $c\in V\left(a\right)$ not
+maximal.
+Now we again have cases.
+
+\begin{enumerate}[label = \textit{Case \albe:}]
+\item $c<a$.
+\label{item:caseal}
+\item $c\in V\left(a\right)$ not maximal.
+\label{item:casebe}
+\end{enumerate}
+
+\ref{item:caseal}
+If $a\leq b$ then $c < b$ which is a contradiction.
+If $a\fromto b$ and $b < c$ then since $c<a$ we have $b<a$ so $b\fromto c$ but now both
+$a,c\in V\left(b\right)$ which contradicts maximality of $c$.
+
+\ref{item:casebe}
+Let $d > c\in V\left(a\right)$. 
+If $b\leq x$, $b\leq d$, and $b\fromto c$ then $d\not\in V\left(b\right)$ In either case
+$d\not\in V\left(b\right)$. 
+If $d\leq b$ then $c< b$. 
+So $b< d$ and $a\not\leq b$ which means $a\fromto b$ which is a contradiction since $d > b$.
+
+So $\order$ is a quasi-order.
+If $a\order b$ and $b\order a$ for $a\neq b$ then it must be that $a\fromto b$ and
+$b\fromto a$ so the equivalence classes of the quasi-order are finite in the quotient,
+$\order$ induces an infinite order with 
+$\abs{V\left(a\right)}\leq k-1$ for all $a$.
+\end{proof}
+
+\section{Interpretable orders in \texorpdfstring{$\cM$}{M} with few substructures}
+
+From now on assume $\cM$ has few substructures. 
+
+\begin{lem}
+Let $D\subeq M$ and $\pi: D\fromto V$ an interpretable map with $V$ linearly ordered. 
+If $V$ is infinite and transitive then $\pi$ has finite fibers.
+\end{lem}
+
+\begin{proof}
+Take the partial order $\pi\left(a\right)\leq
+\pi\left(b\right)$ on $D$.
+This is the same argument as before. 
+\end{proof}
+
+\begin{lem}
+Let $D\subeq M$ and $\pi: D\fromto V$ an interpretable map with $V$ linearly ordered. 
+Then any parameter-defined subset of $V$ is a finite union of convex sets. 
+\end{lem}
+
+\begin{proof}
+Let $X$ be a definable set which is not a finite union of convex sets.
+For any $n < \om$ and any $\sigma: n\fromto 2$ we can find 
+\begin{equation}
+D_\sigma = \left\{d_0 , \ldots , d_{n-1}\right\}\subeq D
+\end{equation}
+with $\pi\left(d_i\right) < \pi\left(d_{i+1}\right)$ and $\pi\left(d_i\right)\in X$ iff
+$\sigma\left(i\right) = 1$.
+Then we get $2^n$ many.
+\end{proof}
+
+For $V$ linearly ordered, let $\bar V$ denote the completion of $V$. A
+function $f: X\fromto \bar V$ (for $X\subeq M^k$ definable) is definable if the set
+\begin{equation}
+\left\{ \left(x,t\right)\in X\times V \st t < f\left(x\right)\right\} \subeq X\times V
+\end{equation}
+is definable.
+
+\begin{lem}
+Let $X\subeq M$ be definable and transitive.Let $D\subeq M$ and $\pi:D\fromto V$ as above, $V$
+transitive. If $f:X\fromto \bar V$ is definable then $X = D$ and $f = \pi$.
+\end{lem}
+
+\begin{proof}
+Assume $D\minus X$ is not empty. Then by transitivity of $V$ we have that $\pi: D\minus X
+\fromto V$ is onto. So now fix $n < \om$. 
+For $\sigma \in \Fun\left(n , 2\right)$ take
+\begin{equation}
+\left(a_i^\sigma \st i < n\right)
+\end{equation}
+in $M$ such that 
+\begin{itemize}
+\item $a_i^\sigma\in D\minus X$ if $\sigma\left(i\right) = 0$ and $a_i^\sigma\in X$ if
+$\sigma\left(i\right) = 1$
+\item $g_i\left(a_i^\sigma\right) < g_{i+1}\left(a_{i+1}^\sigma\right)$ where $g_0\in
+\left\{f , \pi\right\}$.
+\end{itemize}
+This gives $2^n$ substructures of size $n$. It follows that $D\subeq X$ and therefore $X =
+D$ by transitivity of $X$.
+
+So now we have $D = X$ and potentially two different maps to $V$ which we want to show are
+the same. 
+By transitivity $f\left(a\right) > \pi\left(a\right)$. 
+Now we construct $2^n$ substructures. Take any point $a_0$ then act $f$ on it. This lands
+somewhere else, and now when we choose our next point we can either choose it ahead of
+$f\left(a_0\right)$ or behind it. Now just iterate it.
+\end{proof}
+
+\end{document}

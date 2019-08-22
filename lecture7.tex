@@ -1,0 +1,194 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 7\\Math 229}
+\date{February 12, 2019}
+\author{Lecture: Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+\section{EPPA for $K_n$-free graphs}
+
+Recall we were proving that $K_n$-free graphs have EPPA.
+
+\begin{proof}
+Let $A$ be a $K_n$-free graph, and let $B$ be the EPPA witness of $A$ as a general graph.
+Then we want to build some $B$ by lifting $B_0$ in such a way that it is $K_n$-free.
+Then we need $A$ to embed into $B$, and automorphisms of $B_0$ to extend to $B$:
+\begin{equation}
+\begin{tikzcd}
+& B\arrow{d}{\pi}\\
+A\arrow[hook]{r}\arrow[hook]{ur}& B_0
+\end{tikzcd}
+\ .
+\end{equation}
+
+Define $B$ as follows:
+\begin{equation}
+V\left( B \right) = \left\{ \left( v , t_r \right) \st v\in B_0  \right\}
+\end{equation}
+where $t_r$ is a function assigning a value in $\left\{ 0 , \cdots , n-2 \right\}$ to
+every $n$-clique containing $v$. Then we have an edge
+$\left( \left( v , t_v \right) , \left( w , t_w \right) \right)\in E\left( B
+\right)$ iff $\left( v,w
+\right)\in E\left( B_0 \right)$ and for any clique $c$ containing $v$, we have $f_v\left(
+c \right)\neq f_w\left( c \right)$.
+By construction, $B$ has no $n$-cliques.
+Note that we can embed $A$ into $B$ (lifting the embedding $A\inj B_0$) by assigning
+values to cliques in an injective way.
+The point is that every clique of $B_0$ has at most $n-1$ points in $A$.
+
+The automorphisms of $B$ are as follows. First we can lift every automorphism of $B_0$ in
+a natural way. To do this, we send:
+\begin{equation}
+\tilde \phi: \left( v , t_v \right)\mapsto \left( \phi\left( v \right) , t_v\comp
+\phi^{-1} \right) \ .
+\end{equation}
+Another kind of automorphism is as follows. 
+For any clique $c$ in $B_0$ and $\sigma\in \Sym\left( \left\{ 0 , \cdots , n-2 \right\}
+\right)$
+we have $\theta_{c,\sigma}\in \Aut\left( B \right)$ such that
+\begin{equation}
+\theta_{c,\sigma} : \left( v , t_v \right)\fromto \left( v , t'_v \right)
+\end{equation}
+where $t'_v$ sends 
+\begin{equation}
+t'_v : 
+\begin{cases}
+k\mapsto t_v\left( k \right) & k\neq c\\
+c\mapsto \sigma\comp t_v\left( c \right)
+\end{cases} \ .
+\end{equation}
+
+Now we need to show that every automorphism of $A$ extends to one of $B$.
+Let $f:A\paut A$. We already know $f$ extends to $\phi \in \Aut\left( B_0 \right)$ which
+gives $\tilde \phi \in \Aut\left( B \right)$ which agrees with $f$ on the projection to
+$B_0$. 
+For any clique $c$ of $B_0$, the image of $f$ (seen as $f:B\paut B$)
+has at most $n-1$ points $\left( v , t_v \right)$ where $t_v$ is defined on $c$ and the
+values are all different. 
+Similarly, to any such $\phi$, the points $\left( w , t_w \right)$ in $\tilde \phi\left(
+\domain f \right)$ take different values on $c$.
+Hence there is some $\sigma\in \Sym\left( \left\{ 0 ,  \cdots , n-2 \right\} \right)$ such
+that $\theta_{c , \sigma} \comp \tilde \phi$ and $f$ agree on the values at $c$.
+\end{proof}
+
+\begin{exr}
+Prove EPPA for $3$-hypergraphs.\footnote{Or just for $n$-hypergraphs.}
+[Hint: take the valuations to give value in $\left\{ 0,1 \right\}$, and put a hyperedge 
+if the sum of the values is odd/even.]
+\end{exr}
+
+
+\section{EPPA for metric spaces}
+
+Recall that for us, a metric space is a structure in a binary relational language
+where we have one binary relation for every possible distance.
+The general idea for proving EPPA is to regard it as a colored graph with edges between
+every two points.
+Assume we can find an EPPA witness $B_0$ for this as a colored graph.\footnote{The idea is to
+first give valuations for every edge, then treat possible multiple colors like we treated
+the cliques in the $K_n$ free case.}
+Now we want to complete this to a metric space. 
+One obstruction to completing $B_0$ is having a bad cycle, i.e. a cycle where
+one edge has distance larger than the sum of the others in the cycle. 
+As it turns out we have the following:
+
+\begin{clm}
+The only obstruction to completing a metric space is the existence of bad cycles.
+\end{clm}
+
+\begin{proof}
+For any $a,b\in B$, $a\neq b$ then set $\dist\left( a,b \right)$ to be
+\begin{equation}
+\min\left\{ \sum \dist\left( c_i , c_{i+1} \right) \st a = c_0 ,c_1 \cdots , c_n =
+b;\dist\left( c , c+1 \right) \text{ is defined in } B\right\} \ .
+\end{equation}
+If this set is empty, i.e. there is no path between them, set $\dist\left( a,b
+\right)$ to be some large fixed distance.
+
+The only thing to check is that we are not creating any triangles which fail the triangle
+inequality. It is enough to check that when we add one such distance, we have not created
+a bad cycle. Assume we have a bad cycle $\oline{b}$.
+The new edge cannot be the large edge of the cycle by construction, because if $a > \sum
+b_i$, then $a$ is defined as the minimum of all such things, so we have a contradiction.
+Now let the new value be one of the small edges of a bad cycle, say $b_1$.
+By definition, there exists a path $\oline{c}$ such that the sum of the $c_i$ is equal to
+the new edge, but now the concatenation of the bad cycle without $b_1$ and the path
+$\oline{c}$ is a bad cycle, so we must have had one to begin with,
+which is a contradiction. The picture is:
+\begin{equation}
+\begin{tikzcd}
+\cdot \arrow[dash]{r}{c_0}\arrow[dash]{dd}{c_1} & \cdot \arrow[dash]{r}{b_0}&
+\cdot\arrow[dash]{dr}{a} & \\
+&&& \cdot\arrow[dash]{dl} \\ 
+\cdot\arrow[dash]{r}{c_2}&\cdot \arrow[dash]{r}{b_2}\arrow[dashed,dash]{uu}{b_1}&
+\cdot\arrow[dash]{ur}{b_3}
+\end{tikzcd}
+\end{equation}
+Note that all automorphisms of $B$ are preserved.
+\end{proof}
+
+This is saying that having a partial metric space is not something to be
+concerned about. So to prove EPPA for metric spaces, it is enough to construct an EPPA
+witness as a partial metric space (with no bad cycles).
+Now we want to lift this in the same way as we did for $K_n$ free graphs. 
+There are two issues to deal with. The first is that we might have bad cycles of
+arbitrarily large size. This turns out to not be so bad, since we won't add any new
+distances until we complete it at the end.
+
+The other problem is that the argument we had before doesn't work exactly. If we lift and
+try to just break up the cycles by insisting that their assignment don't match, we
+can't detect if cycles are bad because somehow these things will only disagree in pairs.
+The proof that does work is the following.
+
+\begin{proof}[Proof of EPPA for metric spaces]
+Let $A$ be a metric space. Take $B_0$ an EPPA witness for $A$ as a colored graph. Now we
+want to build $B$ which projects to $B_0$ such that $A$ embeds into it, where $B$ has no
+bad cycle. We restrict to the minimal bad cycles, i.e. it has no internal edges and
+doesn't repeat a vertex. Explicitly define $B$ by:
+\begin{equation}
+V\left( B \right) = \left\{ \left( v , t_v \right) \st v\in V\left( B_0 \right)\right\}
+\end{equation}
+where $t_v$ gives a value in $\left\{ 0,1 \right\}$ to every cycle $\left\{ c_0 , \cdots ,
+c_{n-1}\right\}$ containing $v$.
+I.e. for every enumeration of the cycle it assign either $0$ or $1$.
+
+Now define $\dist\left( \left( v , t_v \right) , \left( w , t_w \right) \right) = d$
+iff we have that $\dist\left( v,w \right) = d$, and
+for every induced cycle $\oline{c} = \left\{ c_0 ,\cdots , c_{n-1}\right\}$ containing $v$ $w$ 
+we have one of the two cases:
+\begin{itemize}
+\item if there exists $i < n-1$ such that
+\begin{equation}
+\left\{ v,w \right\} = \left\{ c_i , c_{i+1} \right\}
+\end{equation}
+then this implies $t_v\left( \oline{c} \right) = t_w\left( \oline{c} \right)$
+\item if $\left\{ v,w \right\} = \left\{ c_0 , c_{n-1} \right\}$ 
+then this implies $t_v\left( \oline{c} \right)\neq t_w\left(\oline{c} \right)$.
+\end{itemize}
+The idea is that for each bad cycle, we follow one copy of it in $B$, 
+and when we reach the end we jump over to the other copy, follow this, and then close it up.
+
+First we need to check that $A$ embeds in $B$. 
+We know $A$ can contain at most $2$ points from any bad cycle, which must be consecutive since
+every pair of points in $A$ has a distance. Then we can just embed $A$ by a `greedy' 
+algorithm.
+
+Now notice that the minimum size of a bad cycle increases when we pass from $B_0$ to $B$. This is
+sufficient because of the following. Since we know the values in $A$, there is a maximal size a bad cycle can
+have.\footnote{This is something like $\left(\max / \min\right) + 1$.}
+Consider some bad cycle in $B$. First assume it maps injectively, it means we had a bad
+cycle to begin with, except there are possible extra edges on the interior. But if this is
+the case, it is not induced, which means there is an induced bad cycle inside, so it is
+smaller. If it is already induced, then this contradicts the construction.
+Now if it is not injective, this means we are somehow collapsing two points, in which case
+we obtain two new cycles, but then the same long edge creates a smaller bad cycle as well.
+
+As usual, the automorphisms of $B_0$ lift to automorphisms of $B$.
+Then for any bad cycle $\oline{c}$ we can flip $0\bij 1$ on $\oline{c}$.
+For any partial automorphism of $A$, any bad cycle intersects $A$ in at most two
+points, and the usual argument holds that this extends to $B$ by flipping $0$s and $1$s as
+needed.
+\end{proof}
+
+\end{document}

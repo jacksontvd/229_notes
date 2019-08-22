@@ -1,0 +1,295 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 16\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\date{March 14, 2019}
+\maketitle
+
+\section{Descriptive set theory}
+
+We will continue with our crash course in descriptive set theory. 
+
+\subsection{Polish spaces}
+
+\begin{cor}
+Polish spaces are precisely the $G_{\dd}$ subspaces of $W$.
+\end{cor}
+
+Then we have an analogous result:
+
+\begin{prop}
+\begin{itemize}
+\item Every perfect\footnote{Recall this means it has no isolated points.} Polish 
+space has a subspace homeomorphic
+to the cantor set $C$.
+\item If $X$ is a compact polish space then there is a co-continuous surjective map
+$C\fromto X$.
+The idea is that the cantor set is universal among compact polish spaces. 
+\end{itemize}
+\end{prop}
+
+\begin{proof}[Sketch proof]
+Let $X$ be perfect Polish. Pick two points, 
+pick two disjoint open sets containing them.
+These are not isolated so we can break these into two again. Now we can continue this process with
+decreasing radius of the balls going to $0$.
+Then we get a homeomorphic embedding.
+
+In the second part, since $X$ is compact we can cover it by finitely many balls possibly
+not disjoint. And then we're naturally constructing a surjective map from the finite tree
+to $X$, and then we check that this is just homeomorphic to $C$.
+\end{proof}
+
+A compact space $X$ is polish iff metrizable iff second countable.
+Note this is not equivalent to separable. 
+
+\begin{exm}[Counter-example]
+$\left[ 0,1 \right]^{\left[ 0,1 \right]}$ is compact, separable, and not second countable.
+\end{exm}
+
+Let $X$ be Polish. Define $K\left( X \right)$ to consist of the compact subspaces of $X$
+with the Vietoros topology. The base is given by
+\begin{equation}
+\left\{ K\subeq X \st \exists U_0 , \cdots , U_n\subeq X\suchthat
+K\subeq U_0, K\cap U_1\neq \emp, \cdots , K\cap U_n \neq \emp \right\} \ .
+\end{equation}
+This is metrizable. In particular this is given by the Hausdorff metric. 
+Define 
+\begin{equation}
+d_H\left( K , L \right) = 
+\begin{cases}
+0 & K = L = \emp\\
+1 & K =  \emp \neq L \text{or} L = \emp \neq K\\
+\max\left\{ \dd\left( K , L \right) , \dd\left( L , K \right) \right\} & K,L\neq \emp
+\end{cases}
+\end{equation}
+where
+\begin{equation}
+\dd\left( K , L \right)\ceqq \sup_{x\in K} d\left( x,L \right) \ .
+\end{equation}
+Then it is a fact that this metric gives the above topology. 
+In fact, if $D\subeq X$ is dense, 
+\begin{equation}
+K_f\left( D \right) = \left\{ K\subeq D,K\text{ finite} \right\}
+\end{equation}
+is dense in $K\left( X \right)$, so $K\left( X \right)$ is Polish.
+
+\subsection{Baire category}
+
+Let $X$ be a topological space.
+
+\begin{defn}
+A set $A\subeq X$ is \emph{nowhere dense} if $\clos{A}$ has empty interior. 
+\begin{enumerate}
+\item A set $A\subeq X$ is \emph{meager} (a first category)
+if $A = \un A_n$ where $A_n$ is nowhere dense
+(equivalently, $A\subeq \un F_n$, $F_n\subeq X$ closed with empty interior).
+\item $A\subeq X$ is \emph{comeager} if $X\minus  A$ is meager\footnote{This is also
+called residual.}
+(equivalently $A$ contains a countable intersection of dense opens).
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+The space $X$ is \emph{Baire} if any of the following equivalent conditions are satisfied:
+\begin{enumerate}[label = (\iii)]
+\item Every nonempty open set is non-meager.
+\item A meager set has empty interior. 
+\item Every comeager set is dense.
+\item Intersection of countably many dense open sets is dense.
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+Every completely metrizable space is Baire.
+Every locally compact Hausdorff space is Baire.
+\end{thm}
+
+\begin{proof}
+Consider a countable intersection of dense open sets
+\begin{equation}
+\binter_{n<\om} U_n\ .
+\end{equation}
+Take a ball in $U_1$ of radius $<1$. 
+Then take a ball of radius $<1/2$ in $U_2$, and continue in this fashion.
+Then what we get is a point in the intersection of the open sets.
+\end{proof}
+
+In a Baire space, meager sets form a $\sigma$-ideal. This means the collection of these is
+closed under taking subsets, countable unions, and doesn't contain the whole
+space.\footnote{Recall this is different from a $\sigma$-algebra because, first of all, a
+$\sigma$-algebra must contain the whole space, and it is closed under
+countable unions, but also complements, which implies it is closed under countable
+intersections as well.}
+The idea is that this gives a notion of smallness. Meager sets somehow have measure $0$, 
+non-meager somehow have positive measure, and co-meager sets have measure $1$.
+
+We will say that a property holds \emph{generically} if it holds on a comeager set.
+We write $\forall^* x P\left( x \right)$ to mean that $P$ holds generically, 
+and $\exists^* x P\left( x \right)$ means $\left\{ x\st P\left( x \right) \right\}$ is
+non-meager.
+
+\begin{defn}
+A set $A\subeq X$ has the Baire property (BP) if $A \symd U$ is meager for some open $U$.
+The notation is that $A=^* U$.
+\end{defn}
+
+\begin{prop}
+The class of subsets of $X$ which have BP is a $\sigma$-algebra.
+\end{prop}
+
+\begin{proof}
+Recall this means it is closed under complements, countable unions, and countable
+intersections. Note that for open $U$ we have $U =^* \clos{U}$ and for closed $F$ we have
+$F=^* \interior\left( F \right)$. 
+If $A$ has BP, then $A=^* U$ for some $U$, and then
+\begin{equation}
+X\minus A =^* X\minus U =^* \interior\left( X\minus U \right) \ .
+\end{equation}
+If $A_n =^* U_n$ then
+\begin{equation}
+\bun_n A_n =^* \bun_n U_n
+\end{equation}
+so we are done.
+\end{proof}
+
+Notice that every Borel set has BP
+(recall the Borel sets comprise
+the smallest $\sigma$-algebra containing all open sets).
+
+\begin{lem}
+If $A$ has BP then we can write
+\begin{equation}
+G\subeq A \subeq F
+\end{equation}
+such that $G$ is a $G_\dd$ set, and $F$ is an $F_\sigma$ set such that $F\minus G$ is
+meager.
+\end{lem}
+
+\begin{proof}
+$A = ^* U$ for some open $U$, which means $A\symd U\subeq F$, where $F$ is closed and meager.
+So $G = U\minus F$ is $G_\dd$, $G\subeq A$, and $A\minus G\subeq F$ is meager. 
+Now we can apply this to the complement $X\minus A$ to get the $F_\sigma$ set.
+\end{proof}
+
+\begin{defn}
+A function $f:X\fromto Y$ is  Baire-measurable if the preimage of any open set has BP.
+\end{defn}
+
+Now we have some sort of Fubini property.
+
+\begin{thm}[Kuratowski-Ulam]
+Let $X$ and $Y$ be second countable topological spaces. If $A\subeq X\times Y$
+then
+\begin{enumerate}[label=(\iii)]
+\item $\forall^* x$ $A_x = \left\{ y : A\left( x,y \right) \right\}$ has BP.
+\item $A$ is meager iff $\forall^* x, A_x$ is meager.
+\item $A$ is comeager iff $\forall^* x A_x$ is comeager.
+\end{enumerate}
+\end{thm}
+
+We said this is some sort of Fubini property because this can be rewritten as
+\begin{equation}
+\forall\left( x,y \right)A\left( x,y \right)\iff
+\forall^* x \forall^* y A\left( x,y \right) \iff
+\forall^* y\forall^* x A\left( x,y \right) \ .
+\end{equation}
+
+\begin{thm}
+If $X$ is perfect Polish and $E\subeq X^2$ is a meager equivalence relation
+then 
+\begin{equation}
+\abs{X/E} = 2^{\aleph_0}
+\end{equation}
+and in fact there is a cantor set $C\subeq X$ which is transversal.
+\label{thm:previous}
+\end{thm}
+
+\subsection{Analytic sets}
+
+\begin{defn}
+If $X$ is Polish, a subset $A\subeq X$ is \emph{analytic} if there is $Y$ Polish and
+$f:Y\fromto X$ continuous with $f\left( Y \right) = A$. 
+
+We say $A\subeq X$ is \emph{co-analytic} if $X\minus A$ is analytic.
+\end{defn}
+
+\begin{thm}
+If $X$ is Polish, then
+\begin{itemize}
+\item Every analytic (and hence co-analytic) set has BP.
+\item A set $A\subeq X$ is Borel iff it is both analytic and co-analytic.
+\end{itemize}
+\end{thm}
+
+\section{Polish groups}
+% section 13
+
+Recall the following.
+A topological group is a group $G$ equipped with a topology so that the map $G^2 \fromto
+G$ which sends $\left( x,y \right)\mapsto xy^{-1}$ is continuous. 
+If $G$ is a topological group and $H\subeq G$ is an open subgroup, then $H$ is closed.
+
+\begin{defn}
+A \emph{Polish group} is a topological group whose topology is Polish.
+\end{defn}
+
+\begin{thm}[Birkhoff-Kakutani]
+Let $G$ be a topological group. Then $G$ is metrizable iff
+there is a countable basis of a neighborhood of $1$. 
+In this case there is a left-invariant compatible metric.
+\end{thm}
+
+To be clear, left-invariant means that $d\left( x,y \right) = d\left( gx, gy \right)$.
+
+\begin{rmk}
+It is important that we define a Polish group as a topological space rather than a metric
+space.
+Since it is polish there is always a complete metric, and then by the theorem there is always this
+second left-invariant metric. But in general there is no complete invariant metric. 
+If it is locally compact this does exist (like for $\RR$).
+\end{rmk}
+
+\begin{prop}
+Let $G$ be a Polish group and let $H\leq G$. Then $H$ is Polish iff $H$ is $G_\dd$. 
+This is also equivalent to $H$ being closed.
+In this case $G/H$ is a Polish space, and in particular a Polish group if $H\nsubeq G$.
+\end{prop}
+
+\begin{proof}
+We prove only the second $\left( \iff \right)$. 
+Let $H\leq G$ be $G_\dd$ and assume $G = \clos{H}$. 
+Then $H$ is a dense $G_\dd$ set, and so is every coset of $H$. 
+However we cannot have two disjoint comeager sets which means
+there is only one coset so $H  = G$.
+\end{proof}
+
+\begin{thm}[Pettis]
+Let $G$ be a topological group with non-meager
+$A\subeq G$ having BP.
+Then $A^{-1}A$ contains a neighborhood of $1$.
+\end{thm}
+
+\begin{proof}
+We know that for some open $U$ we have $A =^* U$. Then we have $g\in G$
+and $1\in V$ for $V$ open such that
+$gVV^{-1} \subeq U$. Therefore $gV \subeq U\cap Uh$ for $h\in V$.
+Then we claim $V\subeq A^{-1} A$.
+Let $h\in V$. Then we have
+\begin{equation}
+\left( U\cap Uh \right)\symd \left( A\cap Ah \right) \subeq \left( A\symd A \right)\un
+\left( \left( U\symd A \right)h \right)
+\end{equation}
+which means
+\begin{equation}
+A\cap Ah =^* U\cap Uh
+\end{equation}
+and now $U\cap Uh$ contains a neighborhood of the identity, so it is nonempty, and even
+has nonempty interior so $A\cap Ah\neq \emp$ as well.
+
+Let $x\in A\cap Ah$. So $x\in A$ and $x= yh$ for some $y\in A$. Then $y^{-1} x= h\in
+A^{-1} A$. 
+\end{proof}
+
+\end{document}

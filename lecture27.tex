@@ -1,0 +1,224 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 27\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{May 2, 2019}
+\maketitle
+
+\section{Stable case}
+
+\subsection{Setup and statement of the theorem}
+
+Today we will (hopefully) finish the stable case. 
+
+Let $M$ be an $\om$-stable ($\om$-categorical) structure. 
+We didn't define $\om$-stable, so we will restrict to the case that $M$ is finitely
+homogeneous and stable, but everything we say will be true in this generality. 
+In particular, the features of $\om$-stability that we will use are the following:
+\begin{enumerate}[label = (\iii)]
+\item $M$ is ranked (in fact we will assume finite rank\footnote{There is an extra step to
+get infinite rank which would happen at the end, but we won't have time to treat this.}).
+\item If we have a definable subset $X\subeq M^k$ which has rank $n$, there is $X_0\subeq
+X$ of rank $n$ and
+\emph{indivisible} in the sense that it cannot be split into two disjoint sets of rank
+$n$. 
+\item If $X$ is defined over $a$ $X_0$ cannot be defined over $\algcl^{eq}\left(a\right)$.
+\item If $\phi\left(\oline{x},\oline{y}\right)$ is a formula there is a
+\emph{normalization} $\phi^*\left(\oline{x},\oline{y}\right)$ such that
+\begin{itemize}
+\item $\rank\left(\phi\left(\oline{x},\oline{y}\right)\Del
+\phi^*\left(\oline{a},\oline{b}\right)\right) < n$
+\item $\forall \oline{b}, \oline{b'}\satisfies q$
+\begin{align}
+\rank\left(\phi^*\left(\oline{x},\oline{b}\Del\right) \phi^*\left(\oline{x} ,
+\oline{b'}\right)\right)<n
+&&\implies &&
+\phi^*\left(\oline{x},\oline{b}\right) = \phi^*\left(\oline{x} , \oline{b'}\right)
+\end{align}
+\end{itemize}
+\end{enumerate}
+
+Let $P$ be a $\emp$-definable set $M^{eq}$. Say that $P$ coordinatizes $M$ if for all
+$a\in M$
+\begin{equation}
+\acl\left(a\right)\cap P\neq \emp \ .
+\end{equation}
+
+\begin{thm}
+Let $M$ be $\om$-stable, $\om$-categorical, (of finite rank). There exists is a rank $1$ 
+set (finite rank, strongly minimal) which coordinatizes $M$.
+\end{thm}
+
+\begin{cor}
+If $M$ is primitive then $M$ is a Grassmannian over a (finite union of) strongly minimal
+set(s).
+\end{cor}
+
+\subsection{Proof of the theorem}
+
+\subsubsection{Aside on strongly minimal}
+
+Let $X$, $Y$ be $\emp$-definable, strictly minimal (i.e. $\acl\left(a\right) =
+\left\{a\right\}$)
+then either
+\begin{itemize}
+\item there is a unique $\emp$-definable bijection between $X$ and $Y$, or
+\item $X$, $Y$ are orthogonal: $\oline{a} \in X^k$, $\oline{b}\in Y^l$, $\oline{a}\indfrom
+\oline{b}$.
+\end{itemize}
+
+\begin{proof}
+For $X$, $Y$ indiscernible sets take $\oline{a}\in X^k$, $\oline{b}\in Y^l$ such that
+$\oline{a}\not\indfrom \oline{b}$ where $k+l$ is minimal.
+There is $x_0\in Y\cap \acl\left(\oline{a}\right)$ (look at
+$\type\left(\oline{b}/\oline{a}\right)$ this is not $Y^l$ so some element of $Y^l$ is in
+$\acl$ of $\oline{a}$). Then $\oline{a}\not\indfrom b_0$ so $l = 1$, and $k = 1$ by
+symmetry. 
+\end{proof}
+
+Note that if $\oline{b}\in Y^k$ ($x_i\neq b_j$ for $i\neq j$) then
+$\rank\left(\oline{b}\right) = k$. 
+If $a\in X$, $\rank\left(a\right) = 1$ so 
+$\rank\left(\acl\left(a\right)\right) = 1$
+so $\abs{\acl\left(a\right)\cap Y}\leq 1$.
+This means $\abs{\acl\left(a\right)\cap Y} = 1$ which gives us a definable bijection.
+
+Now the following is a consequence of uniqueness.
+Let $X_1 \ldots X_n$ be strictly minimal 
+and assume $\left(X_i , X_j\right)$ are orthogonal for $i\neq j$.
+Then for $\oline{a_i}\in X_i^{k_i}$
+\begin{equation}
+\rank\left(\oline{a_1}^n \land \ldots \land\oline{a_n}\right)
+= \sum \rank\left(\oline{a_i}\right) \ .
+\end{equation}
+
+\subsubsection{Back to the proof}
+
+Write $\rank\left(M\right) = n$ and assume $M$ is indivisible. There is $\phi\left(x ,
+\oline{b}\right)$ of rank $n-1$. Write $q  = \type\left(\oline{b}\right)$
+We can assume
+\begin{itemize}
+\item $\phi\left(\oline{x} , \oline{y}\right)$ is normalized
+\item $\phi\left(x , \oline{b}\right)$ is indivisible for $\oline{b}\satisfies q$.
+\item $\oline{b}\neq \oline{b'}$ implies $\phi\left(X , \oline{b}\right)\neq \phi\left(x ,
+\oline{b'}\right)$ (taking $\oline{b}\in M^q$).
+\end{itemize}
+
+Then the goal is to show $\rank\left(\oline{b}\right) = 1$. 
+
+Let $F = \type\left(\oline{b}\right)$ definable set. Assume $\rank\left(f\right)\geq 2$. 
+Let $I\left(\oline{d}\right)\subeq F$ be a strongly minimal definable subset.
+Let $H\left(\oline{d}\right)$ be the associated strictly minimal definable subset.
+We can assume $\oline{d}\in \acl\left(\emp\right)$, $q= \type\left(\oline{d}\right)$.
+
+\begin{clm}[Main claim]
+If $\oline{d_1}\indfrom \oline{d_2}$, then $I\left(\oline{d_1}\right)\Del
+I\left(\oline{d_2}\right)$ is finite. 
+\end{clm}
+
+\begin{proof}
+Assume not, then $I\left(\oline{d_1}\right)\cap I\left(\oline{d_2}\right)$ is finite. Take
+$\oline{d_1}, \ldots , \oline{d_N}$ indiscernible independent $N$ large. 
+
+Let $e = d_1\land \ldots \land d_N$. Let
+\begin{equation}
+Q = \left\{x\in M \st \rank\left(x/e\right) = n\right\} \ .
+\end{equation}
+Then $Q$ is transitive over $e$ since $M$ is indivisible. 
+
+For a given $i$, 
+\begin{equation}
+\bun_{\oline{b}\in I\left(\oline{d_i}\right)} \phi\left(x , \oline{b}\right)
+\end{equation}
+has rank $n$. so for all $x_0\in Q$, for all $i$ there is $\oline{b}\in I \oline{d_i}$
+such that $\phi\left(x_0 , \oline{b}\right)$ holds.
+\end{proof}
+
+We work over $e$.
+
+\begin{clm}
+If $a\in Q$ and $\phi\left(a, \oline{b}\right)$ holds with $\oline{b}\in
+I\left(\oline{d_i}\right)$ for some $i$. Then $\oline{b}\in \algcl\left(a\right)$.
+\end{clm}
+
+\begin{proof}
+Otherwise $a$ is in almost all $\phi\left(x , \oline{b'}\right)$ for $\oline{b'}\in
+I\left(d_i\right)$. But then for any two, we can intersect them and
+\begin{equation}
+\rank\left(\phi\left(x , \oline{b}\right) \cap \phi\left(x , \oline{b'}\right)\right) = n
+- 1
+\end{equation}
+which means
+\begin{equation}
+\rank\left(\phi\left(x , \oline{b}\right) \Del \phi\left(x , \oline{b'}\right)\right) <
+n-1
+\end{equation}
+which contradicts normalization.
+Now we have two cases:
+\begin{enumerate}[label = case \numbers.]
+\item $H\left(\oline{d_1}\right) \ldots H\left(\oline{d_N}\right)$ are orthogonal.
+\label{case:1}
+
+\item There is a unique $\emp$-definable set between $H\left(\oline{d_i}\right)$ and
+$H\left(\oline{d_j}\right)$. 
+\label{case:2}
+\end{enumerate}
+\end{proof}
+
+Assume \ref{case:1}
+Then for any $a\in Q$, $\acl\left(a\right)\cap H\left(\oline{d_i}\right)\neq 0$ for all
+$i$ so $\rank\left(a\right) \geq N > n$ which is a contradiction.
+
+Assume \ref{case:2}. 
+\begin{clm}
+$\rank\left(\acl\left(a\right)\cap \left(H\left(\oline{d_1}\right)\un \ldots \un
+H\left(\oline{d_N}\right)\right)\right)\geq N$ .
+\end{clm}
+
+\begin{proof}
+For $\oline{b_1} \in I\left(\oline{d_1}\right)$ and $\oline{b_2}\in I\left(\oline{d_2}\right)$ we have
+\begin{equation}
+\rank\left(\phi\left(x , \oline{b_1}\right)\cap \phi\left(x , \oline{b_2}\right)\right)<
+n-1
+\end{equation}
+so if $a\in \phi\left(x , \oline{b_1}\right)\cap \phi\left(x , \oline{b_2}\right)$ then 
+\begin{align}
+\rank\left(a / \oline{b_1}\right) = n-1
+&&
+\rank\left(a / \oline{b_1}\oline{b_2}\right) \leq n-2
+\end{align}
+so
+\begin{equation}
+\rank\left(\oline{b_2} / \oline{b_1}\right)\geq 1
+\end{equation}
+so
+\begin{equation}
+\oline{b_2}\not\in \acl\left(\oline{b_1}\right) \ .
+\end{equation}
+So we got the same contradiction.
+\end{proof}
+
+So if we take for each $i$, $\oline{b_i}\in I\left(d_i\right)$ for each $i$ then
+$\phi\left(a_, \oline{b_i}\right)$ holds
+\begin{equation}
+\rank\left(\oline{b_1}^n \land \ldots \land \oline{B_N}
+\right) \geq N
+\end{equation}
+so $\rank\left(a\right)\geq N$ which is a contradiction.
+
+This being done, normalize the family $I\left(\oline{b}\right)$ into
+$I^*\left(\oline{b}\right)$. Then 
+\begin{equation}
+I^*\left(\oline{b_1}\right) = I^*\left(\oline{b_2}\right)
+\end{equation}
+for $\oline{b_1}\indfrom \oline{b_2}$ so
+\begin{equation}
+I^*\left(\oline{b_1}\right) = I^*\left(\oline{b_2}\right)
+\end{equation}
+for all $\oline{b_1},\oline{b_2}\satisfies q$
+so $\rank F = 1$.
+
+By the proof, $F$ coordinatizes $M$.
+
+\end{document}

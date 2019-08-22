@@ -1,0 +1,344 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 2\\Math 229}
+\author{Lectures by: Professor Pierre Simon\\Notes by: Jackson Van Dyke}
+\date{January 24, 2019}
+\maketitle
+
+\section{\texorpdfstring{$\om$}{Omega}-categorical structures}
+
+\begin{defn}
+A countable\footnote{All of our structures will be countable in this class.} 
+structure $\cM$ is said to be \emph{$\om$-categorical}
+if every (countable) structure $\cN$ which is elementarily equivalent to $\cM$ 
+is actually isomorphic to $\cM$.
+\end{defn}
+
+\begin{thm}[Ryll-Nardzewski]
+Let $M$ be a countable structure, then TFAE:
+\begin{enumerate}[label=(\iii)]
+\item $M$ is $\om$-categorical.
+\item For every $n < \om$ there are only finitely many
+$0$-definable subsets of $M^n$.
+\item For every $n < \om$ there are only finitely many $n$-types over $\emp$
+realized in $M$.
+\item For every $n < \om$, the group $\Aut\left( M \right)$ has only finitely many orbits on each $M^n$.
+In this case we say $\Aut\left( M \right)$ is \emph{oligomorphic}, or the action is oligomorphic.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+The difficult part is relating the first to the rest.
+This uses the theory of omitting types, so we won't prove this part.
+
+$\left( ii \right)\iff \left( iii \right):$ If there are only finitely many $0$-definable subsets of $M^n$, 
+then $n$-types are just ultrafilters in the boolean algebra of definable sets, 
+so the result is immediate.
+Conversely, if there are only finitely many $n$-types over $\emp$
+realized in $M$, then a definable set is completely characterized by the
+types it contains so there must be finitely many $0$-definable subsets
+of $M^n$ as well.
+
+$\left( iii \right)\iff \left( iv \right)$: 
+For any $M$, if $\oline{a},\oline{b}\in M^n$ are in the same orbit under 
+$\Aut\left( M \right)$ they have the same type.
+The converse is false in general, but true if $M$ is homogeneous,
+(it is sometimes even defined in this way)
+and also true if $M$ is $\om$-categorical.
+\end{proof}
+
+\begin{exr}
+Show that if $M$ is $\om$-categorical, 
+then $a$ is in the algebraic closure of $A$ iff $a$ has a finite orbit under
+\begin{equation}
+\Aut\left( M / A \right) = 
+\left\{ \sigma \in \Aut\left( M \right) \st \restr{\sigma}{A} = \id_A \right\} \ .
+\end{equation}
+Show that:
+\begin{equation}
+D\subeq M^n
+\text{ is definable iff }
+D \text{ is preserved set-wise
+by all } \sigma\in \Aut\left( M \right) \ . 
+\label{eqn:star}
+\end{equation}
+Finally show that property \eqref{eqn:star} is equivalent to being $\om$-categorical.
+\end{exr}
+
+\begin{rmk}
+Note that it is always true that if a subset $D$ is definable then it is preserved. 
+Often times in a first course on model theory a way to prove that a subset is definable
+is to find an automorphism which doesn't preserve it.
+The content of the exercise is then to show that the converse is true iff $M$ is $\om$-categorical.
+\end{rmk}
+
+The point here is that if we're working with an $\om$-categorical 
+structure, we can forget about model theory and just think of this as a set
+with a group acting on it, and then model theoretic properties can just be expressed 
+as properties of the automorphism group.
+
+\section{Automorphism group}
+
+\begin{defn}
+A \emph{permutation group} is a group $G$
+equipped with a faithful action $G\acts X$ on some set $X$. 
+I.e. there is an embedding $G\inj \Sym\left( X \right)$.
+\end{defn}
+
+\begin{exm}
+$\Aut\left( M \right)\acts M$ is a permutation group.
+\end{exm}
+
+In general, $\Aut\left( M \right)$ carries little information about $M$
+as in the following example:
+
+\begin{exm}
+$\left( \NN , \leq \right)$ and $\left( \NN , + , \times \right)$ both
+have $\Aut\left( M \right) = \left\{ \id \right\}$ yet they are totally different structures.
+\end{exm}
+
+However, if $M$ is $\om$-categorical one can almost recover the structure on 
+$M$ from $\Aut\left( M \right)$ as a permutation group. 
+This works as follows.
+In general, if $G\acts X$ is a permutation group, 
+we can define a canonical structure on $X$, by adding an $n$-ary relation symbol for each $G$-orbit 
+on $X^n$.
+Let $X^G$ be this structure, then $G\leq \Aut\left( X^G \right)$ by construction.
+In fact, this is almost equality.
+Clearly it is not in general: if the group is trivial, 
+this would mean there is a new symbol for every element, so this can not be equality.
+
+To understand the sense in which is this is almost equality, we need a topology on $\Sym\left( X \right)$.
+This is induced by the product topology on $X^X$.
+More explicitly, a basic open set is given by finitely many point and their images:
+\begin{equation}
+\left\{ \sigma \in \Sym\left( X \right) \st\exists \oline{a} , \oline{b}\in X^n \suchthat
+\sigma\left( \oline{a} \right)= \oline{b}  \right\} \ .
+\end{equation}
+
+\begin{prop}
+$\Aut\left( X^G \right)$ is the closure of $G$ with respect to this topology.
+\end{prop}
+
+\begin{proof}
+$\subeq$:
+Let $\sigma\in \Aut\left( X^G \right)$, and $\oline{a} , \oline{b}\in X^n$ such that
+$\sigma\left( \oline{a} \right) = \oline{b}$.
+Now we just have to find $g\in G$ such that $g\left( \oline{a} \right) = \oline{b}$. 
+Since $\sigma$ is an automorphism, 
+$\oline{a}$, $\oline{b}$ satisfy the same relation and are therefore in the same orbit. 
+
+$\supeq$: 
+This is essentially the same argument. 
+\end{proof}
+
+So what we have seen so far, is that given a group acting on a set we have 
+this canonical structure given by the group, 
+and then the automorphism group of this structure is the closure of the group itself.
+Of course, in general, if we start with a structure, look at its automorphism group
+and build the canonical structure, we don't have something that is remotely related 
+to what we started with.
+We saw this in the example before. 
+If start with a structure with no automorphisms, then the canonical structure
+will just have a name for every point and nothing else, so you're losing the whole structure.
+But if $G$ acts oligomorphically, then you actually recover the structure, but the language 
+has obviously changed. 
+The notion that the two structures are somehow the same
+is captured by the following definition.
+
+\begin{defn}
+Two structures $M , M'$ on the same
+underlying set are \emph{interdefinable}
+if they have the same $0$-definable sets.
+\end{defn}
+
+\begin{rmk}
+For this course, and generally in many cases, two interdefinable structures
+are effectively the same.
+\end{rmk}
+
+\begin{prop}
+If $G\acts X$ is oligomorphic, then there is,
+up to interdefinability, a unique structure on $X$ such that
+$G$ is dense in the automorphism group.
+\end{prop}
+
+\begin{proof}
+We just have to prove uniqueness.
+More specifically, let $X_0$ be a structure on $X$ such that
+$G$ is dense in $\Aut\left( X_0 \right)$. 
+Then for each $n$, there are finitely many 
+$\Aut\left( X_0 \right)$-orbits on $X^n$, hence finitely many
+$n$-types in $X_0$, hence finitely many $0$-definable subsets of $X^n$
+which coincide with those orbits.
+Therefore $X_0$ is interdefinable with $X^G$.
+\end{proof}
+
+If $G$ does not act oligomorphically, the issue is that
+there are, in general, invariant sets which are not definable.
+
+Now we understand that if we look at the automorphism group as a permutation group,
+this exactly amounts to knowing the structure up to interdefinability.
+The next step, is to consider the automorphism group as a topological group.
+So imagine we're given the group with its topology, but not its action.
+Then we might wonder how much of $M$ we can recover.
+In general, of course, nothing. But as it turns out
+we can recover a great deal about the structure in the $\om$-categorical case.
+In particular, we can recover it up to bi-interpretability,
+a concept which we introduce now.
+
+\begin{defn}
+An interpretation over\footnote{If we want to allow parameters, we can think of it as adding constants
+to the language, but we will not deal with parameters right now.}
+$\emp$ of a structure $N$ in a structure $M$ is given by 
+\begin{enumerate}
+\item a $0$-definable subset $D\subeq M^n$ for some $n$, 
+\item a $0$-definable equivalence relation $E$ on $D$,
+\item and a bijection $f: D / E \fromto N$, 
+\end{enumerate}
+such that the preimage under $f\comp \pi$, where $\pi: D\fromto D /E$,
+of a $0$-definable set of $N^k$ (for any $k$) is $0$-definable in $M$.
+\end{defn}
+
+\begin{rmk}
+Note that this isn't asking for the converse, it might have many more $0$-definable sets, 
+but at least it has these.
+\end{rmk}
+
+\begin{exm}
+$\left( \QQ , + , \cdot \right)$ is interpretable in $\left( \NN , + , \cdot \right)$.
+\end{exm}
+
+\begin{defn}
+Two interpretations $f$ and $g$ of $N$ in $M$
+are \emph{homotopic} if the set $f = g$
+(a subset of $D_f / E_f \times D_g / E_g$) is $0$-definable in $M$.
+\end{defn} 
+
+\begin{exm}
+Let $M_0 = \left( \om , = \right)$ for $\om$ some infinite set,
+and $M = \left( \om^2 , E_1 , E_2 \right)$ where $E_1$ is equality in the first coordinate, 
+and $E_2$ is equality on the second coordinate.
+The two natural interpretations of $M_0$ in $M$, given by quotienting
+$M / E_1$ and $M / E_2$, are not homotopic as there is no definable bijection between
+$M / E_1$ and $M / E_1$.
+If however, we had take $M_0^2$, so remembering not only the equivalence relation
+of coordinates, but also we can somehow match between coordinates, 
+then they would be homotopic.
+\end{exm}
+
+\begin{defn}
+A bi-interpretation between $M$ and $N$
+is given by two interpretations $f:M\fromto N$ and $g:N\to M$
+such that $f\comp g$ is homotopic to $\id_M$, 
+and $g\comp f$ is homotopic to $\id_N$.
+\end{defn}
+
+\begin{exm}
+We saw that $M_0$ was interpretable in $M$ in two completely different ways, 
+and of course $M$ is interpretable in $M_0$, but these two structures 
+are not bi-interpretable. 
+We won't prove this, but we will at least see that if we try to do it neively, it doesn't work.
+If we compose $f:M / E_1 \fromto M_0$
+and $g: M_0^2 \fromto M$ then we get 
+$g\comp f : \left( M/ E_1 \right)^2 \fromto M$
+which is not definable in $M$.
+\end{exm}
+
+\begin{rmk}
+There exists a bi-interpretation between $M$ and $N$ 
+iff $M^{\text{eq}}$ and $N^{\text{eq}}$ are interdefinable.
+\end{rmk}
+
+For almost anything we care about, two structures being bi-interpretable will mean 
+they are effectively the same, though a bit `less the same' than two interdefinable
+structures.
+
+\begin{thm}
+Let $M$ and $N$ be $\om$-categorical. 
+Then $\Aut\left( M \right)$ and $\Aut\left( N \right)$
+are homeomorphic iff $M$ and $N$ are bi-interpretable.
+\end{thm}
+
+\begin{Proof}
+$\left( \converse \right)$:
+Let $M$ and $N$ be bi-interpretable.
+Note that an interpretation $f$ of $N$ in $M$ gives a map 
+$\Aut\left( f \right): \Aut\left( M \right) \fromto \Aut\left( N \right)$
+which is continuous.
+To see that this is continuous, we need to show that the preimage of a basic open set is open.
+If we have an automorphism with an image which sends a finite tuple
+to a finite tuple, then there is a finite part of that automorphism
+which already does this. But this is true because every finite tuple of elements of $N$ is represented
+as a finite tuple of elements of $M$, so we just take any preimage,
+and the image of the automorphism in that preimage is enough.
+This is also functorial, i.e. if $f:M\fromto N$ and 
+$g:N\fromto P$ are interpretations, then 
+\begin{equation}
+\Aut\left( g\comp f \right) = \Aut\left( g \right) \comp \Aut\left( f \right) \ .
+\end{equation}
+This is essentially immediate from the definitions.
+
+Two interpretations $f$ and $g$ are homotopic iff $\Aut\left( f \right) = \Aut\left( g \right)$.
+We just prove the forward implication.
+The idea is that the set $f=g$ is a $0$-definable set, 
+so it is preserved by the automorphisms.
+For simplicity, let $f: M \lfromto{\sim}N$
+and $g: N\lfromto{\sim} M$. If we take $\sigma\in \Aut\left( M\right)$
+and $a\in N$, the pair $\left( f^{-1}\left( a \right) , g^{-1}\left( a \right) \right)$
+is in the set $f= g$, so
+$\left( \sigma f^{-1}\left( a \right) , \sigma g^{-1} \left( a \right) \right)$ is in $f= g$
+which by the definition of the set $f=g$
+implies $f\sigma f^{-1}\left( a \right) = g\sigma g^{-1}\left( a \right)$. 
+
+If $f$ and $g$ give a bi-interpretation then this implies 
+$\Aut\left( f \right) \comp \Aut\left( g \right) = \id_{\Aut\left( N \right)}$
+and $\Aut\left( g \right) \comp \Aut\left( f \right) = \id_{\Aut\left( M \right)}$
+and these are continuous, so homeomorphic.
+
+$\left( \implies \right)$:
+\begin{clm}
+If $\phi:\Aut\left( M \right) \fromto\Aut\left( N \right)$ is continuous and
+$\im \phi$ has finitely many orbits on $N$, then $\phi$ is of the form $\Aut\left( f \right)$
+for $f$ an interpretation of $N$ in $M$.
+\end{clm}
+\begin{proof}
+Choose representatives $b_1 , \cdots , b_k$ of the orbits of the image in $N$.
+Then we can find $a_1, \cdots , a_m\in M$ such that 
+$\Aut\left( M / \left\{ a_1 , \cdots , a_m \right\} \right)$ is mapped into
+$\Aut\left( N  / \left\{ b_1 , \cdots , b_k \right\}\right)$. 
+(Note the $a_i$ exist by continuity.)
+WLOG assume $m \leq k$. Let $D\subeq M^{n+1}$ consist of the conjugates of the $k$ elements 
+$\left( a_1 , a_1 , \cdots , a_m \right)$, 
+$\left( a_2 , a_1 , \cdots , a_m \right)$, $\cdots$ ,
+$\left( a_k , a_1 , \cdots , a_m \right)$.
+Note that this is a $0$-definable set.
+Now we can define $f:D\fromto N$ by
+\begin{equation}
+f\left( \sigma\left( a_i \right) , \sigma\left( a_1 \right) , \cdots , \sigma\left( a_m \right) \right) = 
+\phi\left( \sigma \right) b_i
+\end{equation}
+for $i\in \left\{ 1 , \cdots , k \right\}$ and $\sigma \in \Aut\left( M \right)$.
+First we need to check that this is well-defined.
+Assume there are two representatives of the same element, 
+then first the $i$ must be the same, and second this means there are two automorphisms $\sigma$
+and $\tau$ with the same image in the $a_1 , \cdots , a_m$, 
+but since $\Aut\left( M / \left\{ a_1 , \cdots , a_m \right\} \right) \fromto 
+\Aut\left( N / \left\{ b_1 , \cdots , b_k \right\} \right)$
+this means that $\sigma$ and $\tau$ would have to have the same image on the $b_1 , \cdots , b_k$. 
+Now we have to check that two things don't get sent to the same thing,
+but the equality is a $0$-definable set.
+Also, any $0$-definable set in $N$ is mapped to a $0$-definable set in $M$.
+Since $M$ and $N$ are both $\om$-categorical, 
+this amounts to saying that invariant sets map to invariant sets.
+This is an interpretation of $N$ in $M$,
+and by construction, $\Aut\left( f \right)= \phi$. 
+We hit the entirety of $M$, because the $b_i$s are representative of all of the orbits.
+\end{proof}
+\begin{center}
+\textbf{To be continued\ldots}
+\end{center}
+\end{Proof}
+
+\end{document}

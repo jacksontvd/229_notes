@@ -1,0 +1,183 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 24\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{April 23, 2019}
+\maketitle
+
+Recall we're still in this situation where $M$ has few substructures.
+Then we're studying tameness of definable linear orders.
+The last lemma we had was:
+
+\begin{lem}
+Let $\oline{V}$ be transitive and linearly ordered. Then
+for $f: X\fromto \oline{V}$, $\pi: D\fromto \oline{V}$
+we have $X = D$ and $f = \pi$.
+\end{lem}
+
+It follows that the induced structure on $B$ is $o$-minimal.\footnote{This means a
+definable set is a finite union of intervals.}
+We now have a stronger statement which will effectively tell us that $V$ has no
+structure.
+
+\begin{prop}
+Let $\pi : D\fromto V$ be as above. In particular $V$ is transitive and linear ordered. 
+Then $\pi$ has finite fibers and any formula $\phi\left(x_1 , \ldots , x_n\right)$
+(defining a subset of $D^n$)
+definable over some $\oline{b}$ is equivalent to a Boolean combination of formulas of the
+form
+\begin{enumerate}[label = (\abc)]
+\item $\pi\left(x_i\right)\square\ \pi\left(x_j\right)$, where $\square \in \left\{= ,
+\leq\right\}$,
+\item $\pi\left(x_i\right) < \pi\left(a\right)$, where $a\in \oline{b}\cap D$, and
+\item $x_i = a$ for some $a\in \pi^{-1} \left(\pi\left(\oline{b}\cap D\right)\right)$.
+\end{enumerate}
+\label{prop:linear}
+\end{prop}
+
+\begin{proof}
+Let $\oline{c} = \left(c_0 , \ldots , c_{l-1}\right) \in M^l$, and let $v\in V$ be definable
+over $\oline{c}$. Then there is some index $i < l$ such that $v = \pi\left(c_i\right)$.
+Take $l$ minimal such that this is false. Then let $\oline{c_*} = \left(c_0 , \ldots ,
+c_{l-2}\right)$, $\oline{c} \oline{c_*}\land c_{l-1}$. First notice $c_{l-1}$ is not
+algebraic over $\oline{c_*}$ 
+because otherwise $v$ would be algebraic over $\oline{c_*}$, and
+\begin{equation}
+v\in \algcl\left(\oline{c_*}\right) = \dcl\left(\oline{c_*}\right)\cap V \ .
+\end{equation}
+So over $\oline{c_*}$ we have a definable function $f_{\oline{c_*}}$
+such that
+\begin{equation}
+f_{\oline{c_*}}\left(c_{l-1}\right) = v \ .
+\end{equation}
+Let 
+\begin{equation}
+W = \left\{w\in V \st \type\left(w / \oline{c_*}\right) = \type\left(v / \oline{c_*}\right)\right\}
+\end{equation}
+and apply the previous lemma to this (replacing $D$ with $\pi^{-1}\left(W\right)$). So
+$f_{\oline{c_*}} = \pi$ and thus $v = \pi\left(c_{l-1}\right)$.
+We also have that $\acl\left(\oline{c}\right)\cap D = \pi^{-1}\left(\pi\left(\oline{c}\cap
+D\right)\right)$.
+
+We prove the proposition by induction on $n$.
+For $n = 1$
+$\phi\left(x_1\right)$ is a Boolean combination of convex
+subsets of $V$. The end cuts of those convex sets are in 
+\begin{equation}
+\dcl\left(\oline{b}\right)\cap \oline{V} = \pi\left(\oline{v}\cap D\right)
+\end{equation}
+so $\phi\left(x_1\right)$ is as desired.
+
+Now we complete the inductive step. Fix values for $x_1 , \ldots , x_{n-1}$ then apply the
+case $n = 1$. There are finitely many possibilities for the set $\phi\left(c_1 , \ldots ,
+x_{n-1} , x_n\right)$. Now for each of these possibilities
+we can define the set of $c_1 , \ldots , c_{n-1}$ for which each possibility is realized.
+Hence by induction the formula has the desired form.
+\end{proof}
+
+As a consequence of this, the induced structure on $V$ is just DLO. 
+
+\begin{prop}
+A similar statement holds for circular orders, i.e. $\pi: D\fromto V$, $V$ transitive, has a
+definable circular order.
+\label{prop:circular}
+\end{prop}
+
+The point is that instead of inequalities we have things like $C\left(\pi\left(x_i\right)
+, \pi\left(x_j\right) , \pi\left(c\right)\right)$ for $c\in \pi\left(D\cap
+\oline{b}\right)$. 
+
+\begin{proof}
+Take $\phi\left(x_1 , \ldots , x_n\right)$ over $\oline{b}$ as in the previous
+proposition. If $D\cap \oline{b}\neq \emp$, then over $\oline{b}$, $V$ splits into linear
+orders and we can apply \cref{prop:linear}.
+
+In general, pick any $a\in D$, then working over $a$ we can apply \cref{prop:linear}. 
+Since we can change $a$, $a$ cannot appear in the decomposition of $\phi$.
+\end{proof}
+
+The conclusion is the following. 
+\begin{cor}
+Let $D$ be definable, $\pi:D\to V$ an interpretable map, where $V$ is transitive,
+infinite, and has a definable separation relation. Take $\oline{b}\in M\minus D$. Then $V$
+is transitive over $\oline{b}$ and its structure over $\oline{b}$ is precisely one of the
+four unstable reducts of DLO.
+\end{cor}
+
+\section{Gluing orders}
+
+Say that a definable set $D_{\oline{a}}\subeq M$ (over $\oline{a}$) is \emph{almost
+linear (over $\oline{a}$)} if there is $\pi: D_{\oline{a}}\fromto V_{\oline{a}}$
+interpretable over $\oline{a}$ and $V_{\oline{a}}$ has an $\oline{a}$-definable linear
+order. The point is that $\pi$ might have finite fibers so it might not actually be linear.
+We can see $\leq_{\oline{a}}$ as a quasi-order over $D_{\oline{a}}$.
+
+Now we want to see what happens when we vary $\oline{a}$. 
+
+\begin{lem}
+Let $D_{\oline{a}}$ be almost linear, transitive over $\oline{a}$, $\pi:
+D_{\oline{a}}\fromto V_{\oline{a}}$. Define the equivalence relation $E_{\oline{a}}$ as:
+\begin{align}
+xE_{\oline{a}} y&& \iff &&\pi\left(x\right) = \pi\left(y\right) \ .
+\end{align}
+Let $c\in D_{\oline{a}}$. Then for $c'\in M$ the following are equivalent:
+\begin{enumerate}
+\item $c'\in D_{\oline{a}}$, $E_{\oline{a}}$-equivalent to $c$
+\item $c\in \algcl\left(c'\right)$ \ .
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$\left(2\right)\implies \left(1\right)$: 
+This follows from \cref{prop:linear}.
+The point is that if $c$ is algebraic over $c'$ so is its
+projection, but the only way a point in $M$ can know a point in $V$ is if it lies above
+it.
+
+$\left(1\right)\implies \left(2\right)$: Enumerate the $E_{\oline{a}}$ class of $c$ as
+$\oline{c}_0\land \oline{c_1}$ where $\oline{c_0}\in \algcl\left(c\right)$,
+$\oline{c_1}\not\in \algcl\left(c\right)$. 
+There is $\sigma\in \Aut\left(M\right)$ fixing $c$
+and such that 
+\begin{equation}
+\sigma\left(\oline{c_1}\right)\cap \algcl\left(\oline{a}\land c\right) = \emp \ .
+\end{equation}
+Let $\oline{a'} = \sigma\left(\oline{a}\right)$. 
+Then we claim that $c\in \algcl\left(\oline{a}\land \oline{a'}\right)$, as the set of
+$E_{\oline{a}}$-classes which $D_{\oline{a}'}$ intersects non-trivially is finite.
+Now $\oline{a}$ must contain a point in the $E_{\oline{a}'}$-class of $c$. Now
+this point is algebraic over $\oline{a}\land c$ since it is in $\oline{a}$.
+But this means it is in $\oline{c_0}$. But this is not possible since $D_{\oline{a}}$ is
+transitive. So we are done.
+\end{proof}
+
+Note that $E_{\oline{a}}$ is just the relation of inter-algebraicity over $\emp$.
+
+\begin{lem}
+Let $D_{\oline{a}}$ and $D'_{\oline{b}}$ be transitive and almost-linear over $\oline{a}$
+and $\oline{b}$ respectively. 
+Assume there is $c\in D_{\oline{a}}\cap D'_{\oline{b}}$. Then
+$D_{\oline{a}}$ and $D'_{\oline{b}}$ agree up to reversal on an open neighborhood of $c$.
+\end{lem}
+
+\begin{proof}
+First we know that the $E_{\oline{a}}$-class of $c$ and the $E'_{\oline{b}}$-class of $c$
+coincide. 
+We claim that $c\not\in \acl\left(\oline{a}\land \oline{b}\right)$. 
+Working over $\oline{a}$, if $c\in \algcl\left(\oline{a}\land\oline{b}\right)$, then
+$\oline{b}$ has a point in the $E_{\oline{a}}$-class of $c$. This is the
+$E_{\oline{b}}$-class of $c$, so this would contradict transitivity of $D'_{\oline{b}}$.
+
+It follows that $c$ is not an endpoint of the intersection (in $D_{\oline{a}}$). 
+Therefore there is an open neighborhood of $c$ in $D_{\oline{a}}$ inside the intersection.
+Then the order induced on this intersection by $D'_{\oline{b}}$ must either be the original order, or
+the reversed order. 
+More specifically we can work in a small neighborhood of $c$ which doesn't intersect
+$\acl\left(\oline{a}\land\oline{b}\right)$ so $\oline{b}$ cannot do anything besides
+reverse the order in this neighborhood.
+
+Now repeat the same argument for $\oline{b}$ and it is easy to see we are done.
+\end{proof}
+
+\end{document}

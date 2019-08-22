@@ -1,0 +1,219 @@
+\documentclass{amsart}
+\usepackage{master}
+
+\begin{document}
+\title{Background}
+\author{Jackson Van Dyke}
+\date{January 23, 2019}
+\maketitle
+
+I missed the first lecture, and have never taken a course in mathematical logic,
+so this is my attempt at learning some of the basics, and 
+hopefully it will simultaneously prepare me for the second lecture.
+
+\section{Languages and structures}
+
+\begin{defn}
+A language $\cL$ consists of the following data:
+\begin{enumerate}
+\item A set $F$, called the set of function symbols, and a positive integer $n_f$ for every
+$f\in F$,
+\item a set $R$, called the set of relation symbols, and a positive integer $n_r$ for every 
+$r\in R$,
+\item a set $C$, called the set of constant symbols.
+\end{enumerate}
+\end{defn}
+
+\begin{rmk}
+The number $n_f$ should be thought of as the number of `arguments' of $f$.
+The number $n_r$ should be thought of as telling us that $r$ is an $n_r$-ary relation.
+\end{rmk}
+
+\begin{defn}
+An $\cL$-structure, $\cM$, consists of the following data:
+\begin{enumerate}
+\item A set $M$, called the underlying set of $\cM$,
+\item a function $f^\cM : M^{n_f} \fromto M$ for each $f\in F$,
+\item a set $r^\cM \subeq M^{n_R}$ for every $r\in R$,
+\item and an element $c^\cM \in M$ for every $c\in C$.
+\end{enumerate}
+The function $f^\cM$, 
+the set $r^\cM$, and the element $c^\cM$ are referred to as the \emph{interpretation} of 
+the symbols $f$, $r$, and $c$.
+\end{defn}
+
+\begin{defn}
+Let $\cL$ be some language, and $\cM$ and $\cN$ be 
+two $\cL$-structures.
+A map of the underlying sets $\al:M\fromto N$
+is a morphism of $\cL$-structures iff it preserves
+the interpretation of the symbols in the sense that
+\begin{enumerate}
+\item $\al\left( f^\cM\left( m_1 , \cdots , m_{n_f} \right) \right)
+= f^\cN\left( \al\left( m_1 \right) , \cdots , \al\left( m_{n_f} \right) \right)$
+for all $f\in F$ and $m_i \in M$,
+\item $\left( m_1 , \cdots , m_{n_r} \right) \in r^\cM$ iff
+$\left( \al\left( m_1 \right) , \al\left( m_2 \right) , \cdots , 
+\al\left( m_{n_r} \right) \right)\in r^\cN$ for all $r\in R$ and $m_i\in M$, and
+\item $\al\left( c^\cM \right) = c^\cN$ for all $c\in C$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+A \emph{word in the language $\cL$} is a string of symbols consisting of:
+\begin{enumerate}
+\item Symbols of $\cL$,
+\item variable symbols $v_1 , v_2 , \cdots$,
+\item the equality symbol $=$,
+\item the Boolean connectives $\ands$, $\ors$, and $\neg$,
+\item the quantifiers $\exists$ and $\forall$, and
+\item parentheses $\left( \, , \, \right)$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+The set of $\cL$-terms is the smallest set $T$ such that 
+\begin{enumerate}
+\item $C\subeq T$,
+\item $v_i\in T$ for all $i$,
+\item if $t_1 , \cdots t_{n_f}\in T$ then $f\left( t_1 , \cdots , t_{n_f} \right)\in T$
+for all $f\in F$.
+\end{enumerate}
+\end{defn}
+
+\begin{rmk}
+A term is supposed to be thought of as a word that can be interpreted 
+as an element of an $\cL$-structure, possibly
+after substitution of variables.
+\end{rmk}
+
+Let $t\in T$ be built from variables 
+$v_{i_1} , \cdots, v_{i_m}$. We want to view $t$ as a function
+$t^\cM : M^m\fromto M$.
+Inductively define any term $s\in T$ to act on
+$\oline{a} = \left( a_{i_1} , \cdots , a_{i_m} \right)$ as follows:
+\begin{enumerate}
+\item If $s$ is the constant symbol $c$, then $s^\cM\left( \oline{a} \right) = c^\cM$.
+\item If $s$ the variable $v_{i_j}$, then $s^\cM\left( \oline{a} \right) = a_{i_j}$.
+\item If $s$ is the term $f\left( t_1 , \cdots , t_{n_f} \right)$
+for some function symbol $f$ of $\cL$, and the $t_{n_i}$ are terms, then
+\begin{equation}
+s^\cM \left( \oline{a} \right) = 
+f^\cM\left( t_1^\cM\left(\oline{a} \right) , \cdots , 
+t_{n_f}^\cM\left( \oline{a} \right)\right) \ .
+\end{equation}
+\end{enumerate}
+
+\begin{defn}
+An atomic formula is of one of the following forms:
+\begin{enumerate}
+\item $t_1 = t_2$, for $t_1 , t_2\in T$
+\item $r\left( t_1 , \cdots , t_{n_r} \right)$ for $r\in R$, and $t_i\in T$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+The set of formulae for a language $\cL$ is the smallest set containing all atomic formulae
+such that 
+\begin{enumerate}
+\item if $\phi$ is a formula then $\neg \phi$ is a formula, 
+\item if $\phi$ and $\psi$ are formulas then $\phi \ands \psi$ 
+and $\phi \ors \psi$ are formulae, and
+\item if $\phi$ is a formula, then $\forall v_i \phi$ and $\exists v_i \phi$
+are formulas.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+We say a variable is \emph{free} inside a formula $\phi$ if it appears outside of
+the quantifiers $\forall v$ or $\exists v$.
+Otherwise we say it is \emph{bound.}
+A formula $\phi$ is a \emph{sentence} iff it has only bound variables.
+\end{defn}
+
+The point is that $\cL$-sentences must be true or false in any given $\cL$-structure.
+On the other hand, if a formula $\phi$ has $n$ free variables, then
+it is somehow expressing a property of elements of $M^n$, so we want a notion of 
+whether or not such a formula is true when we substitute things in for the free variables.
+We will construct this notion inductively.
+
+\begin{defn}
+Let $\phi$ be a formula with free variables from $\left( v_{i_1} , \cdots , v_{i_m} \right)$,
+and write $\oline{a} = \left( a_{i_1} , \cdots , a_{i_m} \right)\in M^m$. 
+Then define $M\models \phi\left( \oline{a} \right)$ as follows:\footnote{We 
+say that $\phi\left( \oline{a} \right)$ satisfies $M$, or $\phi\left( \overl{a} \right)$ 
+is true in $M$.}
+\begin{enumerate}
+\item If $\phi$ is $t_1 = t_2$, then $M\models \phi\left( \oline{a} \right)$ if
+$t_1^\cM \left( \oline{a} \right) = t_2^\cM \left( \oline{a} \right)$.
+\item If $\phi$ is $r\left( t_{1} , \cdots , t_{n_r} \right)$ then
+$\cM \models \phi\left( \oline{a} \right)$ if 
+$\left( t_1^\cM\left( \oline{a} \right) , \cdots t_{n_r}^\cM\left( \oline{a} \right) \right)
+\in R^\cM$
+\item If $\phi$ is $\neg \psi$, then $\cM \models \phi$ if
+$\cM \not \models \psi$.
+\item If $\phi$ is $\psi \ors \theta$, then $\cM \models \phi$ if
+$\cM \models \psi$ and $\cM \models \theta$.
+\item If $\phi$ is $\psi \ands \theta$, then $\cM \models \phi$ if
+$\cM \models \psi$ or $\cM \models \theta$.
+\item If $\phi$ is $\exists v_j \psi\left( \oline{v} , v_j \right)$,
+then $\cM \models \phi$ if there exists $b\in M$ such that
+$\cM \models \psi\left( \oline{a}, b \right)$. 
+\item If $\phi$ is $\forall v_j \psi\left( \oline{v} , v_j \right)$, 
+then $\cM \models \phi$ if for all $b\in M$
+$\cM \models \psi\left( \oline{a} , b \right)$.
+\end{enumerate}
+\end{defn}
+
+\section{Theories, models, definable sets}
+
+\begin{defn}
+Let $\cL$ be a first-order language, then an $\cL$-theory $T$ is a set of $\cL$-sentences.
+We say that $\cM$ is a \emph{model} of $T$ if $\cM \models \phi$ for all $\phi \in T$.
+A theory is \emph{satisfiable} if there exists some model of it.
+\end{defn}
+
+\begin{defn}
+We say that two $\cL$-structures $\cM$ and $\cN$ are \emph{elementarily 
+equivalent} if we have that $\cM\models \phi$
+iff $\cN\models \phi$ for every $\cL$-sentence $\phi$.
+\end{defn}
+
+Let $\cL$ be a first-order language, and $T$ an $\cL$ theory.
+Any formula $\phi\left( x_1 , \cdots , x_n \right)$ which has free variables
+only among the $x_i$, together with a model $\cM$ of $T$,
+evaluates to a truth value at any point $a = \left( a_1 , \cdots , a_n \right)\in M^n$.
+Therefore it determines a subset 
+\begin{equation}
+\phi\left( M \right) =
+\left\{ a\in M^n \st \phi\left( a \right) \right\} \ .
+\end{equation}
+Two formulas $\phi$ and $\psi$ with the same number of free variables are equivalent 
+if $\phi\left( \cM \right)= \psi\left( \cM \right)$ for every model $\cM$ of $T$.
+
+\begin{defn}
+A set $X$ is definable if it is the
+equivalence class of formulas in $\cL$ under this relation.
+\end{defn}
+
+\begin{rmk}
+If we consider the category $\cM_{el}\left( \cL \right)$
+of $\cL$-structures and elementary embeddings, and its full subcategory 
+$\cM_{el}\left( T \right)$ whose objects are models of $T$, 
+then definable set for a theory $T$ is a functor 
+$\cM_{el}\left( T \right)\fromto \Set$ which is of the form
+$\cM\fromto\phi\left( \cM \right)$ for some $\cL$-formula $\phi$.
+\end{rmk}
+
+The idea is that (as long as we have no parameters)
+a set $A\subeq M^n$ is definable in $\cM$ iff there exists a formula $\phi$ such
+that 
+\begin{align}
+\overl{a}\in A 
+&&
+\iff
+&&
+\cM \models \phi\left( \overl{a} \right)
+\end{align}
+
+\end{document}

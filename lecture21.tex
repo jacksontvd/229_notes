@@ -1,0 +1,234 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 21\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\maketitle
+
+Recall we had all these lemmas last time. Now we have the following corollary:
+\begin{cor}
+If $G\acts X$ is topologically transitive, then the set of $G$-big
+elements is either empty or is one orbit.
+\end{cor}
+
+\begin{proof}
+This follows almost immediately. We have seen that as long as the action is topologically
+transitive (some dense orbit) then $x$ being $G$-big implies $G\cdot x$ is dense. 
+Then this means any $y$ which is $G$-big is in $\interior{\tclosure{G\cdot x}}$ so is in
+$G\cdot x$ by the lemma.
+\end{proof}
+
+\begin{cor}
+If $G\acts X$ is topologically transitive and $x\in X$ then TFAE:
+\begin{enumerate}[label = (\iii)]
+\item $x$ is $G$-big,
+\item $G\cdot x$ is comeager, 
+\item $G\cdot x$ is not meager.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+$\left(i\right)\implies \left(ii\right)$: This follows directly from previous results.
+
+$\left(ii\right)\implies\left(iii\right)$: This is clear. 
+
+$\left(iii\right)\implies\left(i\right)$: This is just a calculation.
+Assume $G\cdot x$ is not meager and let $1\in U\subeq G$. So now we want to show that
+$U\cdot x$ is somewhere dense. Write
+\begin{equation}
+G = \bun_{n < \om} g_n U
+\end{equation}
+so
+\begin{equation}
+G\cdot x = \bun_{n < \om} g_n U\cdot x
+\end{equation}
+but this means for some $n$
+$g_n  U\cdot x$ is somewhere dense, and hence $U \cdot x$ is somewhere dense and we are
+done.
+\end{proof}
+
+\begin{thm}
+Let $\cK$ be a \Fraisse class with limit $M$, $G = \Aut\left(M\right)$, $n < \om$.
+Then TFAE:
+\begin{enumerate}[label = (\iii)]
+\item $\cK\left(n\right)$ has EAP and JEP.
+\item There is a generic tuple in $G^n$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+$\left(i\right)\implies \left(ii\right)$: Assuming $\left(i\right)$ the JEP implies that
+the action $G\acts G^n$ by conjugation is topologically transitive by a previous theorem.
+We need to show that for all $\e > 0$ the union of all $\e$-small open sets is dense. 
+
+So let $\e > 0$, $U\subeq G^n$ open. We can assume $U$ is of the form 
+\begin{equation}
+U = U_{\oline{f}} =
+\left\{ \oline{\sigma}\in G^n \st \sigma_i \supeq f_i\right\} \ .
+\end{equation}
+Let $A_0\in \cK$ contain the domain and range of the $f_i$s so that
+$\left(A_0 , \oline{f}\right)\in \cK\left(n\right)$. 
+Now increase $A_0$ to $M\supeq A\supeq A_0$ such that for all $\tau\in
+\Stab\left(A\right)$ we have
+\begin{equation}
+\dist\left(\tau , 1\right) < \e \ .
+\end{equation}
+Then we still have $\left(A , \oline{f}\right) \in \cK\left(n\right)$. 
+
+Now by EAP there is 
+\begin{equation}
+\left(A , \oline{f}\right) \subeq \left(B , \oline{g}\right)
+\end{equation}
+definite on $\left(A , \oline{f}\right)$. 
+So $U_{\oline{g}} \subeq U_{\oline{f}} = U$. Then the claim is the following:
+\begin{clm}
+$U_{\oline{g}}$ is
+$\e$-small.
+\end{clm}
+But we have actually already shown this. We gave a characterization of what it means to
+have this EAP property. For $V_1, V_2 \subeq U_g$, by the previous lemma we have that 
+\begin{equation}
+\Stab\left(A\right)\cdot V_1 \cap V_2 \neq \emp \ ,
+\end{equation}
+and hence $\left(V_1\right)_{< \e}\cap V_2 \neq \emp$ which is exactly what we want.
+
+$\left(ii\right)\implies \left(i\right)$: We have JEP since there is a dense orbit. 
+We now show EAP. Consider
+$\left(A , \oline{f}\right)$. Then choose $\e > 0$ such that
+\begin{equation}
+\Stab\left(A\right)\supeq B_\e\left(1\right) \ .
+\end{equation}
+Let $U_{\oline{g}} \subeq U_{\oline{f}}$ be $\e$-small corresponding to some $\left(B ,
+\oline{g}\right)$, $A\subeq B$. This is definite on $A$.
+\end{proof}
+
+It remains to prove/give a criterion for EAP. 
+
+\begin{prop}
+The class of graphs has EAP.
+\end{prop}
+
+\begin{proof}
+Let $\left(A , \oline{f}\right) \in \cK\left(n\right)$. Take $B$ an EPPA witness for $A$,
+and extend each $f_i$ to $g_i \in \Aut\left(B\right)$. Then $\left(B , \oline{g}\right)$
+is definite over $\left(A , \oline{f}\right)$. If
+\begin{equation}
+\begin{tikzcd}
+& \left(C_1 , \oline{h_1}\right)\\
+\left(B , \oline{g}\right)\arrow{ur}\arrow{dr} & \\
+& \left(C_2 , \oline{h_2}\right)\\
+\end{tikzcd}
+\end{equation}
+let 
+\begin{equation}
+D = C_1 \dun C_2
+\end{equation}
+with no edges between $C_1 \minus B$ and $C_2 \minus B$, $k_i = \left(h_1\right)_i \un
+\left(h_2\right)_i$. Then
+\begin{equation}
+\begin{tikzcd}
+& \left(C_1 , \oline{h_1}\right)\arrow{dr}&\\
+\left(B , \oline{g}\right)\arrow{ur}\arrow{dr} && \left(D , \oline{k}\right)\\
+& \left(C_2 , \oline{h_2}\right)\arrow{ur}&\\
+\end{tikzcd} \ .
+\end{equation}
+\end{proof}
+
+This argument shows ample generics, and therefore sip, for (almost) all classes for which
+we have proved EPPA. It fails for, say, DLO.
+However, it is true that DLO has sip, but by a completely different argument. 
+
+\begin{rmk}
+Sip is open for:
+\begin{itemize}
+\item random ordered graph,
+\item generic tournament (EPPA is not known)
+\end{itemize}
+\end{rmk}
+
+\begin{Proof}[Original proof of sip for $S_\infty$; Dixon, Neumann, Thomas (1985)]
+Let $G\leq S_\infty = \Sym \Om$ (where $\Om$ is a countable set) of index $< 2^{\aleph_0}$. 
+We want to show there is a finite $A_0 \subeq \Om$ such that
+\begin{equation}
+G_{\left(A_0\right)} \leq G \leq G_{ \left\{A_0\right\}} \ .
+\end{equation}
+\begin{lem}
+Let $\Gamma_1 , \Gamma_2 \subeq \Om$ be infinite such that $\Gamma_1 \cap \Gamma_2$ is
+infinite and write
+\begin{equation}
+\Sym\left(\Gamma_1\right) = G_{\left(\Om \minus \Gamma_1\right)} \ .
+\end{equation}
+Then 
+\begin{equation}
+\lr{\Sym\left(\Gamma_1\right) , \Sym\left(\Gamma_2\right)} = \Sym\left(\Gamma_1 \un
+\Gamma_2\right)
+\end{equation}
+\end{lem}
+\begin{proof}
+Exercise.
+\end{proof}
+\begin{clm}
+There is a moiety\footnote{This means $\Sigma$ and $\Om\minus \Sigma$ are infinite.}
+$\Sigma\subeq \Om$ such that $\Sym\left(\Sigma\right)\leq G$.
+\end{clm}
+\begin{proof}
+Let $\left(\Sigma_i , i < \om\right)$ be disjoint moieties partitioning $\Om$.
+Let $S_i = \Sym\left(\Sigma_i\right)\leq S_\infty$. 
+Let $H\leq G$ be
+\begin{equation}
+H = \left\{g\in G \st \forall i, g\Sigma_i = \Sigma_i\right\} \ .
+\end{equation}
+Then $H\leq \prod S_i$ has index less than $2^{\aleph_0}$ (since $G$ has
+index less than this and $H = G\cap \left(\prod S_i\right)$). Then it follows that for
+some $i$, the image of the projection $H\fromto S_i$ is equal to $S_i$.
+
+Now consider $K = G\cap \Sym \Sigma_i$. 
+\begin{clm}
+$K\nsubeq \Sym\left(\Sigma_i\right)$.
+\end{clm}
+Let $\sigma \in K, \tau\in \Sym\Sigma_i$. Then we want to show $\tau\sigma\tau^{-1}\in K$.
+Now let $h\in H$ which projects to $\tau\in S_i$. Then 
+\begin{equation}
+h\sigma h^{-1} = \tau \sigma \tau^{-1} \in K \ .
+\end{equation}
+
+\begin{fact}
+The normal subgroups of $S_\infty$ are $0$, $S_\infty$, finitary permutations, and
+finitary alternating permutations. 
+\end{fact}
+But there is only one group here with index less than $2^{\aleph_0}$ is $S_\infty$, 
+so $K = S_\infty$.
+\end{proof}
+
+Now note that there
+is an almost disjoint family of $\left(A_j , j < 2^{\aleph_0}\right)$ of moieties of
+$\Sigma_i$.
+Then for each $j < 2^{\aleph_0}$, let $g_j\in S_\infty$ be an involution which exchanges
+$A_j$ and $\Om\minus \Sigma_i$, and fixes $\Om\minus A_j$. 
+Now we can find $j,k < 2^{\aleph_0}$ such that
+\begin{equation}
+g_j^{-1} g_k \in G \ .
+\end{equation}
+Now we have $A_j$ and $A_j$ which might have finite intersection. Then this group element
+takes an element of $A_k$, throws is out to $\Omega\minus \Sigma_i$, brings it
+back into $A_j$, and throws it back out. Specifically, we claim that 
+\begin{equation}
+g_j^{-1} g_k\left(\Sigma_i\right) \supeq \left(A_j \minus A_k\right) \un g_j 
+\left(A_j\minus A_k\right) \ .
+\end{equation}
+The first set is infinite, and the second is the complement minus finitely many points.
+Now let $B_0$ be finite such that
+\begin{equation}
+\Om\minus \Sigma_i = g_j\left(A_j \minus A_k\right) \un B_0 \ .
+\end{equation}
+
+Now apply the lemma to $\Sigma_i$ and $g_i^{-1} g_k\left(\Sigma_i\right)$ to get 
+\begin{equation}
+\Stab\left(B_0\right) \leq G 
+\end{equation}
+and we are basically done.
+\end{Proof}
+
+This is the proof that would be generalized to DLO, but the first lemma doesn't quite
+apply, so we would need to somehow leverage the product argument much more.
+
+\end{document}

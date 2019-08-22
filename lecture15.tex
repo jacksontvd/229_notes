@@ -1,0 +1,320 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 15\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+\section{Subgroups of $\Aut\left( M \right)$}
+
+We are moving towards viewing automorphism groups as Polish groups as in descriptive
+set theory. But for now we will be consider subgroups of $\Aut\left( M \right)$.
+
+Let $M$ be an $\om$-categorical structure.\footnote{Not necessarily homogeneous.}
+Write $G = \Aut\left( M \right)$. 
+Note that if $\oline{a}\in M$, then $G_{\oline{a}}$, the pointwise stabilizer of
+$\oline{a}$, is a clopen subgroup of $G$ since it is defined by a finite condition. The
+index of this subgroup is $\leq \aleph_0$ since cosets are in bijection with orbits over
+$\oline{a}$. In particular it is finite iff $\oline{a}\in \algcl\left( \emp \right)$.
+
+If $X\subeq M$, $G_{ \left\{ X \right\}}$ is a closed subgroup of $X$.
+If $X$ is definable, then $G_{ \left\{ X \right\}}$ is clopen. To see this we can look at
+the parameters defining $X = \phi\left( M , \oline{a} \right)$.
+In particular we note that $\sigma\in
+G_{ \left\{ X \right\}}$ iff $\phi\left( x , \oline{a} \right)\iff \phi\left( x ,
+\sigma\left( \oline{a} \right)\right)$.
+
+The way we should think about this is by looking at imaginaries.
+Consider the equivalence relation 
+\begin{equation}
+E_\phi\left( \oline{x} ,\oline{y} \right) = \left( \forall x \right)
+\phi\left( \oline{x} , \oline{y} \right) \iff \phi\left(\oline{y},\oline{x} \right)
+\end{equation}
+and let $e = \oline{a} / E_\phi \in M^{eq}$.
+Then $G_{\left\{ X \right\}} = G_e$, where we identify $\Aut\left( M \right)\simeqq
+\Aut\left( M^{eq} \right)$. 
+$M^{eq}$ is the structure one obtains after adding all imaginary sorts,
+i.e. it is the structure obtained by adding a new sort for every
+$\emp$-definable quotient of some $\emp$-definable set.
+Therefore an automorphism of $M$ induces a unique automorphism of $M^{eq}$. 
+The topology is also somehow the same.
+
+We also have a converse to this:
+
+\begin{prop}
+If $H\leq G$ is an open subgroup, then there is some $e\in M^{eq}$ such that
+$H = G_e$.
+\end{prop}
+
+\begin{proof}
+Since $H$ is open we can take a neighborhood of the identity in it:
+$1\in U\subeq H$ where $U$ is a basic neighborhood of the form:
+\begin{equation}
+\left\{ \sigma \in G \st \sigma\left( \oline{a} \right) = \oline{a} \right\} \ .
+\end{equation}
+Now consider $D = H\oline{a}\subeq M^k$. $D$ is fixed setwise by $G_{\oline{a}}\subeq H$
+so it is $\oline{a}$-definable. 
+Let $e$ be the canonical parameter of $D$. Then we claim that $H$ is the setwise
+stabilizer of $D$, i.e. $H = G_e = G_{ \left\{ D \right\}}$. 
+For $\sigma \in H$ we have 
+\begin{equation}
+\sigma\left( D \right) = gH\oline{a} = H\oline{a} = D \ .
+\end{equation}
+If $\sigma\in G_e$ we have
+$\sigma\left( \oline{a} \right)\in D$
+so there is $\tau\in H$ such that 
+$\sigma\left( \oline{a} \right) = \tau \left( \oline{a} \right)$.
+Then $\tau^{-1} \sigma \in G_{\oline{a}} \subeq H$.
+\end{proof}
+
+\begin{rmk}
+There are at most $\aleph_0$ open subgroups of $\Aut\left( M \right)$ since they are each
+stabilizers of some set.
+\end{rmk}
+
+\begin{defn}
+$\Aut\left( M \right)$ has the \emph{small index property} (sip) if any small
+subgroup\footnote{I.e.  a subgroup of index less than $2^{\aleph_0}$.} is open.
+\end{defn}
+
+\begin{rmk}
+The point of the sip is that the topology can be recovered from the group structure.
+In particular, if $\Aut\left( M \right)$ and $\Aut\left( N \right)$ both have sip, and 
+$\Aut\left( M \right)\simeq \Aut\left( N \right)$ in $\Grp$\footnote{Note this is not
+$\TopGrp$.} then $M$ and $N$ are bi-interpretable. This is shown by looking at the basis
+of neighborhoods of the identity.
+\end{rmk}
+
+This property is common for finite homogeneous structures and some $\om$-category
+structures. 
+In fact not many counterexample have been found at all. The following is an example of
+one.
+
+\begin{exm}[Counter-example]
+Let 
+\begin{equation}
+L= \left\{ R_n\left( \oline{x} , \oline{x}'\right) \st 0 < n < \om \right\}
+\end{equation}
+with $2$ classes and $R_n$ some $2n$-ary equivalence relation on
+\begin{equation}
+\left\{ \oline{x}\in M^n \st\forall i\neq j, x_i\neq x_j \right\} \ .
+\end{equation}
+Let $M$ be the \Fraisse limit of this class. Note this is $\om$-categorical since there
+are only finitely many quantifier free types, and $M$ is a \Fraisse limit. 
+
+Now we have a map $\Aut\left( M \right)\surj \left( \ZZ / 2 \ZZ \right)^\om$ such that for
+every $M$, the two classes are either preserved or switched. 
+We might give a more general argument that this is surjective. 
+This group already has too many subgroups of index $2$. So if $\cU$ is an ultrafilter on
+$\om$, we have a subgroup $H_{\cU}\leq \left( \ZZ / 2\ZZ \right)^\om$ defined by
+\begin{equation}
+\left\{ f\in \left( \ZZ / 2\ZZ \right)^\om \st \left\{ t\in \om , f\left( t \right) = 0
+\right\}\in \cU \right\} \ .
+\end{equation}
+Then $H_\cU$ has index $2$.
+By taking the preimage along the surjective map, we get $2^{2^{\aleph_0}}$ many subgroups
+of $\Aut\left( M\right)$ having index $2$, so they cannot all be open.
+\label{exm:isp_counter}
+\end{exm}
+
+\section{Galois group of $M$}
+
+The idea of the above example is that $\left( \ZZ / 2\ZZ \right)^\om$ is compact, 
+and the obstruction to having the sip is having a large compact quotient.
+
+\begin{defn}
+A \emph{strong automorphism} of $M$ is an element of $\Aut\left( M \right)$ which fixes
+every $\algcl^{eq}\left( \emp \right)$.
+I.e. it fixes setwise each class
+of each $\emp$-definable finite equivalence relation.
+\end{defn}
+
+Define $G^0\leq G$ to consist of the strong automorphisms. 
+Then $G^0\nsubeq G$, and the quotient is:
+\begin{equation}
+G / G^0 \simeq \Aut\left( \algcl^{eq}\left( \emp \right) \right)
+\end{equation}
+which is a compact pro-finite group. 
+$\algcl^{eq}\left( \emp \right)$ is the union of finitely many zero definable sets, so the
+inverse image consists of actions with finitely many orbits.
+
+\begin{lem}
+The map $G\fromto \Aut\left( \algcl^{eq}\left( \emp \right) \right)$ is surjective.
+\end{lem}
+
+This map is just restriction to the empty set. 
+There is indeed something to prove here because
+$\algcl^{eq}\left( \emp \right)$ is countable, and if you take a
+countable subset of $M$, restriction onto it is not surjective in general.
+
+\begin{proof}
+Fix $\sigma \in \Aut\left( \algcl^{eq}\left( \emp \right) \right)$. We build a preimage
+$g$ by the back and forth argument since we only care about a finite part of $\sigma$ each
+time. Inductively we ensure that if $g:\oline{a}\fromto \oline{b}$ then for
+any image of $\oline{a}$ in $\algcl^{eq}$ we have
+\begin{equation}
+\restr{g}{\dcl\left( \oline{a} \right) \cap \algcl^{eq}\left( \emp \right)} = 
+\restr{\sigma}{\dcl\left( \oline{a} \right) \cap \algcl^{eq}\left( \emp \right)}
+\ .
+\end{equation}
+So if we add $\oline{a}\comp a_0$, we want $b_0$ such that
+\begin{equation}
+\type\left( \oline{a} , \algcl^{eq}\left( \emp \right) \right) = 
+\type\left( \oline{b} , b_0 \sigma\left( \algcl^{eq}\left( \emp \right) \right) \right) 
+\ .
+\end{equation}
+
+We need to preserve a type over an infinite set. But for a fixed $n$ there are only
+finitely many $n$-types over $\algcl^{eq}\left( \emp \right)$ since the relation
+$\oline{x} \equiv_{\algcl^{eq}} \oline{x}'$ (where $n = \abs{\oline{x}}$)
+has cardinality at most the continuum and furthermore is zero definable in an
+$\om$-categorical structure. Therefore a definable equivalence relation can have only
+finitely many classes. So every class appears in $M$ and we can find such a $b_0$. 
+
+Now since the map is a homeomorphism we are done.
+\end{proof}
+
+\begin{prop}
+$\Aut\left( \algcl^{eq}\left( \emp \right) \right)$ is the largest compact quotient of
+$G$. 
+\end{prop}
+
+\begin{exr}
+Show this.
+\end{exr}
+
+\begin{prop}
+Given any metrizable profinite group $\Gamma$, there is an $\om$-categorical $M$ with
+$\Aut\left( \algcl^{eq}\left( \emp \right) \right)\simeq\Gamma$.
+\end{prop}
+
+\begin{prop}
+If $\Gamma$ is profinite and has infinitely many open subgroups of index $n$, then it has
+$2^{2^{\aleph_0}}$ many subgroups of finite index.
+\end{prop}
+
+The point is that there is nothing we can say about this compact quotient, so for the sip
+we have to ignore this.
+Note that one can ask what conditions we need to add for the converse to hold. There is a
+theorem which says:
+
+\begin{thm}[Nikolov-Segal]
+If $\Gamma$ is profinite and topologically finitely generated, then finite index subgroup
+are open.
+\end{thm}
+
+This is surprising because it uses the classification theorem for finite simple groups.
+The other known example hides the problem with the quotient inside the classes.
+
+\begin{exm}
+Consider the counterexample in \cref{exm:isp_counter}.
+Now add an equivalence relation with infinitely many classes, and put a copy of the
+previous thing in each class. 
+This has no $\algcl^{eq}\left( \emp \right)$ and therefore no compact quotient.
+\end{exm}
+
+\section{Polish spaces}
+
+\begin{defn}
+A \emph{Polish space} is a topological space which is separable and completely metrizable. 
+\end{defn}
+
+\begin{exm}
+The following are all example:
+$\RR$, $\CC$, $\left( 0,1 \right)$, $\II=\left[ 0,1 \right]$, countable discrete sets, $C =
+2^\NN$ (Cantor space), $\HH = \II^\NN$ (Hilbert cube), and $W = \NN^\NN$ (Baire space).
+\end{exm}
+
+\begin{exr}
+Show that Baire space is homeomorphic to $\RR \minus \QQ$.
+\end{exr}
+
+In general the countable product of Polish spaces is Polish because of the
+following. 
+Given $X$ Polish, there is a compatible complete metric bounded by $1$ by truncation. To
+put a metric $d$ on the product
+\begin{equation}
+\prod_{i<\om} X_i
+\end{equation}
+we take the metric $d_i$ on each $X_i$, and then just define
+\begin{equation}
+d\left( \oline{x} , \oline{y} \right) = \sum_i \frac{d_i\left( x_i , y_i \right)}{2^n} \ .
+\end{equation}
+
+\begin{lem}
+A compact Hausdorff space $X$ is Polish iff it is metrizable iff it is
+second-countable.
+\end{lem}
+
+Note there are some nice universality properties that won't be useful for us, but are
+worth mentioning. 
+
+\begin{prop}
+Every Polish space is homeomorphic to a subset of the Hilbert cube.
+\end{prop}
+
+\begin{proof}
+Let $X$ be Polish, and let $\left( x_n \right)$ be a countable dense subset. 
+Let $d$ be a compatible metric bounded by $1$. Define a map $f:X\fromto \HH$ where
+$x\mapsto \left( d\left( x , x_n \right) \st n<\om \right)$. 
+$f$ is injective because $x$ is a limit of a sequence of $x_n$s, so if $x$ and $y$ have
+the same distance then they are the limits of the same sequence. 
+$f$ is also continuous. This comes down to an argument on one coordinate. 
+To check that $f^{-1}:f\left( X \right) \fromto X$ is continuous, assume that $f\left(
+x^m \right)$ converges to $f\left( x \right)$.
+This means $d\left( x^m , x_n \right)$ converges to $f\left( x , x_n \right)$ for each
+$n$.
+Fix $\e > 0$ and let $n$ be such that $d\left( x , x_n \right) < \e$. 
+then $d\left( x^m , x_n \right) < 2\e$ for $n$ large enough such that $d\left( x^m , x
+\right) < 3\e$.
+\end{proof}
+
+\begin{exr}
+Show that you can embed any Polish space $X$ as a closed subspace of $\RR^\NN$. 
+\end{exr}
+
+In general, the result might not be closed, but it can at least be $G_\dd$. 
+
+\begin{defn}
+A set is $G_\dd$ if it is the countable intersection of open sets, and $F_\sigma$
+if it is the countable union of closed sets.
+\end{defn}
+
+The Borel sets comprise the smallest $\sigma$ algebra\footnote{Recall a $\sigma$-algebra
+is defined to contain the whole space, and be closed under complements and countable
+unions. As such it is also closed
+under countable intersections.} containing open sets. 
+
+\begin{prop}
+Let $X$ be Polish with $Y\subeq X$. 
+$Y$ is Polish iff it is $G_\dd$.
+\end{prop}
+
+\begin{proof}
+$\left( \converse \right)$:
+Closed subsets of Polish spaces are Polish. If we take an open subset, then we can change
+the metric such that it blows up at the boundary. If $U\subeq X$ is open, define a metric
+$d_U$ on $U$ by setting
+\begin{equation}
+d_U\left( x,y \right) = d\left( x,y \right) + \abs{\frac{1}{d\left( x , X\minus U \right)}
+-\frac{1}{d\left( y , X\minus U \right)}} \ .
+\end{equation}
+This way, if we take a sequence converging to the boundary, it can't be Cauchy and not
+convergent. 
+This gives us completeness. 
+Then $d_U$ is a complete compatible metric on $U$. 
+
+Separability follows from being a subspace. If it is $G_\dd$,
+\begin{equation}
+Y = \binter_{i < \om} U_i
+\end{equation}
+for some open $U_i$s. Now we can truncate distances at $1$ and take the sum
+\begin{equation}
+d_Y = \sum_i \frac{\min\left( 1 , d_{U_i}\left( x,y \right) \right)}{2^i}
+\end{equation}
+so we are done.
+
+We will not show the other direction.
+\end{proof}
+
+\end{document}

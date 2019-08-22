@@ -1,0 +1,233 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 26\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{April 30, 2019}
+\maketitle
+
+In the last week we will treat the stable case.
+
+\section{Rank}
+
+Let $M$ be an $\om$-categorical structure. 
+
+\begin{defn}
+For a definable set $D$ and ordinal $\al$, we define $\rank\left(D\right)\geq \al$
+inductively:
+\begin{enumerate}[label = (\iii)]
+\item $\rank\left(D\right) \geq 0$ if $D\neq \emp$,
+\item $\rank\left(D\right)\geq \al+1$ if in $M^{eq}$ there is a definable family 
+$\left(X_{\oline{a}}\right)$, where $\oline{a}\satisfies \phi\left(x\right)$,
+of subsets of $D$ which is $k$-inconsistent\footnote{I.e. the
+intersection of any $k$ of them is empty.} for some $k$ for $k < \om$ and
+$\rank\left(X_i\right)\geq \al$ for all $i$. 
+\label{item:star}
+\item $\rank\left(D\right)\geq \lam$, $\lam$ limit if $\rank\left(D\right)\geq \al$ for
+all $\al < \lam$.
+\end{enumerate}
+We say $\rank\left(D\right) = \emp$ if $\rank\left(D\right) \geq \al$ for all $\al$.
+\end{defn}
+
+\begin{exm}
+\begin{itemize}
+\item If $\left(M , \leq\right)$ is DLO then $\rank\left(M\right) = 1$.
+\item The random graph has rank $1$.
+\item If $M$ is $\om$-stable then the rank is the Morley rank.
+\item The generic tree has infinite rank.
+\end{itemize}
+\end{exm}
+
+Note that \ref{item:star} is equivalent to the following:
+there is a definable 
+\begin{cd}
+D'\arrow{d}{\pi}\\ D
+\end{cd}
+with finite fibers and a definable equivalence relation on $D'$ with infinitely many
+classes of rank $\geq \al$.
+
+\subsection{Properties of rank}
+
+First note that:
+\begin{equation}
+\rank\left(a / A\right) = \rank\left(\type\left(a / A\right)\right) = 
+\min\left\{\rank\left(D\right)\st D A\text{-definable, } a\in D\right\} \ .
+\end{equation}
+
+We have the following properties:
+
+\begin{enumerate}[label = \numbers.]
+\item $\rank\left(a/ A\right) = 0$ iff $a\in \algcl\left(A\right)$
+\item $\rank\left(D_1 \un D_2\right) = \max\left\{\rank\left(D_1\right) ,
+\rank\left(D_2\right)\right\}$
+\item If $D$ is definable over $S$ there is $a\in D$ with $\rank\left(a / A\right) =
+\rank\left(D\right)$.
+\item If $\rank\left(a / bc\right)$, $\rank\left(b/c\right)$ are finite, then 
+$\rank\left(ab/c\right) = \rank\left(a/bc\right) + \rank\left(b/c\right)$.
+\end{enumerate}
+
+If $\rank\left(M\right) < \om$ we write
+$a\indfrom_c b$ if
+\begin{align}
+\rank\left(ab/c\right) = \rank\left(a/c\right)
++ \rank\left(b/c\right) 
+&\iff 
+\rank\left(a/bc\right) = \rank\left(a/c\right)\\
+&\iff 
+\rank\left(b/ac\right) = \rank\left(b/c\right)\\
+&\iff 
+b\indfrom_c a \ .
+\end{align}
+Equivalently 
+$a\indfrom_E bc$ iff $a\indfrom_{Ec} b$ and $a\indfrom_E c$.
+
+Note that if $\rank\left(D\right) = 1$, then $\algcl$ has the exchange property on $D$.
+This means for $A\subeq D$, $a,b\in D$ we have that
+$a\in \algcl\left(Ab\right)\minus \acl\left(A\right)$ iff
+$b\in \algcl\left(Aa\right)\minus \acl\left(A\right)$ which is equivalent to
+\begin{equation}
+\rank\left(Aab\right) = 
+\rank\left(A\right) + 1
+= \rank\left(Ab\right) = \rank\left(Aa\right)\ . 
+\end{equation}
+What this means is that $\algcl$ defines a \emph{pregeometry} on $D$.
+
+A pregeometry is a closure operation that satisfies certain properties:
+\begin{itemize}
+\item $A\subeq B \implies \acl\left(A\right)\subeq \acl\left(B\right)$,
+\item $\acl\left(\acl\left(A\right)\right) = \acl\left(A\right)$:
+\item exchange property
+\item maybe another axiom\ldots
+\end{itemize}
+The associated dimension is the rank.
+
+\begin{exm}
+$\FF_p$ vector space is rank one and has a nontrivial $\algcl$.
+\end{exm}
+
+If $\rank\left(D\right) = 1$ and $D$ is primitive then $\acl$ defines a \emph{geometry} on
+$D$. This means that we additionally have
+\begin{itemize}
+\item $\acl\left(\emp\right)  = \emp$ and
+\item $\acl\left(\left\{a\right\}\right) = \left\{a\right\}$ for $a\in D$.
+\end{itemize}
+
+\subsection{Main theorem}
+
+\begin{thm}
+If $M$ is finite homogeneous, $\rank\left(M\right) = 1$, 
+there is a unique $n$-type of an independent tuple for all $n$,
+then it has trivial geometry.
+\end{thm}
+
+\begin{Proof}
+Assume $M$ has $\rank = 1$ and is primitive for $A\subeq M$ finite. Let 
+\begin{equation}
+\left(A\right)_+ = 
+\closure{A} - \bun_{B\subneq A} \closure{B} \ .
+\end{equation}
+Assume there is $\left\{a,b\right\}$ such that $\left(\left\{a,b\right\}\right)_+\neq
+\emp$.
+\begin{lem}
+If $A\un \left\{a\right\}$ is independent, $b\in \left(A\right)_+$, 
+$c\in \left(\left\{a,b\right\}\right)_+$, then $c\in \left(A\un\left\{a\right\}\right)_+$.
+\end{lem}
+\begin{proof}
+Assume there is $B\subneq A\un \left\{a\right\}$, $c\in \closure{B}$. 
+If $B\subeq A$, $c\in \closure{A}$, by exchange, $a\in \closure{ \left\{b,c\right\}}\subeq
+\closure{A}$ which is a contradiction. 
+
+Otherwise, $B = B'\un\left\{a\right\}$ for $B'\nsubeq A$. Let $d\in A\minus B$.
+By exchange $b\in \closure{ \left\{a,c\right\}}\subeq \closure{B}$, 
+\begin{equation}
+b\in \closure{A\minus \left\{d\right\}\un \left\{d\right\}}\minus \closure{A\minus
+\left\{d\right\}} \ .
+\end{equation}
+Again by exchange,
+\begin{equation}
+d\in \closure{A\minus \left\{d\right\}\un \left\{b\right\}}\subeq 
+\closure{\ubr{A\minus \left\{d\right\}\un \left\{a\right\}}{\supeq B}}
+\end{equation}
+so certainly $B$ is in this closure.
+This contradicts the independence of $A\un \left\{a\right\}$.
+\end{proof}
+\begin{lem}
+For any independent $A$, $A_0 , A_1\subeq A$ ($A_0\neq A_1$) then
+\begin{equation}
+\left(A_0\right)_+ \cap \left(A_1\right)_+ = \emp \ .
+\end{equation}
+\end{lem}
+\begin{proof}
+True iff $A_0\subeq A_1$ or $A_1 \subeq A_0$. Otherwise we can find $c_0\in A_0\minus A_1$
+or $c_1\in A_1 \minus A_0$ and contradict independence. 
+
+Let $d\in \left(A_0\right)_+ \cap \left(A_1\right)_+$. Then by exchange
+\begin{align}
+c_0\in \closure{A_0\minus\left\{c_0\right\}\un \left\{d\right\}}&&
+c_1\in \closure{A_1\minus\left\{c_1\right\}\un \left\{d\right\}}
+\end{align}
+so $A\subeq \closure{A\minus \left\{c_0 , c_1\right\}\un\left\{d\right\}}$
+which is a
+contradiction to the fact that $\rank\left(A\right) = \abs{A}$.
+\end{proof}
+
+Now let $A$ be an independent set of size $n$ by induction (by first lemma), for all
+nonempty $B\subeq A$, $\left(B\right)_+\neq \emp$.
+By the second lemma we get $2^n$ many one-types over $A$. 
+This contradicts finite homogeneity.
+
+In general assume $n \geq 2$ is minimal such that 
+\begin{equation}
+\left(\left\{a_1 , \ldots , a_n\right\}\right)_+\neq \emp \ .
+\end{equation}
+Then add $a_1 , \ldots , a_{n-2}$ as constraints to the language and apply
+the previous case.
+\end{Proof}
+
+\begin{defn}
+A definable set $D$ is \emph{strongly-minimal} if any parameter-definable subset of $D$ is
+finite or co-finite. 
+\end{defn}
+
+If $D$ is strongly-minimal then $\rank\left(D\right) = 1$ and any 
+two independent $n$-tuples have the same tuple.
+
+The conclusion is that a strongly minimal primitive set definable in a finitely
+homogeneous structure is an indiscernible set, i.e. isomorphic to $\left(A , =\right)$.
+
+\section{Binary structure}
+
+\begin{prop}
+Let $M$ be a binary structure. Then $\rank\left(M\right)< \om$.
+\end{prop}
+
+\begin{proof}
+Assume $\rank\left(M\right)\geq \om$. Fix $N< \om$ sufficiently large. 
+We can find:
+\begin{itemize}
+\item An increasing family $\left(c\left(n\right) \st n < N\right)$ of finite tuples,
+\item a $c\left(n\right)$-definable set $D_n$ transitive over $c\left(n\right)$,
+\item a $c\left(n\right)$ definable family $\left(X_t^n \st t\in E_n\right)$,
+$k\left(n\right)$-inconsistent, where there exists some $t$ such that $D_{n+1}\subeq
+X_t^n$.
+\end{itemize}
+\begin{clm}
+We can assume $X_t^n\cap X_{t'}^n$ is finite for $t\neq t'$.
+\end{clm}
+To see this replace $X_t^n$ by the max infinite intersections $X_{t_1}\cap \ldots \cap
+X_{t_k}^n$.
+\begin{clm}
+For each $n$ there are $x,y\in D_n$ such that for no $t\in R_n$ do we have both $x_n\in
+X_t$, $y_n\in X_t$.
+\end{clm}
+We assume this for now.
+
+For each $n$ let $\phi_n\left(x,y\right)$ say that for some $t$ we have $x\in X_t$, $y\in X_t$.
+By binary, on $D_n$ we have that $\phi_n\left(x,y\right)$ is equivalent to a
+$\emp$-definable formula $\psi_n\left(x,y\right)$.
+We have $\not \psi_n\left(x_n , y_n\right)$, and for $m < n$ we have
+$\psi_m \left(x_n , y_n\right)$ so the $\psi_n$s are pairwise distinct which is
+impossible.
+\end{proof}
+
+\end{document}

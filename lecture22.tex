@@ -1,0 +1,285 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 22\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{April 16, 2019}
+\maketitle
+
+\section{Model theoretic properties of structures}
+
+Today we will mostly state things and not prove much, and then we will do the NIP case in
+more detail. 
+
+\subsection{Counting substructures}
+
+To motivate the introduction we start with the combinatorial question from last time of
+counting the number of substructures.
+
+Assume the language is relational.
+Let $M$ be a $\om$-categorical and $G = \Aut\left(M\right)$. 
+Define $f_n\left(M\right)$ to be the number of substructures of $M$ of size $n$ up to
+isomorphism. We could also define some other function (which we will not be using) that we
+just mention. First $F_n\left(M\right)$ is the number of $n$-types over $\emp$, and
+$\tilde F_n\left(M\right)$ is the number of $n$-types of pairwise distinct elements.
+The difference between the two is somehow that
+in $f$ we somehow don't have an ordering on the things we are counting so we have
+\begin{equation}
+f_n\left(M\right) \leq \tilde F_n\left(M\right) < F_n\left(M\right) \ .
+\end{equation}
+If substructures are rigid (e.g. we have a linear order) then 
+\begin{equation}
+f_n\left(M\right) = \frac{\tilde F_n\left(M\right)}{n!}\ .
+\end{equation}
+
+The problem of $\tilde F_n\left(M\right)$ is that this thing somehow grows too quickly
+whereas $f_n$ has a slower growth rate so it's somehow more interesting to the
+combinatorialists. 
+
+\begin{exm}
+For DLO, $f_n\left(M\right) = 1$.
+\end{exm}
+
+\begin{exm}
+For $M$ the random graph we roughly have that 
+\begin{equation}
+f_n\left(M\right)\approx F_n\left(M\right) \approx 2^{n^2} 
+\end{equation}
+since this is somehow asking for graphs with $n$ vertices.
+\end{exm}
+
+\begin{exm}
+Let $L = \left\{\leq\right\}$ be a partial order then a tree is when this is actually a
+linear order. Then
+$f_n\left(M\right)$ is the number of trees on $n$ vertices, so it's $c^n$ for some
+constant $c$ which is between $2 < c < 3$. This is some kind of Catalan number. 
+Note that this is smaller than a factorial. 
+
+If we take two linear orders $L = \left\{\leq_1 , \leq_2\right\}$ then 
+$f_n\left(M\right) = n!$.
+This is why these things are sometimes called permutation structures.
+\end{exm}
+
+So we have seen constant growth rates, exponential, and factorial growth rates. 
+Now we have some basic facts. 
+
+\begin{fact}[Cameron]
+\begin{enumerate}[label = (\iii)]
+\item $f_n$ is non-decreasing.
+\item $f_n$ can grow as fact as one wants (with an infinite language).
+\item If the language has max arity $k$ and $M$ is homogeneous in $L$ then
+$f_n\left(M\right) = \cO\left(e^{n^k}\right)$.
+\end{enumerate}
+\end{fact}
+
+\begin{qn}
+Understand structures with slow growth rate of $f_n\left(M\right)$.
+\end{qn}
+
+\begin{fact}[Cameron]
+If $f_n\left(M\right) = 1$ for all $n$ then $M$ is one of the five reducts
+of DLO, i.e. one of the following:
+\begin{enumerate}[label = (\iii)]
+\item $\left(\from\right)$: DLO
+\item $\left(\bij\right)$: Betweenness relation $B\left(x,y,z\right)$
+\item $\left(\acts\right)$: Circular order $C\left(x,y,z\right)$
+\item $\left(\ \dsum\ \right)$: Separation relation $S\left(x,y,u,r\right)$
+\item Pure equality
+\end{enumerate}
+\end{fact}
+
+\begin{rmk}
+This class is a priori included in the reducts of DLO (since $f_n$ only decreases when one
+takes reducts) so this fact was shown by showing the other inclusion manually on each
+reduct.
+\end{rmk}
+
+\begin{fact}[Macpherson]
+If $M$ is primitive, either $f_n\left(M\right) = 1$ for all $n$ or 
+\begin{equation}
+f_n\left(M\right) \geq\frac{c^n}{p\left(n\right)}
+\end{equation}
+for $c = 2^{1/5}\approx 1.148$ and $p$ is some polynomial depending on $M$.
+\end{fact}
+
+\begin{con}
+In fact, it is true with $c = 2$.
+\end{con}
+
+\begin{exm}
+Note that $2$ is possible.
+Take a circular order and add a relation where from every point we add an arrow to the
+other half of the circle. This should be thought of as a topological $2$-cover of the
+circle. 
+\end{exm}
+
+\subsection{Model theoretical notions}
+
+There is a model theoretic property (NIP) 
+which is implied by a small growth rate of $f_n$.
+
+\begin{defn}
+A formula $\phi\left(\oline{x} , \oline{y}\right)$
+has IP (in $M$) if for all $n < \om$ we can find tuples 
+\begin{align}
+\left(\oline{a}_i \st i < n\right) &&
+\left(\oline{b}_j \st j\in \cP\left(n\right)\right)
+\end{align}
+in $M$ such that 
+\begin{equation}
+M\models \phi\left(\oline{a}_i , \oline{b}_j\right) \iff i\in j \ .
+\end{equation}
+\end{defn}
+
+\begin{defn}
+We say $M$ is NIP if no formula has IP.
+\end{defn}
+
+So IP somehow gives us something complicated and it has NIP if this doesn't happen. 
+
+\begin{exm}
+The graph relation $R\left(x , y\right)$ has IP
+in $M$ the random graph. 
+\end{exm}
+
+\begin{exm}
+Higher order things like DLO and trees are NIP. 
+NIP formulas are closed under Boolean combinations. 
+\end{exm}
+
+\begin{lem}[Sauer-Shelah]
+If $\phi\left(\oline{x}, \oline{y}\right)$ is NIP then for finite $A\subeq M^{\oline{y}}$
+there is some $k$ such that
+\begin{equation}
+\abs{S_\phi\left(A\right)} = \cO\left(\abs{A}^k\right)
+\end{equation}
+where $S_\phi\left(A\right)$ consists of the $\phi$-types over $A$, i.e. the maximal
+consistent set of formulas of the form
+$\phi\left(x , \oline{b}\right)$ where $\oline{b}\in A$.
+\end{lem}
+
+Note if $\phi$ has IP
+\begin{equation}
+\abs{S_\phi\left(A\right)} = 2^{\abs{A}}
+\end{equation}
+for some $A$ of arbitrarily large size.
+
+This has the following consequence. Assume $M$ is homogeneous in a finite relational
+language and every relation in $L$ is NIP (for every partition of the variables) then
+\begin{equation}
+f_n\left(M\right) = \cO\left(e^{cn\ln n}\right)
+\end{equation}
+for some $c > 0$ so its growth rate is at most factorial.
+
+For simplicity assume we have $1$-formula. Consider some $n$-elements $a_1 , \ldots , a_n$.
+We might as well count $F_n\left(M\right)$ since the factorial won't change whether or not
+we satisfy this bound. 
+Then the number of $n$-types over $\emp$ is at most
+\begin{equation}
+S_n\left(\emp\right)\leq S_1\left(\emp\right)
+\cdot S_1\left(\left\{a_0\right\}\right) \cdot S_1\left(\left\{a_0 , a_1\right\}\right)
+\cdot \ldots
+\end{equation}
+and by NIP this is a product which looks like:
+\begin{equation}
+S_n\left(\emp\right) \leq 1^k \cdot 2^k \cdot 3^k \cdot \ldots \cdot n^k \leq \left(n!\right)^c
+\end{equation}
+for some $c$.
+
+\begin{fact}[Macpherson]
+If some $\phi\left(\oline{x} , \oline{y}\right)$ has IP then 
+\begin{equation}
+f_n\left(M\right) \geq 2^{p\left(n\right)}
+\end{equation}
+for some polynomial $p$ of degree at least $2$.
+\end{fact}
+
+For finitely homogeneous structures we get a gap that either 
+\begin{equation}
+f_n\left(M\right) = \cO\left(e^{cn \ln n}\right)
+\end{equation}
+where $M$ is NIP, and
+\begin{equation}
+f_n\left(M\right)\geq e^{p\left(n\right)}
+\end{equation}
+(for $\deg p\geq 2$) in the IP case.
+So the picture is:
+\begin{equation}
+\ubr{
+1 
+\qquad\vert\text{gap}\vert \qquad
+\ubr{e^{cn}}{\text{trees}}
+\quad\ldots\quad
+\ubr{e^{cn\ln n}}{2\text{ lin ord}}
+}{\text{NIP}}
+\qquad\vert\text{gap}\vert \qquad
+e^{cn^2} \ldots
+\end{equation}
+
+New goal: understand NIP for finite homogeneous (or $\om$-categorical) structures.
+
+\subsection{Stability}
+
+\begin{defn}
+$\phi\left(\oline{x} , \oline{y}\right)$ is unstable (in $M$) if for every $n$ there are
+$\left(\oline{a}_i \st i < n\right)$
+$\left(\oline{b}_j \st j < n\right)$
+such that
+\begin{equation}
+M\models \phi\left(\oline{a}_i , \oline{b}_j\right) \iff i\leq j \ .
+\end{equation}
+\end{defn}
+
+\begin{defn}
+$M$ is stable if all formulas are stable. 
+\end{defn}
+
+Note that stable implies NIP.
+
+\begin{exm}
+$L = \left\{E\right\}$ where $E$ is an equivalence relation then $M$ is stable. 
+DLO is NIP but not stable.
+\end{exm}
+
+\begin{exm}
+$\FF_p$ vector spaces are stable $\om$-categorical but not finitely homogeneous.
+\end{exm}
+
+\begin{enumerate}
+\item If $M$ is finitely homogeneous and stable then it is $\om$-stable.
+\item $\om$-categorical and $\om$-stable structures are very understood. They are all
+build out of $\left(M , =\right)$, $\FF_q$ vector spaces by families of covers.
+More precisely:
+\end{enumerate}
+
+\begin{fact}
+
+\begin{itemize}
+\item A primitive $\om$-categorical $\om$-stable is a Grassmannian over one of:
+\begin{itemize}
+\item $\left(M , =\right)$ 
+\item Affine or projective space over a finite field.
+\end{itemize}
+\item A finite homogeneous stable primitive structure is interdefinable with unordered
+$k$-tuples of distinct elements of $\left(M , =\right)$.
+\end{itemize}
+\end{fact}
+
+Once we know that these are the primitive ones, one can just check what happens with
+$f_n$. For $\left(M , =\right)$, $f_n = 1$. The $2$-Grassmannian of $\left(M , =\right)$,
+then $f_n$ is roughly the set of graphs with $n$ edges. 
+This is hard to compute, but certainly it grows faster than $c^n$ but the actual
+asymptotic behavior is not known.
+
+In the case of the $\FF_p$ vector space $f_n$ looks like the following. 
+This has at least the number of partitions, so $f_n$ also grows faster than $c^n$.
+
+The conclusion is that if $\cM$ is $\om$-stable, primitive, and $f_n = \cO\left(c^n\right)$,
+then $\cM \simeqq \left(M , =\right)$.
+So then the unstable case is left which we will deal with next time. 
+
+Stable not $\om$-stable things are not understood at all.
+Pseudo-planes can get some lower bounds of $f_n$ by powers of $\sqrt{n}$
+but even powers of $n$ hasn't been done. 
+
+\end{document}

@@ -1,0 +1,208 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 17\\Math 229}
+\date{March 29, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+\section{Polish groups}
+
+Recall we proved the following theorem last time:
+
+\begin{thm}[Pettis]
+Let $G$ be a topological group with non-meager
+$A\subeq G$ having BP.
+Then $A^{-1}A$ contains a neighborhood of $1$.
+\label{thm:pettis}
+\end{thm}
+
+Maps between Polish groups tend to be automatically continuous.
+
+\begin{cor}
+A Baire measurable homomorphism between Polish groups is continuous.
+\end{cor}
+
+\begin{proof}
+Let $\phi:G\fromto H$ be Baire measurable. It is enough to show that the preimage of an
+open neighborhood of the identity in $h$ is open. So fix an open $1\in U\subeq H$.
+Since it is a topological group, we can find some open $1\in V\subeq H$ such that $VV^{-1}
+\subeq U$. Let $\left\{ h_n \right\}_{n<\om}$ dense in $H$ so
+\begin{equation}
+\bun_{n < \om}\left( h_n V \right) = H \ .
+\end{equation}
+Then we have that
+\begin{equation}
+\bun_{n < \om} \phi^{-1} \left( h_n V \right) = G  \ .
+\end{equation}
+We know that for some $n$ $\phi^{-1}\left( h_n V \right)$ is non-meager, and
+since $\phi$ is Baire measurable these have the Baire property.
+Now we can apply \cref{thm:pettis} to get that 
+\begin{equation}
+\phi^{-1}\left( h_n V \right)^{-1} \phi^{-1}\left( h_n V \right)
+\end{equation}
+contains a neighborhood of $1$. Now we have to check this is contained in $\phi^{-1}\left(
+V^{-1} V \right) \subeq \phi^{-1}\left( U \right)$
+which follows from the fact that $\phi$ is a morphism. 
+So we are done.
+\end{proof}
+
+\begin{cor}
+Let $G$ be a Polish group. 
+If $H\leq G$ is non-meager and has BP, then it is open (and hence clopen).
+\end{cor}
+
+\begin{proof}
+This follows immediately because $H^{-1} H = H$.
+\end{proof}
+
+Note that by a previous theorem % \cref{thm:previous}
+we have that if $H$ is meager then
+\begin{equation}
+\abs{G/H}\geq 2^{\aleph_0} \ .
+\end{equation}
+Therefore a subgroup with the BP is either meager or non-meager. If it is non-meager it is
+open, and if it is meager it has large index. So the sip follows for subgroups with BP.
+Hence to find a counterexample to sip we need the axiom of choice. 
+
+\begin{exr}
+Sip is invariant under group (algebraic) isomorphisms.
+\end{exr}
+
+We are really only interested in automorphism groups of first-order structures. 
+As it turns out there is a characterization of such groups inside all Polish groups. 
+
+\begin{thm}
+Let $G$ be a Polish group. Then TFAE:
+\begin{enumerate}[label=(\iii)]
+\item $G$ is isomorphic to a closed subgroup of $S_\infty$.
+\item $G$ is non-archimedean, i.e. $G$ has a basis of a neighborhood of $1$ consisting of
+subgroups. 
+\item $G$ has a left-invariant compatible ultrametric.\footnote{This means $d\left( u,v
+\right) \leq \max \left\{ d\left( u,x \right) , d\left( x,v \right) \right\}$ instead of
+the sum.}
+\end{enumerate}
+\end{thm}
+
+\begin{exr}
+Show that $S_\infty$ does not have a complete, compatible, left-invariant metric. 
+\end{exr}
+
+\subsection{Action of Polish groups}
+
+\begin{prop}
+Let $G$ be a Polish group and $X$ a metrizable space. If we have a map 
+$a : G\times X\fromto X$ which is separably continuous then it is continuous.
+\end{prop}
+
+If $G\acts X$ (i.e. we have a continuous map $G\times X\fromto X$) then for $x\in X$
+the stabilizer $G_x$ is closed (by continuity) and $G / G_x$ is a Polish space and the
+canonical map 
+\begin{equation}
+G / G_x \fromto G\cdot x
+\end{equation}
+which sends $\left[ g \right] \mapsto g\cdot x$ is continuous.
+
+\begin{thm}[Effros]
+Let $G$ be a polish group and $X$ be a polish space. For $G\acts X$ TFAE:
+\begin{enumerate}[label = (\iii)]
+\item $G/ G_x \fromto G\cdot x$ is a homeomorphism,
+\item $G\cdot x$ is not meager (in its relative topology), and
+\item $G\cdot x$ is $G_\dd$ in $X$.
+\end{enumerate}
+\label{thm:eff}
+\end{thm}
+
+\begin{rmk}
+$G\cdot x$ not being meager in $X$ certainly implies that it is not meager in its relative
+topology. The converse is false. For example consider a countable discrete set where $X$
+has no isolated points.
+\end{rmk}
+
+\begin{proof}[Proof of remark]
+Assume $G\cdot x$ is meager in its relative topology. Then we can write:
+\begin{equation}
+G\cdot x = \bun F_n
+\end{equation}
+where $F_mn\subeq G\cdot x$ is relatively closed of empty interior. 
+Set $F_n' = \clos{F_n}$ in $X$. 
+If $\interior{F_n'}=\emp$ then $G\cdot x$ is meager in $X$.
+If not, then its intersection
+$\int\left( F_n' \right)\cap F_n \neq \emp$ so it is relatively open so we are done.
+\end{proof}
+
+\section{Ample generics}
+
+First we will find a criterion for determining the sip, and then we will find some
+criterion for the criterion which will be hard.
+
+\begin{defn}
+Let $G\acts X$, both Polish. 
+Then we have a natural action $G\acts X^n$.
+Say that $\oline{a}\in X^n$ is \emph{generic} if $G\cdot \oline{a}$ is comeager in $X^n$.
+We say that the action has \emph{ample generics} if there is a generic $\oline{a}\in X^n$ for
+each $n<\om$.
+We say that $G$ itself has \emph{ample generics} if the action on itself by conjugation
+has ample generics.
+\end{defn}
+
+Note that there can be at most one generic orbit since otherwise there would be two disjoint
+comeager subsets.
+
+\begin{exm}
+Consider $G=S_\infty$ acting on itself by conjugation. 
+We claim this action has a comeager orbit. 
+First take $W_0 \subeq G$ to be the set of permutations with no infinite orbit, i.e.
+\begin{equation}
+W_0 = \binter V_n
+\end{equation}
+where $V_n$ is the set of all permutations for which the orbit of $n$ is finite.
+Note the $V_n$s are open and dense.
+Similarly the set $W_1$ of $\sigma \in G$ which have infinitely many orbits of size $k$ for each
+$k$ is dense $G_\dd$ and if we intersect $W_0\cap W_1$
+we get a dense $G_\dd$ set which is the comeager orbit.
+\end{exm}
+
+\begin{exr}
+Show that $S_\infty$ has ample generics.
+\end{exr}
+
+Now we want to show that ample generics implies sip.
+Throughout we have
+$G\acts X$ with ample generics. 
+
+\begin{lem}
+Let $A , B\subeq X$ with $A$ non-meager and $B$ not meager in any open set
+(in particular $B$ is dense). Let $x_0 \in X^n$ be generic and $1\in V\subeq G$. 
+Then there are $y_0\in A$, $y_1\in B$, and $h\in V$ such that $\left( x_0 , y_0 \right)$,
+$\left( x_0 , y_1 \right)$ are generic in $X^{n+1}$ and
+\begin{equation}
+h\left( x_0 , y_0 \right) = \left( x_0 , y_1 \right) \ .
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Let $C\subeq X^{n+1}$ be the comeager orbit. For $z\in X^n$ let
+\begin{equation}
+C_z = \left\{ x\in X \st \left( z,x \right)\in C \right\} \ .
+\end{equation}
+Note that $C_{gz} = g C_z$ since $\left( gz , x \right) = g\left( z, g^{-1} x \right)\in
+C$ so $g^{-1}x \in C_z$ and $x\in g C_z$. 
+Also note that if $C_z$ is comeager then $C_{gz}$ is comeager. 
+By Kuratowski-Ulam 
+\begin{equation}
+\left\{ z\in X^n \st C_z \text{ comeager} \right\}
+\end{equation}
+is comeager so for $z$ generic, $C_z$ is comeager.
+In particular there is $y_0\in A$ such that $\left( x_0 , y_0 \right) \in C$. 
+Notice that $G_{x_0}\cdot y_0 = C_{x_0}$ is comeager.
+By \cref{thm:eff}, the map $gG_{x_0}\mapsto g\cdot y_0$ is open.
+Let $U\subeq X$ be open such that 
+\begin{equation}
+U\cap G_{x_0}\cdot y_0 = \left( G_{x_0}\cap V \right)\cdot y_0 \ .
+\end{equation}
+Now we know $B$ is not meager in $U$ and $G_{x_0}y_0$ is comeager in $U$ so they must
+intersect, i.e. $B\cap U\cap G_{x_0}y_0\neq \emp$ so we can find such an $h$.
+\end{proof}
+
+\end{document}

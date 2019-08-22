@@ -1,0 +1,210 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 5\\Math 229}
+\date{February 5, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+Today we will do something fun and somewhat unrelated to the previous topics.
+
+\section{$\om$-categorical groups}
+
+Let $G$ be an infinite $\om$-categorical group.
+Recall this means there are only finitely many $n$-types for any $n$.
+Note the following immediate observations:
+
+\begin{obs}
+$G$ is locally finite.\footnote{
+That is, every finitely generated subgroup is finite.}
+\end{obs}
+
+\begin{proof}
+This is true because if $\oline{a}\in G$ is a finite set, 
+then the elements of $\lr{\oline{a}}$ have distinct types.
+\end{proof}
+
+In fact, $G$ is uniformly locally finite. In particular there is some $n$ such that
+for all $g\in G$, $g^n = e$. In this case we say that $G$ is of \emph{bounded exponent}.
+
+\begin{obs}
+If $G$ is abelian and of bounded exponent, then the pure group $\left( G , + \right)$ is
+$\om$-categorical.
+\end{obs}
+
+\begin{proof}
+First we have the following:
+\begin{fact}
+An abelian group of bounded exponent is a direct sum of cyclic groups of prime power
+orders.
+\end{fact}
+\begin{exr}
+Prove this. This is effectively a group theory question.
+\end{exr}
+
+Now we need to prove that such groups are $\om$-categorical.
+To prove this it suffices to find sentences that completely characterize one given group
+in this class:
+\begin{equation}
+G = \bdsum_{p,n} \left( \ZZ / p^n \ZZ \right)^{s_{p^n}} \ .
+\end{equation}
+In other words, we need to find formulas that give the $s_{p^n}$s.
+
+For this, we use Ulm invariants. Let
+\begin{equation}
+P_{p,q} = \left\{ x\in G \st px = 0 \right\}\cap p^k G
+\end{equation}
+and
+\begin{equation}
+f_p\left( k-1 \right) = \dim\left( P_{p,k-1} / P_{p,k} \right)
+\end{equation}
+where we view these quotients as $\FF_p$ vector spaces.
+Note that
+\begin{equation}
+s_{p^k} = f_p\left( k-1 \right) \in \NN\un\left\{ \infty \right\} \ .
+\end{equation}
+This is first-order definable, so we are done.
+\end{proof}
+
+So the abelian case is settled. The nonabelian case is much more interesting, and in some
+ways open.
+
+\begin{fact}
+An infinite locally finite group has an infinite abelian subgroup.
+\end{fact}
+
+\begin{wrn}
+The proof of this is not an exercise.
+It is a few pages long.
+\end{wrn}
+
+\begin{cor}
+An infinite $\om$-categorical group has a subgroup isomorphic to $\FF_p^\om$
+for some $p$.
+\end{cor}
+
+\begin{thm}[MacPherson]
+A finitely homogeneous structure does not interpret an infinite group.
+\end{thm}
+
+The idea of the proof is the following.
+Why is $\FF_p^\om$ not finitely homogeneous?
+We can take a basis $a_1 , \cdots , a_n , \cdots$ and consider the tuples
+$\left( a_1 , \cdots , a_n , \sum_{i = 1}^n a_i \right)$
+and $\left( a_1 , \cdots , a_{n+1} \right)$. The types of these are not the same, 
+but the type of any two tuples of length $n-1$ inside these
+is the same, which is a contradiction.
+
+\begin{proof}
+Let $G$ be definable in a finitely homogeneous structure $\cM$,
+and let $V\subeq G$ be an infinite $\FF_p$ vector space in $G$.
+Now we want to apply the Ramsey argument.
+Fix a linear order $<$ on $\FF_p$, and fix a basis
+$\left( v_i \st i < \om \right)$ of $V$.
+Now we want to find a sub-vector space which is somehow homogeneous, so all bases have 
+the same type.
+
+If $W\subeq V$ is a finite dimensional subspace, 
+define the canonical basis of $W$ as the basis whose matrix in the $v_i$s is in
+row-reduced form. This identifies $W$ uniquely.
+Let $t$ be the maximal arity of the (finite relational) language.
+We color subspaces of $V$ of dimension $t$ according to the type of the canonical basis. 
+
+\begin{fact}
+For all $r,t,k < \om$, and finite field $\FF$, there is some $N$ such that any coloring of
+$t$-dimensional subspaces of $\FF^N$ in $r$ colors has a $k$ dimensional
+homogeneous\footnote{This means all $t$ dimensional subspaces have the same color.}
+subspace.
+\end{fact}
+
+Using the fact, let $W\subeq V$ be a $t+1$-dimensional homogeneous subspace. Let $\left(
+u_0 , \cdots , u_t \right)$ be its canonical basis. Consider the tuples:
+\begin{align}
+w_1 = \left( u_0 , \cdots , u_{t-1} , u_0 + \cdots + u_{t-1} \right)
+&&
+w_2 = \left( u_0 , \cdots , u_{t-1} , u_0 + \cdots + u_t \right) \ .
+\end{align}
+Note that clearly $\type w_1 \neq \type w_2$. 
+However, if we restrict to a subtuple of size $t$, say
+\begin{align}
+s_1 &= \left( u_0 , \cdots , \hat u_j , \cdots , u_{t-1} , u_0 + \cdots + u_{t-1}
+\right)\\
+s_2 &= \left( u_0 , \cdots , \hat u_j , \cdots , u_{t-1} , u_0 + \cdots + u_t \right)
+\end{align}
+where we have omitted $u_j$, then we claim $\type s_1 = \type s_2$.
+The canonical basis of $\Vect \left( s_1 \right)$ is $u_0 , \cdots , u_{t-1}$
+and the canonical basis of $\Vect\left( s_2 \right)$ is
+$u_0 , \cdots , u_j + u_t , u_{j+1} , \cdots , u_{t-1}$.
+By homogeneity of $W$, they have the same type.
+Now $s_1$ and $s_2$ are expressed by the same term in their respective bases, so they have
+the same type. This contradicts the fact that the language has arity $t$.
+\end{proof}
+
+\section{Structure of $\om$-categorical groups}
+
+\begin{thm}
+Let $G$ be an $\om$-categorical group. Then $G$ has a finite series 
+\begin{equation}
+1 < G_0 < G_1 < \cdots < G_n = G
+\end{equation}
+where each $G_i$ is characteristic\footnote{This is a subgroup invariant under all
+automorphisms of the group. This certainly means the subgroup is normal, but it also means
+it is definable. 
+In particular, if the group has no other structure, this is the same as a definable subgroup.}
+and each $G_{i+1} / G_i$ is either:
+\begin{enumerate}[label = (\iii)]
+\item abelian,
+\item isomorphic to $P^R$ (where $P$ is a finite simple group, and $R$ is either a finite
+number, or it is the boolean ring $V_0$ or $V_1$), or
+\item an infinite $\om$-categorical, non-abelian, characteristically simple $p$-group.
+\end{enumerate}
+\end{thm}
+
+Now we explain some aspects of the theorem.
+First note that a finite non-abelian characteristically simple group is of the form $P^n$,
+for $P$ a simple group and $n < \om$.
+Now we explain these groups defined using boolean rings.
+For $G$ any finite group, the structure of $G^{V_0}$, an infinite $\om$-categorical group, is the following:
+\begin{itemize}
+\item Its universe consists of continuous maps from $K$ (Cantor space) to $G$.
+Or equivalently, denoting by $\cB$ the unique countable atomless boolean algebra, such a
+map is given by a finite sequence of the form $\left( B_1 , g_1 \right) \cdots \left( B_n,
+g_n\right)$ for $g_i\in G$ where $\left( B_1 , \cdots , B_n \right)$ is a partition of $\cB$.
+\item Multiplication is defined coordinate-wise on $K$.
+\end{itemize}
+
+For $G^{V_1}$, instead of taking Cantor space, we remove a point. 
+So we have a locally compact space. 
+Then we look at maps $K\minus \left\{ * \right\}\fromto G$
+which are compactly supported, i.e. near $*$ it is the identity.
+
+\begin{exr}
+Convince yourself that these groups are not elementarily equivalent.
+\end{exr}
+
+\begin{comment}
+\begin{sol}
+Commute elements.
+{1:03}
+One element with abelian commutator group.
+\end{sol}
+\end{comment}
+
+\begin{exr}[*]
+If $G$ is not abelian, then the infinite product $G^\om$ 
+is never $\om$-categorical. [Hint: Show there are infinitely many $1$-types
+by counting the number of conjugates.]
+\end{exr}
+
+Now we discuss the third case in the theorem.
+It is not known if such a thing exists.
+In fact, it is conjectured that there is no such object.
+It is worth noting that infinite $p$-groups can be quite complicated.
+For example, there are these Tarski monsters, which are infinite groups all of whose
+proper subgroups have order $p$.
+
+\begin{thm}[Olshanskii]
+Tarski monsters exist and are simple.
+\end{thm}
+
+\end{document}

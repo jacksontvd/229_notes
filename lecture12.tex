@@ -1,0 +1,202 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 12\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\date{February 28, 2019}
+\maketitle
+
+The combinatorial portion of the course is now more-or-less over. Now we will start
+discussing the automorphism group. This will deal with topological
+dynamics and descriptive set theory.
+
+\section{Kechris-Pestov-Todorcevic correspondence}
+% {section 10}
+
+Let $M$ be a homogeneous structure (locally finite, or just relational).
+Recall that $M$ is Ramsey iff for every universal theory $T'$
+in a language $L'\supeq L$ consistent with $\theory\left( M \right)$, $M$ has a definable
+expansion to a model of $T'$.
+
+Take such a $T'$, and let $M'$ be some expansion of $M$ to a model of $T'$ in $L'\supeq
+L$. Now we have an action $\Aut\left( M \right)\acts M'$.
+Another way of thinking of this is the following. For simplicity say $L' =
+L\un\left\{ R \right\}$ for $R$ some $k$-ary relation. Then an expansion of $M$ to $L'$
+can be thought of as an element of $2^{\left( M \right)^k}$.
+Note that the set $S$ of elements of $2^{\left( M \right)^k}$ corresponding to
+models of $T'$ is closed in the product topology. In particular, it is compact.
+
+Now we have an action $\Aut\left( M \right)\acts 2^{\left( M \right)^k}$ and then the
+action we really care about is the induced action $\Aut\left( M \right) \acts S$. 
+This is well defined because the forbidden conditions defining $S$ are invariant under
+automorphisms. Furthermore this action is continuous, i.e. the map
+\begin{equation}
+\Aut\left( M \right) \times 2^{\left( M \right)^k} \fromto  2^{\left( M \right)^k}
+\end{equation}
+is continuous. 
+To see this let $V\subeq 2^{\left( M \right)^k}$ be a basic open, i.e. it depends only on a finite set
+$\oline{a}\in M$. If $g\cdot \oline{n}\in V$,
+then for any $\oline{n}'$ which coincides with $\oline{n}$ on $g^{-1}\left( \oline{a}
+\right)$ and
+for any $h$ such that $\restr{h}{g^{-1}\left( \oline{a} \right)} = \restr{g}{g^{-1}\left(
+\oline{a} \right)}$ we have $h\cdot \oline{n}'\in V$.
+
+So we have a continuous action on a compact space $S$. Now we can restate the criterion
+from above as follows:
+\begin{center}
+$M$ is Ramsey iff for all $T'$, the action $\Aut\left( M \right)\acts S$ has a fixed
+point.
+\end{center}
+Now we might wonder what is so special about $S$, and as it turns out the only special
+thing is that it's compact. 
+To see this we need some definitions. 
+
+\begin{defn}
+Let $G$ be a topological group. Then a $G$-flow is a compact Hausdorff space $X$ along with a
+continuous action $G\acts X$.
+\end{defn}
+
+\begin{thm}[KPT]
+If $M$ is as above, then $M$ is Ramsey iff all $\Aut\left( M \right)$ flows have a fixed
+point.
+\end{thm}
+
+\begin{proof}
+$\left( \converse \right)$: See above.
+
+$\left( \implies \right)$: Assume $M$ is Ramsey and all substructures are
+rigid.\footnote{This is certainly true if we have a linear order.} Let $G = \Aut\left(
+M \right)$, and let $X$ be a $G$-flow. Assume $X$ does not have a fixed point.
+Now we want to use compactness to find finitely many elements of the group which move all
+of the points. First we recall the following lemma:
+\begin{lem}[Urysohn]
+If $X$ is compact Hausdorff, and $A,B\subeq X$ are two disjoint, closed subspaces, then
+there is a continuous function $f: X\fromto \left[ 0,1 \right]$ such that $\restr{f}{A} =
+0$ and $\restr{f}{B} = 1$. 
+\end{lem}
+
+By assumption, for all $x\in X$, there is $f: X\fromto \left[ 0,2 \right]$ and $g\in G$
+such that $f\left( x \right) = 0$ and $f\left( gx \right) = 2$. 
+Given such $f$ and $g$, the set:
+\begin{equation}
+U_{f,g} = \left\{ x\in X \st \abs{f\left( x \right)  -f\left( gx \right)} > 1 \right\}
+\end{equation}
+is open. By compactness, there are $f_1 , \cdots , f_n$ and $g_1 , \cdots , g_n\in G$
+such that for all $x\in X$ there is $i\leq n$ such that
+\begin{equation}
+\abs{f_i\left( x \right) - f_i\left( g_i x \right)}  > 1 \ .
+\end{equation}
+Define
+\begin{equation}
+\begin{tikzcd}
+X\arrow{r}{F}& \RR^2\\
+x\arrow[mapsto]{r}&\left( f_1\left( x \right) , \cdots , f_n\left( x \right) \right)
+\end{tikzcd}
+\end{equation}
+so for all $x\in X$ there exists $i\leq n$ such that
+\begin{equation}
+\norm{F\left( x \right) - F\left( g_i x \right)}_\infty > 1 \ .
+\end{equation}
+Now notice that $F$ is continuous and $X$ is compact, so the image of $F$ in $\RR^n$ is
+compact. So now we can discretize the image into finitely many blocks each with diameter
+less than $1/3$. I.e. we can write
+\begin{equation}
+F\left( X \right) = Y_1 \un \cdots \un Y_n
+\end{equation}
+where the $Y_i$ have diameter $< 1/3$. 
+
+Now we claim there is some neighborhood $V\subeq G$ of the identity 
+such that for all $g\in V$ and $x\in X$ 
+\begin{equation}
+\norm{F\left( x \right) - F\left( gx \right)} < 1/3 \ .
+\end{equation}
+This is because $F$ is continuous and $X$ is compact.
+There is a finite\footnote{We are using the locally finite condition to get this to be
+finite.} substructure $A\subeq M$ such that
+\begin{equation}
+\left\{ g\in G \st \restr{g}{A} = \restr{\id}{A} \right\}\subeq V \ .
+\label{eqn:this}
+\end{equation}
+In particular, if $\restr{g}{A} = \restr{h}{A}$, then $\norm{F\left( x \right) - F\left(
+h^{-1} g x \right)} < 1/3$, so for all $x\in X$, 
+\begin{equation}
+\norm{F\left( g^{-1} x \right) - F\left( h^{-1} x \right)} < \frac{1}{3} \ .
+\end{equation}
+The idea is that if two things do the same thing on $A$, then their image is very close. 
+So they almost do the same thing even after applying $F$.
+
+Fix $x_0\in X$, and consider a copy $A'$ of $A$ in $M$. 
+Now we want to color these copies of $A$. Let $c\left( A' \right)$ be the minimal $j\leq
+m$ for which there is $g\in G$ such that $g\left( A \right) = A'$ with $F\left( g^{-1} x_0
+\right)\in Y_j$. 
+What we're really coloring is cosets of
+\eqref{eqn:this} (which is equivalent to
+a coloring of copies of $A$ in $M$).
+
+Now we want to construct some substructure $B$ which contradicts Ramsey.
+So let $B$ be the structure generated by
+\begin{equation}
+A\un \bun_{i\leq n} g_i^{-1}\left( A \right) \ .
+\end{equation}
+Since $M$ is Ramsey, there is $B'\subeq M$ a copy of $B$ such that all copies of $A$ in
+$B'$ have the same color $j$. 
+
+Let $g_* \in G$ map $B$ to $B'$, and let $x_* = g^{-1}_*\left( x_0 \right)$. 
+Now we show that 
+\begin{equation}
+\norm{F\left( g_i x_* \right) - F\left( x_* \right)} < 1
+\end{equation}
+for all $i\leq n$.
+So somehow this $x_*$ is not moved much. This will be the contradiction.
+Set $g_0 = \id$. For $i\leq n$ we have
+that $g_* g_i^{-1}\left( A \right)$ is a copy of $A$ in $B'$, so it has color $j$. 
+By the definition of the color, there is some $h_i\in G$ such that 
+\begin{align}
+\restr{h_i}{A} = \restr{g_* g_i^{-1}}{A}
+&&
+F\left( h_i^{-1} x_0 \right)\in Y_j \ .
+\end{align}
+So now we just have to compute. We know that
+\begin{equation}
+1/3 > \norm{F\left( h_i^{-1} x_0 \right) - F\left( g_i g_*^{-1} x_0 \right)} 
+= \norm{F\left( h_i^{-1} x_0 - F\left( g_i x_* \right) \right)} \ .
+\label{eqn:fe}
+\end{equation}
+Now we have that:
+\begin{align}
+\norm{F\left( g_i x_* \right) - F\left( x_* \right)}&\leq 
+\norm{F\left( g_i x_* \right) - F\left( h_i^{-1} x_i \right)}
+\\ & \qquad
++ \norm{F\left( h_i^{-1} x_0 \right) - F\left( h_0^{-1} x_0 \right)}
++ \norm{F\left( h_0^{-1} x_0 \right) - F\left( x_* \right)} \ .
+\label{eqn:be}
+\end{align}
+On the RHS of \eqref{eqn:be}, the first and third terms are less than $1/3$ because of
+\eqref{eqn:fe}, and the middle term is less than $1/3$ since they are both in $Y_j$. So the
+entire RHS is less than $1$.
+\end{proof}
+
+\subsection{Some definitions}
+
+Let $G$ be a topological group.
+
+\begin{defn}
+A topological group $G$ is \emph{extremely amenable} if all $G$-flows have a fixed point.
+\end{defn}
+
+\begin{defn}
+A $G$-flow $X$ is minimal if every orbit is dense.
+Equivalently there is no proper non-empty $G$-invariant closed $Y\subeq X$. 
+Such a $Y$ is called a subflow.
+\end{defn}
+
+\begin{rmk}
+Every $G$-flow has a minimal subflow (using Zorn's lemma) so
+$G$ is extremely amenable iff its only minimal flow is $\left\{ \pt \right\}$.
+\end{rmk}
+
+Next time we will define a universal flow
+which measures how far you are from being extremely amenable, and somehow tells us
+something about a minimal Ramsey expansion.
+
+\end{document}

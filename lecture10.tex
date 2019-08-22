@@ -1,0 +1,184 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 10\\Math 229}
+\date{February 21, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+We will continue with the partite construction, and just as we did for EPPA, prove the
+Ramsey property for various structures.
+We will see that the argument for Ramsey statements is easier to adapt, and indeed
+we know more Ramsey statements than we do EPPA statements.
+
+\section{$K_n$-free graphs}
+
+\begin{thm}[Ne\v{s}et\v{r}il-R\"odl]
+the class of finite ordered $K_n$-free graphs is Ramsey.
+\end{thm}
+
+\begin{proof}
+Just as with EPPA, we will start with a Ramsey object for a larger class, i.e. all ordered
+graphs, and fix it by removing some edges to get rid of $K_n$s.
+Let $A$, $B$ be finite ordered $K_n$-free graphs. Let $r<\om$.
+First take $C_0$ to be such that $C_0\fromto \left( B \right)_r^A$ just as ordered graphs. 
+The issue is this might have $K_n$s.
+
+We build a sequence of $d+1$ pictures $P_i$ where $d = \abs{\binom{C_0}{A}}$.
+Enumerate the copies of $A$ in $C_0$ as
+\begin{equation}
+\binom{C_0}{A} = \left\{ A_1 , \cdots , A_d \right\} \ .
+\end{equation}
+First we build the $0$th picture, $P_0$, which is a disjoint (free) union of copies of $B$
+in $C_0$ (as partite graphs).
+In particular, we have a homomorphism $P_0\fromto C_0$ which respects partitions.
+
+We now build the $P_i$ inductively. Assume we have built the picture $P_{i-1}$. 
+Consider $A_i$, and let $B_i$ be the preimage $\pi^{-1}\left( A_i \right)$ where 
+$\pi: P_{i-1}\fromto C_0$ is the canonical homomorphism.
+The partite lemma applied to $A_i$, $B_i$ gives us $C_i$ such that 
+$C_i \fromto \left( B_i \right)_r^{A_i}$ as partite graphs.
+Note that $B_i$ has a homomorphism to $A_i$ and the partite lemma preserves this property, 
+i.e. it does not put edges between two parts if there is no such edge in $B_i$.
+Hence $C_i$ is $K_n$-free.
+Now we build $P_i$ as follows. For every copy of $B_i$ in $C_i$
+we extend this to a copy of $P_{i-1}$, and then amalgamate those freely over the $B_i$.
+This does not create $K_n$s, and we still have a homomorphism $\pi: P_i \fromto C_0$.
+
+Then the statement is that $P_d$ is our Ramsey object. As before we show by downward induction that if
+$\binom{P_d}{A}$ is $r$-colored, there is a copy of $P_0$ in $P_d$ in which any two copies
+of $A$ with the same projection to $C_0$ have the same color.
+This gives us a coloring of $\binom{C_0}{A}$. By the Ramsey property of $C_0$, we find a
+homogeneous copy of $B$. The corresponding copy of $B$ in $P_0$ is homogeneous.
+\end{proof}
+
+\begin{rmk}
+This is somehow the same as the proof for ordered graphs from last lecture, except instead 
+of starting with
+the usual Ramsey theorem which gives $N\fromto \left( \abs{B} \right)^{\abs{A}}_r$, we
+now start with $C_0\fromto \left( B \right)^A_r$ as ordered graphs.
+But the rest of the steps are effectively the same.
+\end{rmk}
+
+\section{Irreducible structures}
+
+In fact the techniques of the previous proof work for any structures which behave in a
+similar way to ordered graphs. This notion is captured by the following more general
+statement.
+
+\begin{defn}
+A relational structure is \emph{irreducible} if any two distinct elements belong to some
+relation.
+\end{defn}
+
+Let $\cF$ be a family of finite irreducible structures in a relational language $\cL$. Let
+$\Forb\left( \cF \right)$ be the class of $\cL$-structures which omit all structures which
+have members of $\cF$ as induced substructures.
+Then the same proof as above will give that the class of ordered
+expansions of members of $\Forb\left( \cF \right)$ is Ramsey.
+
+\section{Metric spaces}
+
+The class of metric spaces is not covered by the previous theorem because bad $n$-cycles
+for $n\geq 4$ are not irreducible.
+The point is that somehow for $4$-cycles (and larger), opposite vertices have no relation, but we want
+to sometimes forbid this to get the class of metric spaces, 
+so metric spaces can't be defined only by forbidding things. 
+Nonetheless we have the following:
+
+\begin{thm}
+The class of finite ordered metric spaces is Ramsey.
+\end{thm}
+
+\begin{proof}
+Let $A$, $B$ be finite ordered metric spaces, and $r < \om$. Let
+\begin{equation}
+n = \frac{\max \text{ length in } B}{\min \text{ length in } B} + 1 \ .
+\end{equation}
+This is the maximal size of a bad cycle. First, build $C_0$ so that $C_0\fromto
+\left( B \right)^A_r$ as colored ordered graphs and all distances in $C_0$ appear in $B$.
+
+We now execute the construction of the previous proof $n-2$ times\footnote{One might
+expect this to take $n$ times, but it only takes $n-2$ because already $C_0$ won't have
+bad $2$-cycles.} to obtain $C_0$, $C_1$ ,
+$\cdots$, $C_{n-2}$ with each new structure acting as the base, i.e. we have homomorphisms
+$\pi_i: C_i \fromto C_{i-1}$. Now we claim by induction that $C_i$ doesn't have bad cycles
+of size $i+2$.
+Let us prove this for $i$. $C_i$ is built as an increasing union of pictures $P_0 , \cdots
+, P_d$. $P_0$ is a disjoint union of copies of $B$ since it has no bad cycle at all.
+We now build $P_i$ assuming we have built $P_{i-1}$. 
+Note that the homomorphic image of a bad cycle at least contains a bad
+cycle. So in $\pi^{-1}$ of a copy of $A$ in $C_{i-1}$ there is no bad cycle.
+This property of having a homomorphism is preserved, so in particular applying the partite lemma
+does not create bad cycles. 
+But now the free amalgamation of things without bad cycles
+might have a bad cycle. For example, if we amalgamate over the red points:
+\begin{equation}
+\begin{tikzcd}
+&
+\point
+\arrow[dash]{ddl}
+\\
+\textcolor{red}{\point}
+\arrow[dash]{ur}{1}\arrow[dash]{dr}{1}&\\
+\textcolor{red}{\point}
+\arrow[dash]{r}{5}&
+\point
+\end{tikzcd}
+\end{equation}
+we get a bad cycle. But as it turns out this can only happen if we already have a bad
+triangle. I.e. the general
+claim is that every projection of a bad cycle $K$ contains a bad cycle of smaller size.
+This is because of the following. Assume we create a bad cycle by amalgamating two copies
+of $P_{i-1}$. Any bad cycle has to have points in both copies by the induction hypothesis.
+If the projection $\pi$ is not injective on $K$ we get a smaller bad cycle in the base
+$C_{i-1}$, so we can assume the projection to the base is injective.
+Now notice that $K$ must have at least two vertices which both project to $A_i$ with no
+distance defined. But since $A_i$ is complete, we must add a distance when we project.
+But this means we have broken the bad cycle into two pieces, one of which must therefore
+be a smaller bad cycle.
+
+This means $C_{n-2}$ has no bad cycle at all, and now we complete this arbitrarily to an
+ordered metric space, and we are done.
+\end{proof}
+
+\section{Locally finite structures}
+
+We now state a general definition which captures the features of metric spaces which we
+took advantage of in the previous proof.
+
+Recall a homomorphism is a map which sends relations to relations, but it might not be
+injective, and might miss some relations.
+As usual, an embedding is injective and preserves relations in both directions, 
+i.e. an isomorphism with its image.
+
+\begin{defn}
+A \emph{homomorphism-embedding} $f: A\fromto B$ is a homomorphism whose restriction to any
+irreducible substructure of $A$ is an embedding.
+\end{defn}
+
+\begin{defn}
+A \emph{completion} $B$ of $A$ is an irreducible structure $B$ with a
+homomorphism-embedding $f:A\fromto B$.
+A \emph{strong completion} is a completion such that the homomorphism-embedding is
+injective.
+\end{defn}
+
+\begin{defn}
+Let $\cR$ be a class of finite irreducible structures. Then $\cK\subeq \cR$ is a \emph{locally
+finite} subclass if for every $C_0\in \cR$ there is some integer\footnote{This is supposed
+to be the maximal size of a bad substructure.} $n = n\left( C_0 \right)$
+such that any structure $C$ has a strong $\cK$-completion provided that:
+\begin{itemize}
+\item $C_0$ is a completion of $C$
+\item every substructure of size at most $n$ has a strong $\cK$-completion.
+\end{itemize}
+\end{defn}
+
+\begin{thm}
+Let $\cR$ be a Ramsey class of irreducible finite $\cL$-structures and let $\cK$ be a
+hereditary locally finite subclass of $\cR$ with strong\footnote{This just means disjoint.} amalgamation.
+Then $\cK$ is homogeneous.
+\end{thm}
+
+\end{document}

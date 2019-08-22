@@ -1,0 +1,269 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 4\\Math 229}
+\date{January 31, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+The title of this lecture is 
+\begin{center}
+\textbf{a day at the zoo: examples.}
+\end{center}
+
+This is typically a subject where there are
+very few general theorems, and 
+one tests a technique by running through examples, 
+so it is important to know them.
+
+\section{Stable structures}
+
+Consider the structure
+$X_0 = \left( X , = \right)$ where $X$ is some countable set.
+$\Aut\left( X_0 \right)$ is the full symmetric group
+$\Sym\left( X \right)$.
+One thing we can do is try to build finite covers of $X_0$. 
+A finite cover\footnote{This same definition holds for any structure.}
+is an $\om$-categorical structure $M$ with a projection
+\begin{equation}
+\begin{cd}
+M\arrow{d}{\pi}\\ X_0 \simeq M / E
+\end{cd}
+\end{equation}
+where $E$ is a definable equivalence relation on $M$ with finite bounded classes.
+The fact that the quotient $M / E$ is exactly $X_0$ means 
+there is no extra induced structure, i.e.
+there are no extra $0$-definable sets.
+Equivalently, the canonical map
+$\Aut\left( \pi \right) : \Aut\left( M \right) \fromto \Aut\left( X_0 \right)$
+is surjective.
+
+\begin{exm}
+A $2$-cover is a finite cover where the equivalence classes have size $2$.
+An immediate example is given by the disjoint union $M = X_0 \times\left\{ 0
+\right\}\un X_0 \times \left\{ 1 \right\}$ with the canonical projection.
+The automorphism group $\Aut\left( M \right) = \Aut\left( X_0 \right) \times \ZZ / 2\ZZ$.
+\end{exm}
+
+\begin{exm}
+Another $2$-cover of $X_0$ is given by putting $2$ points above every points of $X_0$.
+So we have the equivalence relation mapping to $X_0$, but not the equivalence relation
+giving us the two copies.
+This is a reduct of the first one. So now the automorphism group is much bigger.
+In particular it is the wreath product $\Aut\left( X_0 \right) \wr \ZZ/ 2\ZZ$.
+\begin{exr}[*]
+Prove these are the only two transitive $2$-covers.
+\end{exr}
+\end{exm}
+
+\begin{exm}
+Now we construct $4$-covers.
+If we put $4$ points over every point of $X_0$, 
+with the following arrows:
+\begin{equation}
+\begin{cd}
+&\cdot \arrow{dr}&\\
+\cdot \arrow{ur}&&\cdot \arrow{dl}\\
+&\cdot \arrow{ul}
+\end{cd}
+\label{eqn:4points}
+\end{equation}
+so the fibers are independent and the automorphism group is
+again the wreath product $\Aut\left( X_0 \right) \wr \ZZ / 4\ZZ$,
+i.e. because of the arrows the only automorphisms of the fibers are rotations.
+
+Now we could of course trivialize everything as with the $2$-covers 
+and get a direct product, or we could try to do something in between. 
+I.e. we can also add an equivalence relation which has $2$-classes 
+that picks out $2$ opposite points.
+In particular, we can take the top and bottom points in each fiber to
+be equivalent to the top and bottom points in every other fiber.
+Of course if we just look at each fiber, we just have this $\ZZ / 4\ZZ$ acting on it,
+but now the fibers aren't completely independent.
+If we rotate one fiber by $1$, it doesn't force us to turn the other fibers exactly by
+$1$, but it does force us to either rotate it by $1$ or $3$.
+So the automorphism group is something in between $\Aut\left( X_0 \right)\times \ZZ/4\ZZ$
+and $\Aut\left( X_0 \right) \wr \ZZ / 4\ZZ$.
+
+So in the $2$-cover case, we couldn't sort of mix the situations, we only had these two.
+But now we have discovered a $4$-cover which is sort of in between the two extremes.
+This turns out to somehow be as complicated as it gets.
+\end{exm}
+
+Now a much more fun and complicated situation is the following sort of example:
+
+\begin{defn}
+The $2$-Grassmannian of $X_0$ is the set of $2$-element subsets of $X_0$
+with the induced structure.
+\end{defn}
+
+The idea is that each point is a $2$-element subset, and then 
+there is an edge whenever two of these subsets intersect.
+
+\begin{exm}
+There is an interesting $4$-cover of this.
+Above every point we can put $4$ points, as in \eqref{eqn:4points},
+except now we have $1$ equivalence relation with classes
+of size $2$, where each class is mapped to an elements in $X_0$.
+The picture is like this:
+\begin{equation}
+\begin{cd}
+&\textcolor{red}{\point} \arrow{dr}\arrow[dash,red]{dd}&\\
+\point \arrow{ur}\arrow[dash]{rr}&
+\arrow[bend left,red]{dddr}\arrow[bend right]{dddl}&\point \arrow{dl}\\
+&\textcolor{red}{\point} \arrow{ul}\arrow[dotted,no head]{d}
+\\
+& \left\{ 1,2 \right\} & \\
+1 && 2 
+\end{cd}
+\end{equation}
+where the lines without arrows denote the $2$-classes, and the color of the arrow mapping
+to $X_0$ indicates the corresponding class.
+\begin{prop}
+This structure is not interpretable in $X_0$.
+\end{prop}
+This is hard to prove, but we can at least see it isn't obviously interpretable. 
+Say we introduce $4$ parameters $a$, $b$, $c$, and $d$ and then the points
+in a fiber are labelled by the pair of element of $X_0$
+and one of the new parameters. 
+So maybe we identify $\left( \left( 1,2 \right) , a \right)$
+with $\left( \left( 2,1 \right) , c\right)$
+But then we don't know what to send to $1$, and what to send to $2$
+because of the orientation of the arrows. 
+But then we have to check that no other identification works either.
+Note however that it is interpretable in DLO.
+\end{exm}
+
+\begin{exm}
+Let $M$ be the set of $4$-element subsets of $X_0$ equipped with a partition into two
+sets of size $2$.
+This is interpretable in $X_0$.
+Also, $M$ is $\om$-categorical, but cannot be made homogeneous in a finite relational
+language. I.e.
+it is not interdefinable with a structure which is homogeneous in a finite relational
+language.
+
+\begin{exr}
+Show that this is true.
+\end{exr}
+
+\begin{rmk}
+We know that a structure being $\om$-categorical means there are only finitely many $n$-types
+for any $n$. So what is the extra property we get from being homogeneous in a finite
+relational language which is not syntactic? As it turns out,
+an $\om$-categorical structure $M$ is interdefinable with a structure homogeneous in a
+finite relational language of maximal arity $k$ iff $n$-types are determined by 
+their $k$-subtypes. In other words
+\begin{equation}
+\bors_{i_1 < \ldots < i_k < n} \type\left( a_{i_1} \cdots a_{i_k} \right)
+\determines
+\type\left( a_1 \cdots a_n \right) \ .
+\end{equation}
+\end{rmk} 
+
+This is surprising, however if we built the same $M$ starting with DLO instead of $X_0$, 
+then we get a finitely homogeneous structure. I.e. once we have an order, everything
+trivializes.
+This gives an example of a reduct of a finitely homogeneous structure which is not
+finitely homogeneous.
+\end{exm}
+
+\begin{thm}[Lachlan]
+Every fintiely homogeneous stable structure (in particular finite covers of $X_0$)
+is interpretable in DLO.
+\end{thm}
+
+\begin{rmk}
+Note that DLO is not stable.
+\end{rmk}
+
+\section{Orders}
+
+Linear orders are easy to deal with. 
+DLO is the unique linear order which is homogeneous in the language
+consisting of just $\left\{ \leq \right\}$.
+Partial orders become more complicated. 
+We might ask the same question of which partial orders are homogeneous in $\left\{ \leq\right\}$ 
+(the language with just a partial order symbol).
+There is a classification of this due to Schmerl:
+\begin{enumerate}
+\item DLO
+\item Fraiss\'e limit of all partial orders. (This exists and is unique as a consequence of partial
+orders having amalgamation.)
+\item $X_0$
+\item Dense chain of antichains. This is where we put an anti-chain of size $\leq
+\aleph_0$ above every point of DLO. 
+\item Disjoint union of chain. So an anti-chain of chains of a fixed size $\leq \aleph_0$.
+\end{enumerate}
+
+\begin{exr}[*]
+Show that any $\om$-categorical structure has an expansion by adding 
+a linear order in such a way that it remains $\om$-categorical.
+\end{exr}
+
+\section{Graphs}
+
+The classification of homogeneous\footnote{In the language of graphs.} graphs is due to
+Lachlan-Woodrow:
+\begin{enumerate}
+\item Random graph
+\item Empty graph/complete graph
+\item $K_n$-free random graphs and complements of these.
+\item Disjoint union of cliques of the same size
+(includes some finite graphs).
+\item $C_5$ (Note $C_4$ is the complement of the equivalence relation with two classes of size $2$, 
+so included in the previous one and $C_6$ is not homogeneous)
+\item $K_3\tp K_3 = 
+\left\{ \left( a,b \right) \st 1\leq a\leq 3, 1\leq b \leq 3 \right\}$ where we put an
+edge between $\left( a,b \right)$ and $\left( c,d \right)$ iff $a\neq c$ and $b\neq d$.
+\end{enumerate}
+
+\section{Metric spaces}
+
+In this course, a metric space is presented in a binary language
+where we have one binary relation for every possible distance.
+Specifically the language
+\begin{equation}
+\left\{ d_r\left( x,y \right) \st r\in \RR_{r\geq 0} \right\}
+\end{equation}
+such that:
+\begin{enumerate}[label=(\iii)]
+\item $d_r\left( x,y \right) \ands
+d_s\left( y,z \right) \ands d_t\left( x,z \right) \implies r\leq s+t$,
+\item $d_r\left( x,y \right) \iff d_r\left( y,x \right)$,
+\item $d_0\left( x,y \right) \iff x=y$,
+\item $d_r\left( x,y \right) \ands d_s\left( x,y \right) \implies  r = s$,
+\item $\forall x,y\bors_{r\in \RR_{\geq 0}} d_r\left( x,y \right)$.
+\end{enumerate}
+For $S\subeq \RR_{\geq 0}$, an $S$-metric space is the same 
+but with only $\left\{ d_r\left( x,y \right) \st r\in S \right\}$.
+
+\begin{exm}
+For $S = \left\{ 0,1 \right\}$, this is just equality.
+For $S = \left\{ 0,1,2 \right\}$, this is just a graph where
+edges are given by distance $1$, nonedges are given by distance $2$, 
+and $0$ is equality.
+\end{exm}
+
+\begin{qn}
+Given $S$, does the class of $S$-metric spaces have amalgamation?
+\end{qn}
+
+For $S = \QQ$, the answer is yes, and the Fraiss\'e limit 
+(which is not $\om$-categorical) is called the rational Urysohn space.
+If $S$ is closed under $+$, then the same. 
+\begin{exm}
+For $S = \left\{ 0,1,3,4,5 \right\}$ there is no amalgamation:
+\begin{equation}
+\begin{tikzcd}
+\cdot \arrow[dash]{dr}{1}\arrow[dash]{ddr}{3}\arrow[bend left,dotted,no head]{rr}&&
+\cdot\arrow[dash]{ddl}{5}\arrow[dash,"1"']{dl}\\
+& \cdot \arrow[dash]{d}{4}&\\
+& \cdot &
+\end{tikzcd}
+\end{equation}
+since the dotted path cannot be filled in with anything satisfying the triangle
+inequality.
+\end{exm}
+
+\end{document}

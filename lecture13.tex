@@ -1,0 +1,216 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 13\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\date{March 5, 2019}
+\maketitle
+
+\section{$G$-flows}
+
+We will continue discussing $G$-flows.
+
+\begin{defn}
+Let $X$ be a $G$-flow. A \emph{factor} of $X$ is a $G$-flow $Y$ for which there is a
+surjective morphism $\pi : X\fromto Y$, i.e. a continuous map respecting the $G$ action.
+\end{defn}
+
+The idea is that $X$ is `at least as complicated' as $Y$. 
+\begin{rmk}
+Note that if $f:X\fromto Y$ is a morphism of $G$ flows and $Y$ is minimal, then $f$ is
+surjective.
+\end{rmk}
+
+\begin{defn}
+A \emph{universal minimal flow} is a minimal $G$-flow $X$ which has every minimal $G$-flow
+as a factor.
+\end{defn}
+
+\begin{thm}
+There is a unique universal minimal $G$-flow.
+\end{thm}
+\begin{proof}
+Interestingly enough, uniqueness is harder to show than existence here.
+We deal with existence first. Note that if $X$ is a minimal $G$-flow, then it has a dense orbit of
+size at most $\abs{G}$, so $\abs{X}\leq 2^{2^{\abs{G}}}$.
+
+Let $\left( X_i , i<\al \right)$ be an enumeration of all minimal $G$-flows (up to
+isomorphism). 
+Take
+\begin{equation}
+X_* = \prod_{i < \al} X_i
+\end{equation}
+with the coordinate-wise action of $G$. Note the product of compact spaces is compact so
+this is a $G$-flow. Let $\tilde X \subeq X_*$ be a minimal subflow.
+Then $\tilde X$ admits each $X_i$ as a factor, so by the above remark, it is a universal
+minimal flow.
+
+The universal property here somehow doesn't have uniqueness built in (as it usually is),
+so uniqueness isn't so easy here. The formal proof involves introducing new machinery, so
+we just sketch the proof. It is enough to find some coalescent minimal flow $Z$.
+A flow is coalescent if every endomorphism is an automorphism.
+For a minimal flow this is just saying it is injective since every map to it is already
+surjective.
+This is enough because if $M$ and $M'$ are universal minimal flows, and $Z$ is coalescent,
+then we have a sequence of maps $Z\fromto M \fromto M' \fromto Z$ and the composition has
+to be an automorphism, and since they're all already surjective, they are all
+automorphisms.
+\end{proof}
+
+Note that $G$ is extremely amenable iff its universal minimal flow is a point.
+So the universal minimal flow is supposed to be a measure of how far a flow is from being
+extremely amenable.
+
+\section{Back to \Fraisse classes}
+
+Let $L_0$ be a language and let $L = L_0\un \left\{ \leq \right\}$ where $\leq \not\in L$.
+Let $K_0$ be a \Fraisse class in $L_0$ and $K$ be a \Fraisse class in $L$.
+We want some notion of $K$ being an expansion of $K_0$.
+
+\begin{defn}
+Say that $K$ is \emph{reasonable} if:
+\begin{enumerate}
+\item the $L_0$ reduct of $K$ is $K_0$, and
+\item if $A\leq B$ in $L_0$ and $A'$ is an expansion of $A$ in $K$ then there is an
+expansion $B'$ of $B$ in $K$ such that $A'\leq B'$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Let $M_0$ be the \Fraisse limit of $K_0$. Then a \emph{$K$-admissible} ordering on $M_0$
+is an expansion of $M_0$ to $L$ whose age is included in $K$.
+\end{defn}
+
+Note that this is not the \Fraisse limit of $K$, which would not be compact. 
+A $K$-admissible ordering is naturally an $\Aut\left( M_0 \right)$-flow, so in particular
+it is compact. 
+
+\begin{defn}
+Say that $K$ has the \emph{ordering property} (relative to $K_0$) if for every $A\in
+K_0$, there is $B\in K_0$ such that for any $A',B'\in K$ expanding $A$ and $B$
+respectively, we have $A'\subeq B'$.
+\end{defn}
+
+\begin{thm}[KPT]
+With notation as above, let $X_K$ be the space of $K$-admissible orderings. Then TFAE:
+\begin{enumerate}[label=(\iii)]
+\item $K$ has the Ramsey and ordering properties.
+\item $X_K$ is the universal minimal $\Aut\left( M_0 \right)$-flow.
+\end{enumerate}
+\end{thm}
+
+\begin{exm}
+The universal minimal flow of $S_\infty = \Aut\left( \om , = \right)$ is the space of
+linear orders on $\om$.
+This was first proved by Glasner-Weiss.
+\end{exm}
+
+Note that with the assumptions of the above theorem, the universal minimal flow is
+metrizable. In general the compact space $2^{X}$ with $X$ countable is metrizable.
+The metric is as follows.
+Fix a bijection $X\simeq \om$ and then the distance between $\left( a_i , i < \om \right)$
+and $\left( b_i, i < \om \right)$ is $2^{-m}$ where $m$ is maximal such that $a_i = b_i$
+for $i < m$.
+
+Extremely amenable means the universal minimal flow is a point, and having metrizable
+universal minimal flow says that it is still somehow small.
+For example, discrete groups don't have metrizable universal minimal flows unless they are finite.
+
+\begin{defn}
+Let $K_0$ be a \Fraisse class. 
+Then $A\in K_0$ has Ramsey degree $d$ if 
+for every $B\in K_0$
+there is $C\in K_0$
+such that for any coloring
+$f:\binom{C}{A} \fromto r$ there is a copy $B'$ of $B$ in $C$ such that $f$ takes at most
+$d$ values on $\binom{B'}{A}$. 
+
+We say $K_0$ has finite Ramsey degree if for every $A\in K_0$, there is $d<\om$ such that $A$ has
+finite Ramsey degree $d$.
+\end{defn}
+
+Note that $K_0$ has finite Ramsey degree for embeddings iff it has finite Ramsey degree
+for substructures.
+
+Also observe that if there is $K$ which is Ramsey and expands $K_0$ reasonably by finitely many relation
+symbols, then $K_0$ has finite Ramsey degree and it is bounded by the number
+of expansions of $A$ to a structure in $K$.
+The converse is not clear, but it turns out to be true.
+
+\begin{thm}[Zucker]
+Let $K_0$ be a \Fraisse class (homogeneous and locally finite). Then TFAE:
+\begin{enumerate}[label = (\iii)]
+\item $\Aut\left( M_0 \right)$ has metrizable universal minimal flow (where $M_0$ is the
+\Fraisse limit of $K_0$).
+\item $K_0$ has finite Ramsey degree.
+\item There is a Fraisse class $K$ which is Ramsey, is a reasonable expansion of $K_0$ obtained by
+adding finitely many relational symbols, (and has the expansion property).\footnote{This
+is true with or without this last piece.}
+\end{enumerate}
+\end{thm}
+
+Note that the universal minimal flow of $\ZZ$ 
+is a minimal flow of the Stone-\v{C}ech compactification $\b \ZZ$ which
+is not metrizable.
+In general locally compact groups which are not compact have non-metrizable universal
+minimal flow.
+
+\begin{qn}
+If $K$ is a \Fraisse class with $\om$-categorical limit does it have metrizable universal
+minimal flow?
+\end{qn}
+
+The answer is no in general. But it is open in the finitely homogeneous case, i.e. $L$ is
+finite relational.
+
+\subsection{Hrushovski construction}
+
+We offer an example of
+a \Fraisse class with $\om$-categorical limit which does not have metrizable universal
+minimal flow.
+
+\begin{thm}[Hrushovski]
+There exists an $\om$-categorical graph $G$ which is $2$-sparse, i.e. 
+for any finite $A\subeq G$, 
+\begin{equation}
+\abs{E\left( A \right)}\leq 2 \abs{V\left( A \right)}
+\end{equation}
+and every vertex has infinite degree.
+\end{thm}
+
+If we remove any one of these conditions this is easy. If we remove the last, we 
+can just take the empty graph. 
+If we remove the $\om$-categorical condition we can just use a tree.
+But this is not $\om$-categorical.
+We now sketch why this thing doesn't have an $\om$-categorical Ramsey expansion.
+
+\begin{thm}[Evans]
+Such a structure does not have an $\om$-categorical Ramsey expansion, and hence does not
+have metrizable universal minimal flow.
+\end{thm}
+
+\begin{proof}
+We will find a universal theory such that no completion of it can be $\om$-categorical,
+since we can define distances. 
+The universal theory will be as follows. 
+We will orient the edges with the assumption that there are at most $2$ outgoing edges
+from every vertex. We call this a $2$-orientation
+For example, if we have a tree, we can choose a root, and orient every edge towards this root.
+
+The following essentially follows from the Hall marriage theorem:
+\begin{fact}
+A graph has a $2$-orientation iff it is $2$-sparse.
+\end{fact}
+
+An $\om$-categorical Ramsey expansion of $G$ has to define a $2$-orientation (as this is a
+universal theory). But this implies there are infinitely many $2$-types. The idea is that
+if we follow the orientations, every point we can reach from a point $a$ is in the
+algebraic closure of $a$, and this must end at some point. Write the size of the closure
+as $k$. Assume there is some bound, and take $a$ which maximizes this $k$. $a$ has
+infinite degree, so it must have some point $b$ not reachable from $a$ which maps into
+it, which means the closure of $b$ contains the closure of $a$, but it also
+contains $a$ so the size of the closure of $b$ is at least $k+1$ which is a contradiction
+to $a$ having maximal closure.
+\end{proof}
+
+\end{document}

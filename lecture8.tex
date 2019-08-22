@@ -1,0 +1,279 @@
+\documentclass{amsart}
+\usepackage{master}
+\usepackage{overlay}
+\begin{document}
+\title{Lecture 8\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\date{February 14, 2019}
+\maketitle
+
+\section{EPPA}
+
+The methods we saw last time for proving EPPA work for a large number of classes. 
+However, there are some
+classes where these methods don't work. For example they do not work for
+groups.\footnote{This is expected, since we shouldn't be able to prove EPPA for groups
+using only combinatorics.}
+Note that EPPA was proven for groups via other means.
+The methods also fail for equivalence relations, but this can be solved by adding unary
+functions. They also fail for binary functions, but we do not know how to fix
+this. For example, consider the reduct of the random graph with an extra automorphism
+switching edges and non-edges. 
+
+They also fail if there is no canonical way to complete a partial structure like we did
+with metric spaces. A notorious example of this is tournaments. This is perhaps the
+biggest open problem in this area.
+
+\section{There's order everywhere: Ramsey theory}
+
+Recall Ramsey's theorem:
+
+\begin{thm}[Ramsey]
+For all $k,c,m < \om$, there is some $N < \om$ such that
+\begin{equation}
+N\fromto \left( m \right)_c^k \ .
+\end{equation}
+\end{thm}
+
+We now explain this notation. Let $\left[ m \right]^k$ denote the set of $k$-subsets of $m$.
+Then the notation $\left( m \right)_c^k$ means that for every coloring
+$f: \left[ N\right]^k \fromto c$ of $N$ there is a map $g:m\inj N$ which is homogeneous, i.e. $f$
+is constant on $\left[ \left\{ g\left( 1 \right) , \cdots , g\left( m \right) \right\}
+\right]^k = \left[ g\left[ m \right] \right]^k$.
+
+Note there is an infinite version which says
+\begin{equation}
+\om \fromto \left( \om \right)^k_c \ .
+\end{equation}
+We can recover the finite one from the infinite one by some sort of compactness. In
+particular, it certainly tells us that $\om \fromto \left( m \right)^k_c$ but
+propositional compactness gives us that there is an $N$ such that $N\fromto\left( \om
+\right)_c^k$. The opposite however doesn't work.
+
+\subsection{Notation}
+
+For $A$ and $B$ two $L$-structure, let $\binom{B}{A}$ consist of the copies of $A$ in $B$.
+For now this could mean two things, either subsets isomorphic to $A$, or embeddings of $A$
+in $B$. There might be more embeddings, but we will resolve this ambiguity by restricting
+to certain structures shortly.
+Now define $C\fromto\left( B \right)^A_r$ where $r$ is the number of colors. 
+This means the following. For every coloring $f:\binom{C}{A}\fromto r$, there is a copy of
+$B$ in $C$, $g\in \binom{C}{B}$, which is homogeneous.
+
+\subsection{Resolving the ambiguity}
+
+\begin{exm}
+Let $A$ be the graph $
+\begin{cd}
+\point \arrow[dash]{r}\arrow[dash]{d}&\point \\ \point & 
+\end{cd}$
+and $b$ be $
+\begin{cd}
+\point \arrow[dash]{r}\arrow[dash]{d}&\point \arrow[dash]{d} \\ \point \arrow[dash]{r} & \point
+\end{cd}$.
+Then we claim there is no $C$ such that $C\fromto \left( B \right)_2^A$ where we interpret
+$\binom{B}{A}$ as denoting subsets of $B$ isomorphic to $A$. First notice there are four
+copies of $A$ inside $B$.
+\begin{proof}
+Take any $C$, fix a linear order $\leq$ on it, and color a copy of $A$ black if the middle
+point is maximal, and white otherwise.
+\end{proof}
+If we try embeddings here, then it isn't going to work. Let $A$ be the same as before, and
+now choose $B$ to be the same as $A$. Then this has two embeddings of $A$ into it.
+Number the points of $A$.
+Let $C$ be any graph, and fix a linear order $\leq$ on $C$. Color an embedding of $A$
+black if $\pt \ 1 < \pt \ 3$ and white otherwise.
+\end{exm}
+
+We can conclude the following from this:
+\begin{enumerate}
+\item embeddings don't work as soon as $A$ has a nontrivial automorphism,
+\item subsets don't seem to work so well either, because they already don't work for the
+above sort of example.
+\end{enumerate}
+
+\begin{sol}
+Only consider rigid structures. I.e. they have no nontrivial automorphisms.
+In fact from now on (in this section) we will only consider structures with a linear
+order.
+\end{sol}
+
+Now we have that embeddings and subsets are the same, so the ambiguity is resolved.
+
+\section{Ne\v{s}et\v{r}il-R\"odl theorem}
+
+\begin{thm}[Ne\v{s}et\v{r}il-R\"odl,Abramson-Harrington]
+Let $A$ and $B$ be finite ordered graphs and $r<\om$.
+Then there is $C$ a finite ordered graph
+such that $C\fromto \left( B \right)_r^A$.
+\end{thm}
+
+First we will prove a baby case.\footnote{This won't be that instructive since it won't
+generalize to the full theorem, but it's still a good example.}
+Let $A = \left\{ \point \right\}$ and $B$ be anything.
+
+\begin{proof}[Proof of baby case]
+Take $V\left( C \right) = V\left( B \right)^r$. Then we define the edges as follows.
+Let $n = \abs{V\left( B \right)}$ and $r = 2$. So we have $n$ copies of $B$.
+Now we can think of these copies as points, and connect them as they are connected in $B$.
+So if we find one white point in each copy, we have a monochromatic copy, and if we can't
+do this then one must be completely black so we also have a monochromatic copy of $B$.
+
+More specifically, put an edge 
+\begin{equation}
+\left( \left( x_0 , \cdots , x_{r-1} \right) , \left( y_0 , \cdots , y_{r-1}
+\right)\right)\in E\left( C \right)
+\end{equation}
+iff there exists $j<r$ such that
+$x_i = y_i$ for $i < j$ and
+$\left( x_j , y_j \right)\in E\left( B \right)$.
+Now proceed by induction.
+
+If for each $v\in V\left( B \right)$ there is a red $\left( v , x_1 , \cdots , x_{r-1}
+\right)$ this gives a red copy of $B$. 
+Otherwise for some $v$ 
+\begin{equation}
+\left\{ \left( v , x_1 , \ldots , x_{r-1} \right) \st x_i\in V\left( B \right) \right\}
+\end{equation}
+has $r-1$ colors.
+\end{proof}
+
+\subsection{Consequences of the theorem}
+
+\begin{prop}[Ordering property for graphs]
+Let $H$ be a finite graph with a linear order $\leq$.
+Then there is a finite graph $G$ such that for any ordering $\order$ there is a copy of
+$\left( H , \leq \right)$ in $\left(G , \order\right)$.
+\end{prop}
+
+\begin{proof}
+Let $\left( H , \leq \right)$ be given. Enumerate $H = \left\{ h_1 , \cdots , h_n
+\right\}$ and assume $h_i < h_{i+1}$ where $\left( h_i , h_{i+1} \right)\in E\left( H
+\right)$. If this is not satisfied, then add a new vertex between every two consecutive
+vertices of $H$. We can do this because if it's true for a larger graph, then this is
+sufficient.
+Define $\left( H^* , \order \right) = \left( H , \leq \right)\dsum\left( H , \geq \right)$
+and let $\left( G , \orderr \right)\fromto \left( H^* \right)_2^e$ for
+$e=\begin{cd}\point\arrow[dash]{r}&\point\end{cd}$ an edge.
+
+Let $\orderrr$ be any order on $G$. Color edges of $G$ according to whether the two orders
+coincide or not on the edge. Then we get a homogeneous copy of $\left( H^* , \order \right)$
+inside $\left( G , \orderr \right)$.
+
+If colored edges of $H^*$ ``coincide'' then the left copy of $H$ in $H^*$ has the
+correct order in $\left( G , \orderrr \right)$. Otherwise, the right copy does.
+\end{proof}
+
+\begin{prop}
+If $A$ is a finite graph which is neither a complete or empty graph, then there is a $B$
+such that for no graph $C$ do we have $C\fromto \left( B \right)_2^A$ in the sense of
+subsets.
+\end{prop}
+
+\begin{proof}
+$A$ admits two non-isomorphic order $\leq_1$ and $\leq_2$.
+Take $B$ to be a finite graph such that for any order on $B$ this contains an isomorphic
+copy of $\left( A , \leq_1 \right)$ and $\left( A , \leq_2 \right)$.
+Let $C$ be any graph with fixed order $R$. Color a copy of $A$ black if the induced
+order is isomorphic to $\leq_1$, and white otherwise. But now there cannot be a homogeneous
+copy of $B$ inside this.
+\end{proof}
+
+Note that we cannot hope to prove a Ramsey statement without a linear order or something
+from which a linear order follows.
+We will see other arguments which show this later.
+
+\section{Ramsey structures}
+
+\begin{defn}
+Let $\cC$ be a (Fra\"{i}ss\'{e}) class. Then $\cC$ has the \emph{Ramsey property} if for all
+$A,B\in \cC$, and for all $r < \om$, there is $C\in \cC$ such that $C\fromto \left( A
+\right)_r^B$.
+\end{defn}
+
+\begin{defn}
+A homogeneous structure $M$ is Ramsey if its age has the Ramsey property.
+\end{defn}
+
+\begin{exm}
+The random graph is not Ramsey, however the random ordered graph is a Ramsey expansion of
+it.
+\end{exm}
+
+This is an example of a minimal Ramsey expansion.
+For a given structure, the game for Ramsey theorists is to either prove it has the Ramsey
+property, or find its minimal Ramsey expansion.
+
+\section{Comparing EPPA and Ramsey}
+
+There are somehow three things people look for here. EPPA, Ramsey, and big Ramsey.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+EPPA & Ramsey & big Ramsey\\
+\hline\hline
+forbids a linear order 
+&needs a linear order&-
+\\
+\hline
+less known
+&well known\footnotemark&
+not well known\\
+\hline
+\end{tabular}
+\footnotetext{For almost all classical structures.}
+\end{center}
+there is some idea that there should be a unifying method of proof for all of these
+things.
+
+Recall that EPPA was a generalized version of amalgamation in the sense that together with
+JEP it implies AP.
+As it turns out, we also
+have that $\cC$ being Ramsey (and having JEP) implies that $\cC$ has AP.
+
+The idea is that we somehow start with the left figure in \cref{fig:ap}.
+Then by JEP we can find some $C$ as in the right half of \cref{fig:ap}.
+\begin{figure}
+\begin{overlay}
+\pict{AP1.pdf}{0.2}
+\toptext{$B_1$}{1.7,0.7}
+\toptext{$B_2$}{1.7,-0.7}
+\toptext{$A$}{-0.6,0}
+\end{overlay}
+\qquad $\leadsto$ \qquad
+\begin{overlay}
+\pict{AP2.pdf}{0.2}
+\toptext{$B_1$}{1.7,0.7}
+\toptext{$B_2$}{1.7,-0.7}
+\toptext{$C$}{-1.7,1}
+\toptext{$A$}{-0.6,0.5}
+\toptext{$A$}{-0.6,-0.5}
+\end{overlay}
+\caption{Starting with the situation on the left, JEP can give us the situation on the
+write for some $C$ in the \Fraisse class.}
+\label{fig:ap}
+\end{figure}
+Now we can find some $D$ such that $D\fromto \left( C \right)_2^A$.
+Color copies of $A$ in $D$ according to whether they extend to a copy of $B_1$
+inside of $D$. 
+
+So the Ramsey property is somehow also a generalized version of amalgamation.
+
+\subsection{Big Ramsey}
+
+The idea of satisfying big Ramsey is that we can find 
+a homogeneous copy of the \Fraisse limit, i.e. the infinite structure, in a
+coloring.
+
+\begin{fact}
+If $R$ is the random (ordered) graph, then $R\not\fromto \left( R \right)^e_2$ for $e$ an edge.
+\end{fact}
+
+In other words big Ramsey is false for the random ordered graph.
+What is true however is that one can always find a copy that has at most, say, $d$ colors.
+In this case we would say this has finite big Ramsey degree $d$.
+Note that big-Ramsey implies Ramsey, but finite-big Ramsey does not on the face of
+it imply Ramsey. It does however turn out that the methods used to find a
+finite-big Ramsey degree typically also yield the Ramsey property.
+
+\end{document}

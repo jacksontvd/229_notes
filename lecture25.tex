@@ -1,0 +1,199 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 25\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\date{April 25, 2019}
+\maketitle
+
+\section{More lemmas}
+
+Today we will finish the proof we have been doing. 
+The last thing we proved was that if we have an intersection of $D_a$ and $D_{a'}$ then
+there is a neighborhood of the point in common such that the orders are either the same or
+opposite. 
+Now we have the following.
+
+\begin{lem}
+Let $D_1$, $D_2$ be almost linear, transitive (and definable over some parameters
+$\oline{a}$ and $\oline{b}$ respectively). Assume they have an interval $I$ in common.
+Take the maximal such $I$. Then $I$ is cofinal either in $D_1$ or $D_2$.
+\end{lem}
+
+\begin{proof}
+Assume $I$ is not cofinal in either. Let $c\in D_1$ be the $\sup$ of $I$ in $D_1$, and
+$d\in D_2$ be the $\sup$ of $I$ in $D_2$. Then $c\in
+\dcl\left(\oline{a}\land\oline{b}\right)$.
+Therefore $c$ is interalgebraic with some element of $\oline{b}$.
+Let $d = d_0 > d_1 > d_2 > \ldots$ be a sequence of elements of $D_2$. By transitivity,
+for each $i$ there is $\sigma_i\in \Aut\left(M / \oline{b}\right)$ such that
+$\sigma_i\left(d\right) = d_i$. Set $D_{1,i} = \sigma_i\left(D_1\right)$, and $c_i =
+\sigma_i\left(c\right)$.
+\begin{clm}
+The elements $c_i$ are pairwise distinct.
+\end{clm}
+This must be the case because otherwise $D_{1,i}$ and $D_{1,j}$ would have a neighborhood
+of $c_i = c_j$ in common, but this is impossible by construction.
+
+Since each $c_i$ is n $\acl\left(\oline{b}\right)$, this is a contradiction.
+\end{proof}
+
+\begin{cor}
+Let $D_{0}$, $D_1$ be as above and $I = D_0\cap D_1$. Then we have one of the following:
+\begin{enumerate}[label = (\abc)]
+\item $I = \emp$,
+\label{item:a}
+\item $I$ is an initial segment of $D_i$ and a final segment of $D_j$ and the two orders
+disagree,
+\label{item:b}
+\item $I$ is an initial segment of $D_i$ and a final segment of $D_j$ and the two orders
+agree, and
+\label{item:c}
+\item $I = I_1\un I_2$ where each of $I_1$ and $I_2$ are as in $\ref{item:b}$, or
+\label{item:d}
+\item $I = I_1\un I_2$ where each of $I_1$ and $I_2$ are as in $\ref{item:c}$.
+\label{item:e}
+\end{enumerate}
+\end{cor}
+
+Let $\cL$ be the set of definable subsets of $M$ which are almost linear and transitive
+over some $\oline{a}$. If $D_0,D_1\in \cL$, write $D_0\order D_1$ if 
+$D_0\cap D_1$ is as in case \ref{item:b} or \ref{item:d}.
+
+Say that $c\in M$ is of \emph{order type} if there is $D\in \cL$ such that $c\in D$.
+Let $\Om$ be the set of $c\in M$ of order type. Define an equivalence relation $\cE$ on
+$\Om$ by $c\cE d$ if there are $D_0\order D_1 \order \ldots \order D_k$ with $c\in D_0$
+and $d\in D_k$ (or $d\in D_0$ and $c\in D_k$).
+
+On each $\cE$-equivalence class we have a definable separation relation
+$S\left(a,b,c,d\right)$ defined as follows. Every path as above from $a$ to $b$ contains
+either $c$ or $d$.
+Note that $D$ is really on the quotient of the class by a finite equivalence
+relation.\footnote{This is just interalgebraicity as we saw.}
+
+\section{The main theorem}
+
+\begin{thm}
+Assume that $M$ has few substructures. Then there is a $\emp$-definable equivalence
+relation $F$ with finite classes and a $\emp$-definable equivalence relation $E$ on the
+quotient $M_0= M / F$ such that the following is true.
+Let $N\ceqq M_0 / E$, and $M_*$ denote the reduct of $M_0$ to pullbacks of definable
+subsets of $N$.
+Then $M_*$ is stable, and
+\begin{equation}
+f_n\left(M_*\right) = f_n\left(M_0\right)
+\end{equation}
+for all $n$.
+\end{thm}
+
+\begin{proof}
+$F$ is interalgebraicity for points of order type and equality elsewhere. 
+Then for $M_0 = M / F$, $f_n\left(M_0\right) \leq f_n\left(M\right)$, so $M_0$ also has
+few substructures.
+
+Let $E$ be the equivalence relation $\cE$ on $M_0$ defined above (extended by $=$ on
+points which are not of order type).
+Let $N = M_0 / E$. 
+\begin{clm}
+$N$ is stable.
+\end{clm}
+Otherwise, as $N$ is NIP, there would be a definable map $f:N\fromto V$ ($V$ linearly
+ordered) which would lift to an almost linear subset of $M_0$ 
+contradicting the definition of $E$.
+
+Define $M_*$ as in the statement. Then $M_*$ is stable. It just remains to see that
+$f_n\left(M_*\right) = f_n\left(M_0\right)$. I.e. a finite substructure $A\subeq M_*$ has
+a unique expansion
+(up to isomorphism) to a substructure of $M_0$.
+
+Proceed by induction on $\abs{A}$. 
+Write
+\begin{equation}
+A = A_0 \dun A_1 \dun \cdots \dun A_k
+\end{equation}
+where $A_0$ consists of the points not of order type, and the remaining $A_i$ consist of
+points of order type grouped by $E$-equivalence classes.
+We expand $A$ to an $M_0$ substructure one $A_i$ at a time.
+At stage $i$ the $E$-class of $A_i$ has a structure over $A_0\ldots A_{i-1}$ which is
+isomorphic to one of the four unstable reducts of DLO. Therefore there is a unique
+embedding of
+$A_i$ into $M_0$ up to isomorphisms over the previous $A_{<i}$.
+\end{proof}
+
+\begin{thm}
+Assume $M$ has few substructures and is primitive. Then 
+$M$ is either stable or $M$ is one of the four unstable reducts of DLO.
+\end{thm}
+
+In fact we recover the classification of the unstable reducts of DLO.
+
+\begin{proof}
+As $M$ is primitive $F$ is equality, and $E$ is either equality or empty and this
+gives us the two cases.
+\end{proof}
+
+\begin{cor}
+Assume that for no polynomial $p$ we have
+\begin{equation}
+f_n\left(M\right)\geq \frac{\Phi^n}{p\left(n\right)}
+\end{equation}
+for $\Phi\approx 1.618$ is the golden ratio. Then $M$ has a stable reduct $M^*$ such that
+$f_n\left(M\right) = f_n\left(M^*\right)$.
+\end{cor}
+
+\begin{proof}
+We only need to show that $F$ is equality.
+If it wasn't, then we get at least $F_n$ substructures, where $F_n$ is the $n$th Fibonacci
+number, and we know $F_n\sim \Phi^n/\sqrt{5}$. 
+
+Note that this is optimal because if we do take a trivial $2$-cover of DLO, then 
+$f_n\left(M\right) = F_n$. For any stable reduct $M_*$, $f_n\left(M_*\right) \leq n/2$.
+\end{proof}
+
+\section{The stable case}
+
+We will now deal with the stable case and then consider more general NIP.
+What remains:
+\begin{itemize}
+\item Understand the stable case:
+\begin{itemize}
+\item $\om$ stable: well understood,
+\item strictly stable: not well understood at all.
+\end{itemize}
+\item generalize to $f_n\left(M\right)\sim c^n$ or even $f_n\left(M\right)\sim
+e^{2n\log n}$.
+\end{itemize}
+
+\begin{qn}
+Are there uncountable many $M$ such that $f_n\left(M\right)\sim e^{cn \log n}$?
+\end{qn}
+
+The idea to approach this is the following.
+Reduce to finite homogeneous case and induct on the (pseudo-)arity.
+
+\begin{defn}
+The pseudo-arity of $M$ is the minimal arity of a finitely homogeneous structure $N$ in
+which $M$ can be interpreted. 
+\end{defn}
+
+\begin{exm}
+The arity of the circular order is $3$, however the pseudo-arity is $2$.
+\end{exm}
+
+Note that a structure of arity $2$ cannot interpret a random $3$-hypergraph.
+Similarly a structure of arity $2$ cannot interpret a tree $\left(T , \leq\right)$ with
+$>1$ branch above every node.
+
+There is another parameter called the ``dimension'' which is the number of
+independent linear orders. 
+\begin{exm}
+The dimension of DLO is $1$, and $\DLO^2$ has dimension $1$.
+We also want something with two independent linear orders to have $\dim\left(M , \leq_1,
+\leq_1\right) = 2$.
+\end{exm}
+
+The point is that somehow arity $2$ is well understood, and as arity increases thins get
+more complicated. Trees are dimension $1$ and arity $3$ which is the first case which is
+somehow not well understood.
+
+\end{document}

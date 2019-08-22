@@ -1,0 +1,292 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 20\\ Math 229}
+\author{Lecture: Professor Pierre Simon\\ Notes: Jackson Van Dyke}
+\maketitle
+
+We will continue trying to prove the sip via proving ample generics. 
+What we're aiming at, which we may or may not get to today is a
+characterization of having ample generics.
+
+Recall last week we had a criterion for having a dense conjugacy class. 
+Now we want to upgrade this to a criterion for having a comeager class.
+
+\section{Comeager conjugacy class}
+
+\subsection{Topological lemmas}
+
+Fix $G\acts X$ polish.
+
+\begin{defn}
+We say $x\in X$ is \emph{$G$-big} if $Ux\subeq X$ is somewhere dense 
+for any $1\in U \subeq G$, i.e. $\interior{\clos{U x}}\neq \emp$ for any such $U$.
+\end{defn}
+
+This will turn out to be equivalent to having comeager orbit. 
+
+Fix a left-invariant metric on $G$. 
+Recall that since $G$ is polish it has a complete metric and a left-invariant metric.
+It is somehow rare that these coincide.
+This is impossible for $S_\infty$, and in general
+if the left-invariant metric is not also right-invariant it cannot be complete. 
+In any case, we can take the left-invariant metric $d$ and then
+\begin{equation}
+d\left(x,y\right) = d\left(x^{-1} , y^{-1}\right)
+\end{equation}
+is complete. 
+
+For $x\in X$, let
+\begin{equation}
+\left(x\right)_{<\e} = B_\e\left(1\right)\cdot x
+\end{equation}
+be the open ball of radius $\e$ (wrt d) around $1$ in $G$. Similarly if $V\subeq X$, 
+\begin{equation}
+\left(V\right)_{<\e} = B_\e\left(1\right)\cdot V \ .
+\end{equation}
+
+\begin{lem}
+\begin{enumerate}
+\item For all $A\subeq X$, $\e > 0$, 
+\begin{equation}
+\left(\clos{A}\right)_{<\e} \subeq \clos{\left(A\right)_{<\e}}
+\end{equation}
+and
+\begin{equation}
+\left(\interior{\clos{A} }\right)_{<\e} \subeq
+\interior{\clos{\left(A\right)_{<\e}}} \ .
+\end{equation}
+
+\item If $x\in X$ is $G$-big, then
+\begin{equation}
+x\in \interior{\clos{\left(x\right)}_{<\e}}
+\end{equation}
+for all $\e > 0$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+$\left(1\right)$: Let $x\in \left(\clos{A}\right)_{<\e}$ and $U\ni x$. 
+Then we need to show $U$ intersects $\left(\clos{A}\right)_{<\e}$. This is equivalent to
+showing that $\left(U\right)_{<\e}$ intersects $\clos{A}$. 
+In fact, we have a distance function on $X$, which is
+\begin{equation}
+\oline{d}\left(x,y\right) = \inf\left(d\left(g,1\right) \st gx = y\right)
+\end{equation}
+and $\left(A\right)_{<\e}$ is an $\e$-neighborhood for this distance.
+In particular we have $\oline{d}\left(x,y\right) =
+\oline{d}\left(y,x\right)$ since $d\left(g,1\right) = d\left(1,g^{-1}\right)$.
+Now we certainly have $\left(U\right)_{<\e} \cap \clos{A}\neq \emp$, and being open this
+means,
+\begin{equation}
+\left(U\right)_{<\e} \cap A \neq \emp
+\end{equation}
+which is equivalent to
+\begin{equation}
+U\cap \left(A\right)_{<\e} \neq \emp
+\end{equation}
+so we are done.
+
+We skip the next part.
+
+$\left(2\right)$:
+Let $x\in X$ be $G$-big. 
+Then $\interior{\clos{\left(x\right)_{<\e}}}\neq \emp$, so
+\begin{equation}
+V\cap \left(x\right)_{<\e} \neq \emp
+\end{equation}
+so $x\in \left(V\right)_{<\e}$ and
+\begin{equation}
+\left(V\right)_{<\e} \subeq
+\left(\interior{\clos{\left(x\right)_{<\e}}}\right)_{<\e}\subeq\footnote{By
+$\left(1\right)$.} \interior{\clos{\left(x\right)_{<\e}}}
+\end{equation}
+\end{proof}
+
+\begin{defn}
+A set $W\subeq X$ is $\e$-small if for any two nonempty open subsets $U_1 U_2\subeq W$ we
+have
+\begin{equation}
+\left(U_1\right)_{<\e} \cap U_2 \neq \emp \ .
+\end{equation}
+\end{defn}
+
+\begin{lem}
+Suppose that for every $\e > 0$ the union of all $\e$-small open subsets of $X$ is dense.
+Then the set of $G$-big $x\in X$ is comeager.
+\end{lem}
+\begin{proof}
+For $\left\{V_n \st n < \om\right\}$ a countable basis of $X$. For all $n,m<\om$, by
+hypothesis, $V_n$ intersects some $1/m$-small open set.
+Let $\emp \neq W_{n,m}\subeq V_n$ be $1/m$ small. 
+For $m<\om$, let
+\begin{equation}
+W_m = \bun_{n< \om} W_{n,m} \ .
+\end{equation}
+Then $W_m$ is open, dense in $X$. 
+Let 
+\begin{equation}
+D_{n,m} = \binter\left\{\left(V_k\right)_{<1/m} \st V_k\subeq W_{n,m}\right\} \ .
+\end{equation}
+Then $D_{n,m}$ is comeager in $X$ in $W_{n,m}$, as each $\left(V_k\right)_{<1/m}$
+is dense open in $W_{n,m}$. 
+Let
+\begin{equation}
+D_m = \bun_{n<\om} D_{n,m}
+\end{equation}
+so $D_m \subeq W_m$ and $D_m$ is comeager in $W_m$.
+Since $W_m$ is dense open we have that $D_m$ is comeager in $X$. 
+Finally, let 
+\begin{equation}
+D = \binter_{m<\om} D_m
+\end{equation}
+so $D$ is comeager. 
+
+Finally we show 
+if $x\in D$, then $x$ is $G$-big. Fix $\e > 0$, then we want to show
+$\interior{\clos{\left(x\right)_{<\e}}}\neq \emp$.
+Take $\e = 1/m$, $x\in D_{n,m}$ for some $n < \om$. 
+So $x\in \left(V_k\right)_{<1/m}$ for all $k$ such that $V_k \subeq W_{n,m}$, so 
+in fact
+\begin{equation}
+V_k \cap \left(x\right)_{<1/m} \neq \emp
+\end{equation}
+for all $k$ such that $V_k \subeq W_{n,m}$. 
+Therefore $\left(x\right)_{<1/m}$ is dense in $W_{n,m}$ so
+$W_{n,m}\subeq \interior{\clos{\left(x\right)_{1/m}}}$.
+\end{proof}
+
+\begin{lem}
+Let $x\in X$ be $G$-big. Then the action is topologically transitive iff $G\cdot x$ is
+dense. 
+\end{lem}
+
+\begin{proof}
+$\left(\converse\right)$: Clear. 
+
+$\left(\implies\right)$: Let $V = \interior{\clos{G\cdot x}}$. $x$ being
+$G$-big means $U\cdot x$ is somewhere dense, i.e. $G\cdot x$ is somewhere dense, i.e. $V$
+is nonempty. 
+Then $V$ is $G$-invariant, but now the action is topologically transitive, so for every
+$U$ there is $V$ such that $g\left(V\cap U\right)\neq \emp$, so $V$ is dense, so $G\cdot
+x$ is dense.
+\end{proof}
+
+The conclusion is the following. 
+
+\begin{lem}
+Suppose $G\acts X$ is topologically transitive. Then
+TFAE:
+\begin{enumerate}[label = (\iii)]
+\item For every $\e$ the union of $\e$-small open sets is dense.
+\item The set of $G$-big points is comeager.
+\item There is a $G$-big point.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$\left(iii\right)\implies \left(i\right)$: Let $x\in X$ be $G$-big.
+Note that for any $y\in X$, $\clos{\left(y\right)_{<\e}}$
+is $2\e$ small because of the following. 
+For $U,V\subeq \clos{\left(y\right)_{<\e}}$ then $U$, $V$ both intersect
+$\left(y\right)_{<\e}$ so their distance is at most $2\e$. 
+
+Note also that if $x$ is $G$-big, so is any point in any point in $G\cdot x$. 
+By assumption $G\cdot x$ is dense, so 
+\begin{equation}
+\bun_{y\in G\cdot x} \interior{\clos{\left(y\right)_{\e / 2}}}
+\end{equation}
+is dense in $X$.
+\end{proof}
+
+So now we've found a collection of dense points, and now we see when they are actually an
+orbit.
+
+\begin{lem}
+If $x,y\in X$ are both $G$-big and $y\in \interior{\clos{G\cdot x}}$, then $Y\in G\cdot
+x$.
+\end{lem}
+
+\begin{proof}
+Let $x,y$ be $G$-big, $y\in \interior{\tclosure{G\cdot x}}$.
+We will construct points $g_n \in G$ and open symmetric neighborhoods $1\in U_n\subeq G$ such that
+\begin{enumerate}
+\item $g_{2n}^{-1} y\in \interior{\tclosure{U_{2n} x}}$
+\label{item:1}
+\item $g_{2n+1} \in g_{2n} U_{2n}$
+\label{item:2}
+\item $g_{2n+1} x \in \interior{\tclosure{U_{2n+1} y}}$
+\label{item:3}
+\item $g_{2n+2} \in  U_{2n+1} g_{2n+1}$
+\label{item:4}
+\item $g_{2n}^{-1} U_{2n+1} g_{2n} \subeq U_{2n}$
+\label{item:5}
+\item $g_{2n+1} U_{2n+2} g_{2n+1}^{-1} \subeq U_{2n+1}$
+\label{item:6}
+\item For $n\geq 1$, if $h\in U_n^3 \supeq U_n$, then $d\left(1,n\right) <
+2^{-\left(n+1\right)}$.\label{item:7}
+\item The set $\interior{\tclosure{U_{2n+1} y}}$ is included in a closed ball of radius
+$<1/n$ around $g$. 
+\label{item:8}
+\end{enumerate}
+The last two are somehow saying $U_n$ is small, and the others are somehow saying that we
+are getting closer. If we succeed, then $\left(g_n\right)_{n < \om}$ is a Cauchy sequence
+with limit $g_*$ and \cref{item:3,item:8} imply that $g_* x = y$.
+To show this is Cauchy it is enough to show 
+\begin{align}
+d\left(g_n , g_{n+1}\right) < 2^{-n}
+&&
+d\left(g_n^{-1} , g_{n+1}^{-1}\right) < 2^{-n} \ .
+\end{align}
+
+Say $n = 2k+2$. Then $g_n^{-1} g_{n+1}\in U_n$ by \cref{item:2} so
+\begin{equation}
+d\left(g_n , g_{n+1}\right) = d\left(1 , g_n^{-1} g_{n+1}\right) < 2^{-\left(n+1\right)}
+\end{equation}
+by \cref{item:7}.
+Then
+\begin{equation}
+g_n g_{n+1}^{-1} = g_n\left(g_{n+1}^{-1} g_n\right) g_n^{-1}
+\end{equation}
+and
+\begin{equation}
+g_n = u' g_{n+1}
+\end{equation}
+for $u'\in U_{n-1}$ by \cref{item:4}.
+So
+\begin{equation}
+g_n\left(g_{n+1}\right)^{-1} = u' g_{n-1}\left(g_{n+1}^{-1} g_n\right)
+\left(g_{n-1}\right)^{-1} \left(u'\right)^{-1} \ .
+\end{equation}
+Then we know $g_{n+1}^{-1} g_n \in U_n$, and by \cref{item:6} we have
+$g_{n-1}\left(g_{n+1}^{-1} g_n\right)\left(g_{n-1}\right)^{-1} \in U_{n-1}$
+and therefore $g_ng_{n+1}^{-1}\in U_{n-1}^3$.
+So finally
+\begin{equation}
+d\left(g_n^{-1} , g_{n+1}^{-1}\right) = d\left(1 , g_n g_{n+1}^{-1}\right) < 2^{-n} \ .
+\end{equation}
+The argument is similar for $n$ odd, but we would use \cref{item:2,item:5} instead of
+\cref{item:3,item:6}.
+
+It remains to construct the $g_n$s and $U_n$s. Set $g_{0} = 1$ and $U_0 = G$.
+Note \cref{item:1} holds by assumption.
+Now assume we have $g_{2n}$ and $U_{2n}$. For any open $V$, 
+\begin{equation}
+y\in g_{2n}\cdot \interior{\tclosure{U_{2n}x}}\cap \interior{\tclosure{Vy}}
+\end{equation}
+so
+\begin{equation}
+\interior{\tclosure{Vy}}\cap g_{2n} \tclosure{U_{2n}x} \neq \emp
+\end{equation}
+so
+\begin{equation}
+\interior{\tclosure{Vy}}\cap g_{2n} U_{2n} x \neq \emp \ .
+\end{equation}
+Now take $U_{2n+1}$ so that \cref{item:5,item:7,item:8} hold and 
+pick $g_{2n+1}\in g_{2n} U_{2n}$ such that
+$g_{2n+1} x\in \interior{\tclosure{U_{2n+1} y}}$, i.e. \cref{item:2,item:3} hold. 
+This can be done for any choice of $U_{2n+1}$. 
+
+Now we take $U_{2n+2}$ and $g_{2n+2}$ similarly using the fact that $x$ is $G$-big.
+\end{proof}
+
+\end{document}

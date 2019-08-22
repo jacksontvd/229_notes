@@ -1,0 +1,172 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 6: EPPA\\Math 229}
+\date{February 7, 2019}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\maketitle
+
+Today we start chapter 2: combinatorics.\footnote{
+Chapter 3 will be automorphism groups.}
+
+\section{Introduction}
+
+Today we will talk about the extension property for partial automorphisms (EPPA).
+Consider some \Fraisse class $\cC$ (finite relational).
+We know how to associate this to a homogeneous structure $\cM$. 
+Then a natural question is if we can find elements in $\cC$ which are already homogeneous,
+or at least have many automorphisms.
+
+\begin{defn}
+We say $\cM$ is smoothly approximable if for every $A\in \cC$ there is homogeneous $B\in \cC$ for
+which $A\inj B$.
+\end{defn}
+
+This is the best possible situation, but it rarely happens.
+
+\begin{thm}
+The smoothly approximable finitely homogeneous structures are precisely the
+stable finitely-homogeneous structures.\footnote{Essentially these are finite covers of
+things like $\left( M^n, = \right)$. Recall the `zoo' lecture.}
+\end{thm}
+
+\begin{defn}
+$\cC$ has EPPA if for every $A\in \cC$ there is $B\in \cC$ such that $A\inj B$ and every
+partial automorphism of $A$ extends to an automorphism of $B$.
+\end{defn}
+
+When this is true, $B$ is called an EPPA witness for $A$.
+This turns out to be satisfied very often.
+
+\begin{rmk}
+Note that EPPA and the joint embedding property (JEP) together imply the amalgamation property (AP).
+\end{rmk}
+
+\begin{proof}
+Consider some $B$ and $C$ overlapping in $A$. Then JEP implies that there is some $D_0$
+such that $B$ and $C$ embed 
+and $\rho$ identifies $A$ living inside of these. 
+Then this embeds in some EPPA witness $D_1$ of $D_0$, 
+so $\rho$ extends to an automorphism $\sigma$.
+Then $D_1$ amalgamates $\sigma\left( B \right)$ and $C$ over $A$.
+\end{proof}
+
+\section{Main theorems}
+
+First we see some examples.
+
+\begin{exm}
+A class of linearly ordered structures cannot have EPPA.
+\end{exm}
+
+\begin{exm}
+$\left( M , = \right)$ has EPPA.
+Consider some partial bijection, then take the set $A$ itself as an EPPA witness,
+and of course you can extend any injection from $A\fromto A$ to a bijection $A\fromto A$. 
+\end{exm}
+
+\begin{exm}
+Consider the class of bipartite graphs $\left( G , U , V , R \right)$.
+Consider some partial automorphism of $U$. First we extend this to a bijection of $U$, and
+expand $V$ to $V'$ as follows.
+For every $U_0 \subeq I$, extend $V$ to $V'$ by adding $\abs{V}$ many points related
+exactly to $U_0$. So we have somehow symmetrically expanded $V$. This will be motivation
+for the proof of the next theorem.
+\end{exm}
+
+\begin{thm}
+The class of finite graphs has EPPA.
+\end{thm}
+
+\begin{proof}[Proof of Hubi\v{c}ka, Kone\v{c}n\'{y}, and Ne\v{s}et\v{r}il]
+Let $A = \left( V\left( A \right), E\left( A \right) \right)$ be a finite graph.
+We want to send $A$ into some very symmetric thing which somehow contains every possible
+type over $A$.
+Define the EPPA witness $B$ as follows. 
+Define
+\begin{equation}
+V\left( B \right) = \left\{ \left( v , f_v \right) \st v\in V\left( A \right), f_v :
+V\left( A \right) \minus \left\{ v \right\} \fromto \left\{ 0,1 \right\} \right\}
+\end{equation}
+and let $\left( \left( v , f_v \right)\right) \in E\left( B \right)$ iff
+$v\neq w$, and $f_v\left( w \right) \neq f_w\left( v \right)$. $B$ has two types of
+automorphisms that we're concerned over. First, any bijection $\phi$ of $A$ extends canonically
+to an automorphism $\tilde \phi$ of $B$:
+\begin{equation}
+\tilde \phi : \left( v ,f_v \right) \mapsto \left( \phi\left( v \right) , f_v \comp
+\phi^{-1} \right) \ .
+\end{equation}
+The second type is as follows. For any pair $\left( v,w \right) \in V\left( A
+\right)^2$, where $v\neq w$, we get $\theta_{v,w} \in \Aut\left( B \right)$ which maps
+$\theta_{v,w} : \left( v , f_v \right) \mapsto \left( v , f_v' \right)$ where $f'_v$ is
+defined as
+\begin{equation}
+\begin{cases}
+f_v'\left( w \right) = 1 - f_v\left( w \right) \\
+f_v'\left( x \right) = f_v\left( x \right) & x\neq w
+\end{cases}
+\end{equation}
+and
+\begin{align}
+\left( w , f_w \right) \mapsto \left( w , f_x' \right) &&
+\left( x , f_x \right)\mapsto \left( x , f_x \right) , x\neq \left\{ v,w \right\} \ .
+\end{align}
+
+Now we need to embed $i : A\inj B$ as follows. Send $v$ to $\left( v , f_v \right)$ where we
+choose $f_v$ inductively. Each each step, when we decide if we want an edge, just choose
+the function to be the same or different correspondingly.
+
+Now we extend partial automorphisms. Let $\rho: A\paut A$ be a partial automorphism.
+First extend $\rho$ to a bijection $f = \hat \rho$ of $A$. 
+Consider the automorphism $\tilde f$ of $B$.
+$\tilde f$ and $\rho$ coincide on the first coordinate, wherever $\rho$ is defined inside
+$B$. The reason $\tilde f$ might not extend $\rho$ is because they might not agree on the
+second coordinate. Write:
+\begin{align}
+\rho: \left( v , f_v \right)  \mapsto \left( w , f_w \right) &&
+\left( v , f_v \right) \mapsto \left( w' , f_{w'} \right) \ .
+\end{align}
+So look at $v\in \domain \rho$, and let $i\left( v \right) = \left( v , f_v \right)$, 
+and $\left( \rho\left( v \right) , g \right) = i\left( \rho\left( v \right) \right)$.
+Then $\left( \rho\left( v \right) , h \right) = \tilde f\left( \left( v , f_v \right)
+\right)$. 
+If for some $x$, $g\left( x \right) \neq h\left( x \right)$, 
+compose $\tilde f$ with $\theta_{\rho\left( v \right) , x}$.
+But this $\theta$ might create a mistake if $x\in \im\rho$.
+If we do this inductively, we need to see that we are not going to change it again,
+and compose by $\theta_{x,\rho\left( v \right)}$ later on. But the only way this can
+happen, is if $x\in \im\rho$, say $x = \rho\left( y \right)$, but then since $\rho$ and
+$\tilde f$ are both automorphisms, this will not be a problem.
+\end{proof}
+
+\begin{thm}
+The class of finite $K_n$-free graphs has EPPA.
+\end{thm}
+
+\begin{proof}
+Let $A$ be a finite $K_n$-free graph and let $B_0$ be an EPPA witness for $A$ as a graph.
+This might have $K_n$s so we want to lift this to something which doesn't have them.
+For every point of $B_0$, we will look at all of the $K_n$s that contain that
+point, and assign a number to each of these.
+For every pair, we will look at their lift, and decide if they have an edge between them.
+They will only have an edge if they disagree on all of the triangles they are both in.
+In particular, this will ensure there are no $K_n$s.
+
+We now do this explicitly. Define $B$ to consist of
+\begin{equation}
+V\left( B \right) = \left\{ \left( v,t_v \right) \st v\in V_0 \right\}
+\end{equation}
+where $t_v$ is a function from the set of $K_n$s containing $v$ to $\left\{ 0, \cdots ,
+n-1\right\}$. Then $\left( v , t_v \right)$ and $\left( w , t_w \right)$ have an edge iff
+$\left( v,w \right)\in E\left( B_0 \right)$, and $t_v\left( c \right) \neq t_w\left( c
+\right)$ for every $c$ containing $v$ and $w$. Write $\pi: B\fromto B_0$ for the
+projection. Note that, as we would hope, $B$ is a
+$K_n$-free graph. If $C\subeq B$ is a $K_n$, then $\pi\left( c \right)$ is a $K_n$ in
+$B_0$, and the value on $\pi\left( c \right)$ of points in $C$ must all be distinct, but
+this is impossible.
+\begin{center}
+\textbf{To be continued\ldots}
+\end{center}
+\end{proof}
+
+\end{document}

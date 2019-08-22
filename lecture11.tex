@@ -1,0 +1,157 @@
+\documentclass{amsart}
+\usepackage{master}
+\begin{document}
+\title{Lecture 11\\Math 229}
+\author{Lecture: Professor Pierre Simon\\Notes: Jackson Van Dyke}
+\date{February 26, 2019}
+\maketitle
+
+\section{Ramsey expansions}
+% section 9
+
+The general problem that people in this area are interested in is the following:
+
+\begin{qn}
+Given a \Fraisse class, or equivalently a homogeneous structure, find a minimal Ramsey
+expansion.
+\end{qn}
+
+\begin{exm}
+For the class of graphs, the minimal Ramsey expansion is the class of ordered graphs.
+We will soon see a more general way to see that this is in fact minimal.
+\end{exm}
+
+\subsection{Criterion for being Ramsey}
+
+\begin{prop}
+An $\om$-categorical structure $M$ (homogeneous in a relational language $L$)
+is Ramsey iff for every universal theory $T'$
+in a language $L'\supeq L$ consistent with $\theory\left( M \right)$, $M$ has a definable
+expansion to a model of $T'$.
+\end{prop}
+
+\begin{proof}
+$\left( \implies \right)$: Assume $M$ is Ramsey and $T'$ as above. Let $M'$ be an
+expansion of $M$ to a model of $T'$. 
+By compactness we can assume $L'\minus L$ is finite. 
+Now we want to color the substructures (subsets since relational) of $M$ according to how
+they expand to $L'$. Since $M$ is Ramsey, for every finite substructure $A\subeq M$, and every 
+$B\subeq M$, there is some $C$ such that there is a copy $B'$ of $B$ in
+$C$ such that all copies of $A$ in $B'$ have the same expansion to $L'$.
+Since this is how we colored copies of $A$.
+
+In particular, we can find a homogeneous copy of $B$ in $M$. And then by compactness, in
+an elementary extension $M^*$ of $M$
+we can find a copy $M_0$ of $M$ where all of the copies of $A$ in $M_0$ have the same
+expansion to $L'$. This implies that $L'$ is invariant under $L$-automorphisms. 
+So by $\om$-categoricity, the expansion to $L'$ is $0$-definable. 
+Therefore $M_0\models T'$ as $T'$ is universal.
+
+$\left( \converse \right)$: Assume the conclusion. 
+Let $A$ and $B$ be given, and write $r$ for the number of colors. Then consider
+\begin{equation}
+L' = L\un \left\{ R_1\left( \oline{x} \right) \cdots R_r\left( \oline{x} \right) \right\}
+\end{equation}
+where $\abs{\oline{x}} = \abs{A}$. Then we want to show $M\fromto \left( B \right)_r^A$.
+A coloring of copies of $A$ in $M$ gives an expansion of $M$ to $L'$.
+Let $T'$ be its universal theory. By assumption, there is a definable expansion $M^*$ of
+$M$ to a model of $T'$. Since $M^*$ models the universal theory of $M$,
+$M^*\models T_{\forall}\left( M \right)$, we know
+there is a copy of $B$ in $M$, which is colored as some/any copy
+of $B$ in $M^*$. On that copy of $B$, all copies of $A$ have the same color.
+\end{proof}
+
+This proposition means that in order to prove something isn't Ramsey, all we have to do is
+show it doesn't have such a definable expansion.
+
+\begin{cor}
+A Ramsey structure has a definable linear order.
+\end{cor}
+
+\begin{proof}
+Take $L' = L\un \left\{ \leq \right\}$, and then we can take $T'$ to be the theory of linear orders,
+which is universal.
+\end{proof}
+
+\subsection{Examples}
+
+\begin{exm}
+Take $L = \left\{ E \right\}$ to be equivalence relation.
+If we consider $T'$ in $L' = L\un \left\{ \leq \right\}$ where $\leq$
+is a linear order with convex classes, we see that ordered equivalence relations are not
+Ramsey since the \Fraisse limit of that class would have all classes dense and does not
+induce an order on the quotient. And without this then we definitely don't have a
+definable order with convex classes. So this is not Ramsey. 
+
+It is true however that the class of convexly ordered equivalence relations is Ramsey.
+\begin{exr}
+Show that this is Ramsey.
+[This does not follow from the theorems we have seen. This should be done by hand.]
+\end{exr}
+\end{exm}
+\begin{exm}
+Consider circular orders. Recall $\left( \QQ , C\left( x,y,z \right) \right)$ is a reduct of DLO. 
+A Ramsey expansion must define an order of which $C$ is the corresponding
+circular order (this is a universal condition). So the minimal Ramsey expansion 
+is just DLO.
+\end{exm}
+\begin{exm}
+We can also look at partial orders. 
+Any Ramsey expansion of partial orders will have to define an order which extends the
+partial orders. We claim this class is Ramsey. Take $L' = \left\{ \leq , \order \right\}$
+where $\order$ is a linear extension of $\leq$.
+The forbidden substructures are as follows. First we cannot have $a\geq b$, $a\order b$
+for $a\neq b$, and the second is that $a_1 \leq a_2 \leq \cdots\leq a_n$ and $\neg \left(
+a_1\leq a_n \right)$ for all $n$.
+
+Now we apply the theorem. So we need a Ramsey class. 
+We claim that if only the first is satisfied, then this is the class of ordered graphs. 
+So for the Ramsey class we take $\cR$ to be the class of structures in $\left\{ \leq ,
+\order\right\}$ with $a\leq b\implies a\order b$ and $\order$ is a linear order. This is
+the same thing as ordered graphs, and hence is Ramsey.
+Let $\cK\subeq R$ be the subclass where $\leq$ is transitive. 
+It is clear that it is hereditary. Then we need to check that it has
+strong (disjoint) amalgamation. This is clear because, e.g. if $a\leq b$ and $b\leq c$, we
+just insist that $a\leq c$, and then amalgamate this arbitrarily to a linear order. 
+Now we need to check that it is locally finite. Let $C_0\in \cR$. Then we can take $n =
+\abs{C_0}$. Now let $C$ be an $L'$-structure such that:
+\begin{itemize}
+\item $C_0$ is a completion of $C$, i.e. there is
+a homomorphism embedding $\pi:C\fromto C_0$, and
+\item every substructure of size $\leq n$ of $C$ has a strong $\cK$-completion.
+\end{itemize}
+Concretely this means the following. The only situation where we don't have a strong
+$\cK$-completion is if we have something like
+\begin{align}
+a_1 \leq a_2 \leq \cdots \leq a_k &&
+a_1 \order a_k &&
+\neg\left( a_1 \leq a_k \right)
+\label{eqn:forbidden}
+\end{align}
+since we can't add the `edge' between $a_1$ and $a_k$.
+Now we have to check there is a bound on $k$.
+So consider some situation as in \eqref{eqn:forbidden}. Then $\pi$ has to be injective on
+$\left\{ a_1 , \cdots , a_k \right\}$ because we must have
+\begin{equation}
+\pi\left( a_1 \right) \sorderl \pi\left( a_2 \right) \sorderl \cdots \sorderl \pi\left( a_k \right)
+\end{equation}
+so $k\leq n$ and the theorem tells us this is a Ramsey class.
+\end{exm}
+\begin{exm}
+A Ramsey expansion of a (nontrivial) reduct of the random graph is just given by the
+ordered random graph, and this is minimal in the sense that any Ramsey expansion must have
+a $0$-definable graph whose reduct is the given one.
+\end{exm}
+\begin{exm}
+If we take $L = \left\{ \leq_1 , \leq_2 \right\}$ and the class $\cC$ of finite
+structures where $\leq_1$ and $\leq_2$ are linear orders, then $\cC$ is Ramsey. 
+The \Fraisse limit is two linear orders with no link between them.
+The fact that this is Ramsey is something which we can't see from the theorem since it is
+not locally finite.
+\begin{exr}[*]
+Prove this. 
+[Hint: Think of such structures as two linear orders with a bijection between them.]
+\end{exr}
+\end{exm}
+
+\end{document}

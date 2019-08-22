@@ -1,0 +1,269 @@
+\documentclass{amsart}
+\usepackage{master}
+\usepackage{overlay}
+\usetikzlibrary{decorations.pathmorphing}
+\begin{document}
+\title{Lecture 3\\Math 229}
+\author{Lectures by: Professor Pierre Simon\\Notes by: Jackson Van Dyke}
+\date{January 29, 2019}
+\maketitle
+
+Recall we were about to finish proving the following theorem:
+
+\begin{thm}
+Let $M$ and $N$ be $\om$-categorical. 
+Then $\Aut\left( M \right)$ and $\Aut\left( N \right)$
+are homeomorphic iff $M$ and $N$ are bi-interpretable.
+\end{thm}
+
+\begin{Proof}[Continued proof]
+Recall we proved a claim which told us that for a homeomorphism
+$\sigma : \Aut\left( M \right)\lfromto{\sim}\Aut\left( N \right)$,
+we get interpretations $f: M\leadsto N$ and $g:N\leadsto M$,
+such that $\Aut\left( f \right) = \sigma$, and $\Aut\left( g \right) = \sigma^{-1}$.
+In particular, 
+\begin{align}
+\Aut\left( f \right) \Aut\left( g \right) = \id_{\Aut\left( N \right)} &&
+\Aut\left( g \right) \Aut\left(f \right) = \id_{\Aut\left( M \right)} \ .
+\end{align}
+To see that $f$ and $g$ form a bi-interpretation we just need the following:
+\begin{clm}
+If $s,t:M\leadsto N$ are interpretations such that
+$\Aut\left( s \right) = \Aut\left( t \right)$, then $s$ and $t$ are homotopic.
+\end{clm}
+\begin{proof}
+We need to show that the set $\left( s=t \right)$ is $0$-definable,
+but since everything is $\om$-categorical,
+this just means we need to show that it is $\Aut\left( M \right)$-invariant.
+If $\left( x,y \right) \in \left( s=t \right)$, i.e.
+$s\left( x \right) = t\left( y \right)$, 
+then for $\sigma \in \Aut\left( M \right)$, we need to show 
+$s\left( \sigma\left( x \right) \right) = t\left( \sigma\left( y \right) \right)$. 
+We compute
+\begin{align}
+s\left( \sigma\left( x \right) \right) &= \Aut\left( s \right)\left( \sigma \right)
+\left( s\left( x \right) \right) 
+= \Aut\left( t \right)\left( \sigma \right)\left( t\left( y \right) \right)
+= t\left( \sigma\left( y \right) \right)
+\end{align}
+and we are done.
+\end{proof}
+The result follows from this claim.
+\end{Proof}
+
+\section{Overview}
+
+Recall we are in the following situation.
+For $M$ an $\om$-categorical structure,
+we can consider $\Aut\left( M \right)$. 
+We have at least three ways we can see this group. 
+The first is as a permutation group.
+We have seen that this gives us exactly the same information as $M$ up to interdefinability.
+Another thing we can do, is just see $\Aut\left( M \right)$ as a topological group,
+and then this determines exactly $M$ up to bi-interpretability.
+Finally, we could just see it as a pure group.
+Here we don't get much, but sometimes, we can actually obtain its structure as a topological group
+via something called the small index property.
+In addition, we can sometimes go from viewing $\Aut\left( M \right)$ as a topological group
+to viewing it as a permutation group, though of course
+we need to insist on some property of $M$ because
+there are no structures such that all bi-interpretable structures are
+interdefinable.
+The sort of structure for which this works is called a primitive structure, as defined below.
+This is summarized in the following diagram:
+\begin{equation}
+\begin{tikzcd}
+\Aut\left( M \right) 
+\text{ as permutation group }
+\arrow[leftrightsquigarrow]{r}
+&
+M 
+\text{ up to interdefinability}
+\\
+\Aut\left( M \right) 
+\text{ as topological group }
+\arrow[leftrightsquigarrow]{r}
+\arrow[bend left,dashed]{u}{\text{primitive}}
+&
+M 
+\text{ up to bi-interpretability}
+\\
+\Aut\left( M \right) 
+\text{ as a group }
+\arrow[leftrightsquigarrow]{r}
+\arrow[bend left,dashed]{u}{\text{small index property}}
+&
+\text{ not much\ldots }
+\end{tikzcd}
+\end{equation}
+
+\begin{defn}
+A permutation group $G\acts X$ is \emph{primitive} if there is no non-trivial
+invariant equivalence relation on $X$.
+\end{defn}
+
+\begin{rmk}
+As long as $G$ is nontrivial, primitivity implies transitivity.
+\end{rmk}
+
+\begin{defn}
+A structure $M$ is primitive if $\Aut\left( M \right)\acts M$ is primitive.
+Equivalently, if $M$ is $\om$-categorical, $M$ is primitive if there are no nontrivial 
+$0$-definable equivalence relation on $M$.
+\end{defn}
+
+\begin{rmk}
+Effectively all of the examples we have seen are primitive.
+\end{rmk}
+
+These $\om$-categorical structures have three ways of looking at them as well.
+First, we can look at the \Fraisse class, $\cC$, the infinite \Fraisse limit, $M$,
+and the Polish group $\Aut\left( M \right)$.
+The study of the first involves mostly combinatorics, 
+the study of the second is mostly model theory, and the third is descriptive set theory.
+In this course we will study the first, then the third, 
+and if there is time we will study the second object.
+
+\section{Subgroups and supergroups of $\Aut\left( M \right)$}
+
+Recall we have seen that $\Aut\left( M \right) \leq \Sym\left( M \right)$ is closed.
+Conversely, any closed subgroup of $\Sym\left( M \right)$ is equal to $\Aut\left( \tilde M \right)$
+for some structure $\tilde M$.
+Similarly, if $G \leq \Aut\left( M \right)$ is closed, 
+then the structure $\tilde M$ such that $G = \Aut\left( \tilde M \right)$
+is an expansion of $M$ (probably more generally, but certainly if $M$ is $\om$-categorical).
+Conversely, if $\tilde M$ is an expansion of $M$, then 
+$\Aut\left( \tilde M \right)\leq \Aut\left( M \right)$ is closed.
+So we have a correspondence between closed subgroups and expansions of $M$,
+and in particular, for oligomorphic subgroups the expansions are $\om$-categorical.
+The issue is that the expansion corresponding to some subgroup is not unique,
+so this is not a bijection.
+
+We can instead look at supergroups,
+i.e. any group $G$ such that
+$\Aut\left( M \right) \leq G\leq \Sym\left( M \right)$
+where $G$ is closed inside of $\Sym\left( M \right)$.
+If $M$ is $\om$-categorical, we have a bijection between 
+reducts of $M$ up to inter-definability
+and such supergroups $G$.
+This is often used to classify reducts of $\om$-categorical structures.
+
+\subsection{Classifying reducts}
+
+\begin{exm}
+Reducts of countable dense linear orders (DLO), i.e.
+reducts of $\left( \QQ , \leq \right)$ were classified by Cameron:
+\mathtabular{
+\begin{tabular}{|C|C|}
+\hline
+M & \Aut\left( M \right)\\
+\hline\hline
+\left( \QQ , \leq \right) & \text{order-preserving permutations of } \QQ \\
+\hline
+\left( \QQ , B\left( x,y,z \right) \right) & \text{order-preserving or reversing permutations of } \QQ \\
+\hline
+\left( \QQ , C\left( x,y,z \right) \right) & \text{order preserving up to `cutting and pasting' pieces}\\
+\hline
+\left( \QQ , S\left( x,y,s,t \right) \right)
+&\text{(closure of) the group generated by the two previous ones}\\
+\hline
+\left( \QQ , = \right) & \Sym\left( \QQ \right)\\
+\hline
+\end{tabular}
+}
+A first observation about the second row, is that there is no point in even looking
+for binary relations.
+These permutations are $2$-transitive, meaning
+any two distinct points can be sent to any distinct points, i.e.
+it is transitive on pairs of distinct points.
+Therefore we should be looking for a ternary relation.
+As it turns out, the appropriate relation is betweenness $B\left( x,y,z \right)$.
+
+For the third line, we have that
+$C\left( x,y,z \right)$ is the circular order.
+So we somehow bring together $\pm \infty$ 
+and then we insist on three points being in some order on the circle.
+These automorphisms are also $2$-transitive but for a different reason.
+
+The final nontrivial one is $3$-transitive, since we are allowing the automorphisms
+to sort of flip the circle.
+The relation on this structure is the
+separation relation.
+This holds if to travel from $s$ to $t$ you have to cross 
+$x$ or $y$ and vice versa.
+\end{exm}
+
+\begin{exr}
+Show the bijection in the second row.
+Also show that $\left( \QQ , B \right)$ is homogeneous in this language. 
+\end{exr}
+
+\begin{exm}
+Consider the reducts of the random graphs.
+The classifications is due to Thomas:
+\mathtabular{
+\begin{tabular}{|C|c|}
+\hline
+\cM & $\Aut\left( \cM \right)$\\
+\hline\hline
+\left( M , R \right)
+& graph automorphisms
+\\
+\hline
+\left( M , R_4\left( w,x,y,z \right) \right)
+& automorphisms, 
+or they exchange all edges and non-edges
+\\
+\hline
+\left( M , R_3\left( x,y,z \right) \right)
+& switching automorphisms of the graph
+\\
+\hline
+\left( M , R_5\left( x_1 , \ldots , x_5 \right) \right)
+& composition of the $2$ previous ones
+\\
+\hline
+\left( M , = \right)
+& $\Sym\left( M \right)$
+\\
+\hline
+\end{tabular}
+}
+Given a partition of $M$ in two classes $E_1$ and $E_2$,
+the switch between $E_1$ and $E_2$ is the operation which exchanges 
+edges and non-edges between $E_1$ and $E_2$ while leaving the $E_i$ unchanged.
+This is an automorphism up to a switch.
+This is sort of like a circular order.
+The following is such an example:
+\begin{align}
+\begin{overlay}
+\pict{switch1.pdf}{0.1}
+\end{overlay}
+&&\leadsto &&
+\begin{overlay}
+\pict{switch2.pdf}{0.1}
+\end{overlay}
+&&\leadsto &&
+\begin{overlay}
+\pict{switch1.pdf}{0.1}
+\end{overlay}
+\end{align}
+To go from the first to the second, we swap the bottom and right vertices,
+and to go from the second to the third, we perform a 
+`switch automorphism' where $E_1$ consists of the top vertex, and $E_2$ consists of the other two.
+The switching automorphisms are $2$-transitive, so again we should expect at least
+a ternary relation here.
+We get that the proper relation $R_3$ is parit of edges, as is $R_4$.
+Then parity of the number of edges between $5$-points, $R_5$,
+gives us the final nontrivial structure.
+\begin{wrn}
+$\left( M , R_4\left( w,x,y,z \right) \right)$
+is not homogeneous in this language.
+If we want something which is homogeneous we would just have to put
+a ternary relation which tells us if those two edges are the same or different.
+$\left( M , R_5\left( x_1 , \cdots , x_5 \right) \right)$ is also not homogeneous since
+it is not $4$ or $3$ transitive.
+\end{wrn}
+\end{exm}
+
+\end{document}
